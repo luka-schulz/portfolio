@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"content="initial-scale=1">
+
+  <title>Houdini | Luka Schulz</title>
+
+  <meta name="theme-color" content="#00ea75" />
+
+  <link href="../../css/typography.css" rel="stylesheet" type="text/css">
+  <link href="../../css/style.css" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="../../yes-its-upsidedown.png">
+
+  <style>
+    @media (min-width: 640px){
+      /* width */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: black;
+      }
+      /* Track on hover */
+      ::-webkit-scrollbar-track:hover {
+        background: rgb(20, 20, 20);
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: white;
+
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgb(238, 238, 238);
+      }
+    }
+  </style>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90997769-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-90997769-1');
+  </script>
+</head>
+
+<body class="project houdini">
+  <div class="parallaxWrapper">
+    <div class="banner">
+      <img class="loader" src="loader-001.gif">
+    </div>
+
+    <section class="foreground">
+      <header class="page__header fit">
+        <p class="caption">3D, Motion | 16 Weeks</p>
+        <h2>Houdini<span class="thin">&mdash;</span></h2>
+        <h3>Call me a Houdini Weenie</h3>
+      </header>
+
+      <article class="project__content">
+        <p class="fit mbs">Houdini is a fully procedural graphics development environment. It is the bread and butter of the Visual Effects (VFX) community, but I think it has immense potential for future designers as we move towards a more complex and entangled future. For this project, I worked in two-week cycles. At the start of each bi-weekly cycle, I picked a specific topic in Houdini as well as a random word. The words were used to structure my learning as I attempted to visually represent them using Houdini as my <a href="https://www.youtube.com/watch?v=XQ7z57qrZU8" target="_blank">weapon of choice</a>.</p>
+
+        <p class="fit caption">Note: A big thank you to Adam Smith for the feedback and advice :)</p>
+
+        <section>
+          <figure class="mbm">
+            <div class="videoWrapper">
+              <iframe src="https://player.vimeo.com/video/330327267?&loop=0&autopause=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            </div>
+          </figure>
+
+          <p class="fit mbs">The first area I explored in Houdini was POPs (Particle operators). The POP network is housed within the Dynamics context of Houdini and it’s mainly used for particle simulations. The main technique I used to sculpt the particle’s motion was derived from Simon Fiedler’s <a href="https://vimeo.com/162213251" target="_blank">video</a> about volume trails. The idea is to calculate a vector between a particle’s current location and its desired position and then use that information to adjust the particle’s velocity. Curl noise can then be added to create variance in the particle’s movement. All of this can be done using VEX (or VOPs) then stored with a volume and brought into POPs. The coloring is driven by the age, speed, and position of the particles (shout to Steven Knipping and his <a href="http://www.appliedhoudini.com/" target="_blank">Applied Houdini</a> tutorials).</p>
+          <p class="fit caption mbm">Music credit: J. Cole - <a href="https://www.youtube.com/watch?v=WILNIXZr2oc" target="_blank">MIDDLE CHILD</a></p>
+
+          <div class="processGrid mbxl container">
+            <div class="projectBlock">
+              <figure class="half projectElement">
+                <video autoplay loop muted>
+                  <source src="signal/signal-001.mp4" type="video/mp4">
+                </video>
+              </figure>
+              <figure class="half projectElement">
+                <video autoplay loop muted>
+                  <source src="signal/signal-002.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+
+            <div class="projectBlock">
+              <figure class="projectElement full">
+                <img class="tall"  src="signal/signal-003.jpg" alt="Masonry Brick #1">
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <figure class="mbm">
+            <div class="videoWrapper">
+              <iframe src="https://player.vimeo.com/video/330327222?&loop=0&autopause=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            </div>
+            <figcaption class="flex small">
+            </figcaption>
+          </figure>
+
+
+          <p class="fit mbs">Guessing from my limited experience with graphics programming, the next important thing to understand about Houdini was the the solver. It is essentially just a for-loop but it is found at the heart of many nodes. I am still a bit iffy on implementing complex behaviors via solvers but in general, the concept was easy to grasp. The main technique used in this piece came from an <a href="http://www.entagma.com/differential-mesh-growth/" target="_blank">Entagma tutorial</a> about differential growth. The mesh is being displaced along the point normals and then allowed to relax. As the solver chugs along, the mesh unfurls into a beautiful but tangled structure. </p>
+          <p class="fit caption mbm">Music credit: Lukas Boysen - <a href="https://benlukasboysen.com/albums/beat-sountrack-excerpts/" target="_blank">Gewalt</a></p>
+
+          <div class="processGrid mbxl container">
+            <div class="projectBlock">
+              <figure class="half projectElement">
+                <img src="reduce/reduce-004.jpg">
+              </figure>
+              <figure class="half projectElement">
+                <img src="reduce/reduce-002.jpg">
+              </figure>
+            </div>
+
+            <div class="projectBlock">
+              <figure class="projectElement full">
+                <img class="tall" src="reduce/reduce-003.jpg">
+              </figure>
+            </div>
+
+            <div class="projectBlock">
+              <figure class="projectElement half">
+                <img class="tall" src="reduce/reduce-001.jpg">
+              </figure>
+              <figure class="projectElement half">
+                <video style="width:100.771%;" autoplay loop muted>
+                  <source src="reduce/reduce-005.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <figure class="mbm">
+            <div class="videoWrapper">
+              <iframe src="https://player.vimeo.com/video/330327186?&loop=0&autopause=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            </div>
+            <figcaption class="flex small">
+            </figcaption>
+          </figure>
+
+          <p class="fit mbs">Smoke and pyroclastic simulations have been a personal favorite of mine. In this piece, I wanted to explore how form can arise from formlessness. I spent a lot of time breaking down the Smoke Solver in order to better understand the Pyro Solver (I think I understand the Gas Project Non-Divergent Multigrid microsolver). The setup was simple, import a low-density collision volume and then use a vector field to direct the smoke towards the desired areas of the object. A good chunk of time was spent understanding how to optimize Mantra.</p>
+
+          <p class="fit caption mbm">Music credit: Simon Chioni - <a href="https://soundcloud.com/chioini/fall-winter" target="_blank">Fall-Winter 2016</a></p>
+
+          <div class="processGrid mbxl container">
+            <div class="projectBlock">
+              <figure class="half projectElement">
+                <video autoplay loop muted>
+                  <source src="fringe/fringe-010.mp4" type="video/mp4">
+                </video>
+              </figure>
+              <figure class="half projectElement">
+                <video autoplay loop muted>
+                  <source src="fringe/fringe-005.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+
+            <div class="projectBlock">
+              <figure class="projectElement full">
+                <img class="tall"  src="fringe/fringe-009.jpg">
+              </figure>
+            </div>
+
+            <div class="projectBlock">
+              <figure class="projectElement third">
+                <video autoplay loop muted>
+                  <source src="fringe/fringe-001.mp4" type="video/mp4">
+                </video>
+              </figure>
+              <figure class="projectElement third">
+                <video autoplay loop muted>
+                  <source src="fringe/fringe-007.mp4" type="video/mp4">
+                </video>
+              </figure>
+              <figure class="projectElement third">
+                <video autoplay loop muted>
+                  <source src="fringe/fringe-008.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+
+            <div class="projectBlock">
+              <figure class="projectElement full">
+                <img class="tall"  src="fringe/fringe-006.jpg">
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <figure class="mb">
+            <video controls poster="light/light-poster.png">
+              <source src="light.mp4" type="video/mp4">
+            </video>
+          </figure>
+            <figcaption class="flex small">
+            </figcaption>
+          </figure>
+
+
+          <p class="fit mbs">The final thing I played around with for this project was the new Vellum Solver in H17. I wanted to take the popular soft-body ballon effect popularized by ManvsMachine and explore the negative space created by the collisions. To access collision data in the Vellum Solver requires 1) a DOP implementation and 2) an editable Vellum Solver node. After some help from <a href="https://forums.odforce.net/topic/41861-collisions-in-vellum/?tab=comments#comment-200274" target="_blank">Andrea</a> on OD Force, I was able to figure out how to turn on collision tracking within the solver which let me use that data to drive the material. From there, it was a matter of tweaking the stiffness/thickness of the cloth as well as the number of substeps in the Vellum Solver to allow for a clean simulation.</p>
+
+          <p class="fit caption mbm">Music credit: Billie Eilish - <a href="https://www.youtube.com/watch?v=DyDfgMOUjCI" target="_blank">bad guy</a></p>
+
+          <div class="processGrid container">
+            <div class="projectBlock">
+              <figure class="half projectElement">
+                <img src="light/light-001.jpg">
+              </figure>
+              <figure class="half projectElement">
+                <img src="light/light-002.jpg">
+              </figure>
+            </div>
+
+            <div class="projectBlock">
+              <figure class="projectElement full">
+                <img class="tall"  src="light/light-003.jpg">
+              </figure>
+            </div>
+
+            <div class="projectBlock">
+              <figure class="projectElement third">
+                <img class="tall"  src="light/light-004.jpg">
+              </figure>
+              <figure class="projectElement third">
+                <img class="tall"  src="light/light-005.jpg">
+              </figure>
+              <figure class="projectElement third">
+                <img class="tall"  src="light/light-006.jpg">
+              </figure>
+            </div>
+
+            <div class="projectBlock">
+              <figure class="half projectElement">
+                <video autoplay loop muted>
+                  <source src="light/light-007.mp4" type="video/mp4">
+                </video>
+              </figure>
+              <figure class="half projectElement">
+                <video autoplay loop muted>
+                  <source src="light/light-008.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+
+            <div class="projectBlock">
+              <figure class="projectElement full">
+                <video autoplay loop muted>
+                  <source src="light/light-009.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <p class="caption fit">Last Edited: Mon. July 15, 2019</p>
+      </main>
+
+      <footer class="site__footer container flex">
+        <div><p>© 2019 Luka Schulz</p></div>
+        <ul class="flex clean">
+          <li><a href="https://samkilg.us/friends/?links=https%3A%2F%2Fsophiazapata.com%2F,http%3A%2F%2Fadb2712.cias.rit.edu%2F,http%3A%2F%2Frileyank.com%2F,http%3A%2F%2Fwww.devon-cherry.com%2F,https%3A%2F%2Famanda-ho.com%2F,http%3A%2F%2Fsarahdanseglio.com%2F,http%3A%2F%2Fkamjenny.com%2F,https%3A%2F%2Fwww.jacobdfrank.com%2F,http%3A%2F%2Fevananthony.com%2F,https%3A%2F%2Fjakecasson.com%2F,https%3A%2F%2Fneillavigne.com%2F,http%3A%2F%2Foliviagsutanto.com%2F,https%3A%2F%2Fsamkilg.us%2F,http%3A%2F%2Fabbeylee.design%2F,https%3A%2F%2Fwww.nautdesign.com%2F,http%3A%2F%2Fkah3770.cias.rit.edu%2F,http%3A%2F%2Fcoltonwoytas.net%2F,http%3A%2F%2Fwww.biagiofoto.com%2F,http%3A%2F%2Frobertaguileradesign.com%2F" target="_blank"
+    title="So no one told you life was gonna be this way
+    Your jobs a joke, you’re broke, your love life’s D.O.A.
+
+    It’s like you’re always stuck in second gear
+    And it hasn’t been your day, your week, your month,
+    or even your year
+    but..
+
+    I’ll be there for you
+    When the rain starts to pour
+    I’ll be there for you
+    Like I’ve been there before
+    I’ll be there for you
+    ’Cuz you’re there for me too...
+
+    You’re still in bed at ten
+    And work began at eight
+    You’ve burned your breakfast
+    So far... things are goin’ great
+
+    Oh but she didn’t tell you when the world has brought
+    Your mother warned you there’d be days like these
+    You down to your knees that...
+
+    Due to the character limit in the HTML5 title tag
+    you are not allowed anymore friendly goodness.
+    Please accept my sincerest apologies.">Friends</a></li>
+          <li><a href="https://lukaschulz.com/portfolio/houdini/cool-bus.html" target="_blank" title="The cooliest.">Spirit Animal</a></li>
+        </ul
+      </footer>
+
+      <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+      <script>
+        // Initialize Firebase
+        var config = {
+          apiKey: "AIzaSyCtKMqZqH3P64KPFdeqlY8Oyp7XGt9VwL4",
+          authDomain: "luka-schulz.firebaseapp.com",
+          databaseURL: "https://luka-schulz.firebaseio.com",
+          projectId: "luka-schulz",
+          storageBucket: "luka-schulz.appspot.com",
+          messagingSenderId: "80070852375"
+        };
+        firebase.initializeApp(config);
+      </script>
+    </section>
+  </div>
+  </body>
+
+  </html>

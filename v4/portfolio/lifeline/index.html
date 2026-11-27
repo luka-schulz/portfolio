@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"content="initial-scale=1">
+
+  <title>Lifeline | Luka Schulz</title>
+
+  <meta name="theme-color" content="#00ea75" />
+
+  <link href="../../css/typography.css" rel="stylesheet" type="text/css">
+  <link href="../../css/style.css" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="../../yes-its-upsidedown.png">
+
+  <script src="../../script/siema.min.js"></script>
+
+  <script>
+    window.onload = function() {
+      const mySlider = new Siema({
+        selector: ".carousel",
+        duration: 400,
+        easing: "ease-in-out",
+        perPage: 2,
+        draggable: true,
+        multipleDrag: true,
+        threshold: 20,
+        loop: true,
+        onChange: () => console.log(document.getElementsByClassName("carousel")[0].children[0].style.transform)
+      });
+
+      nextSlide()
+
+      function nextSlide() {
+        window.setTimeout(
+          function(){
+            mySlider.next();
+            nextSlide();
+          }, 8000
+        );
+      }
+    }
+  </script>
+
+  <style>
+    @media (min-width: 640px){
+    /* width */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: white;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: rgb(218, 218, 218);
+    }
+  }
+  </style>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90997769-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-90997769-1');
+  </script>
+</head>
+
+<body class="lifeline project">
+  <div class="parallaxWrapper">
+    <div class="banner">
+      <img class="loader" src="loader-001.gif">
+    </div>
+
+    <section class="foreground">
+      <header class="page__header fit">
+        <p class="caption">UX, UI, Motion, 3D | 10 Weeks</p>
+        <h2>Lifeline<span class="thin">&mdash;</span></h2>
+        <h3>Getting from A to B using AR</h3>
+      </header>
+
+      <article class="project__content">
+        <p class="fit mb">Lifeline is an exploratory project designed by <a href="https://amanda-ho.com/" target="_blank">Amanda Ho</a> and Luka Schulz for <a href="https://www.rochesterregional.org/" target="_blank">Rochester Regional Health</a> (RRH). At the heart of this project is a desire to question the necessity of Augmented Reality (AR) while also determining the qualities that separate it from other interactive materials. <span class="italic">It should be noted that every illustration for this project was done by Amanda. All 3D and motion tracking were done by me. Together, we worked on everything else.</span></p>
+
+        <h4 class="fit mbs">Old Habits Die Hard</h4>
+
+        <p class="clean fit mbs">New technologies often have the habit of out-shadowing older, and sometimes more appropriate technologies. So when RRH asked for an AR navigation app, my first thought was, “Why does a hospital need AR? Is there a more important issue that needs to be solved if people are getting lost?” After a few conversations with the client, it became evident that they wanted a vision of what AR had to offer; what could it do that people might not be thinking about currently?</p>
+
+        <p class="fit mb">With this in mind, the next challenge became making an AR vision into reality. In the first few weeks, our time was spent on pencil and paper flushing out the user flow, architecture, and main screens. However, it quickly became clear that even though we were working, we weren’t solving problems with augmented reality. The majority of our wireframes consisted of traditional UI elements and a bit of hand-wavy AR. Our process had to evolve with the technology if we wanted to make any progress.</p>
+
+        <figure class="mb">
+          <img src="sketches-03.jpg" style="background: #1f1f1f;">
+          <figcaption class="fit">
+            <p class="caption">fig. 1 Initial sketches show no major insights into AR 👉👈</p>
+          </figcaption>
+        </figure>
+
+        <p class="fit mb">If 2D wireframes are for 2D UI, could we use “3D wireframes” to help us design 3D UI? Seeing as there weren’t any obvious tools for the job, we had to make do with what we knew. It definitely wasn’t as simple as pencil and paper, but After Effects and Cinema 4D became our best options. We got an iPhone and began filming spaces that were hospital-esque, motion tracking the shots, and comping in simple UI. The gallery below highlights some of our major explorations and proof of concepts (click and drag to swipe through).</p>
+
+        <div class="carousel fit mb">
+          <figure>
+            <video style="background: white; margin-bottom: 1rem; height: 500px; width: auto;" loop autoplay muted>
+              <source src="tests/video-01.mp4"  type="video/mp4">
+            </video>
+
+            <figcaption>
+              <p class="caption">fig 2. Interacting with posters</p>
+            </figcaption>
+          </figure>
+
+          <figure>
+            <video style="background: white; margin-bottom: 1rem; height: 500px; width: auto;" loop autoplay muted>
+              <source src="tests/video-02.mp4"  type="video/mp4">
+            </video>
+
+            <figcaption>
+              <p class="caption">fig 3. On-screen navigation</p>
+            </figcaption>
+          </figure>
+
+          <figure>
+            <video style="background: white; margin-bottom: 1rem; height: 500px; width: auto;" loop autoplay muted>
+              <source src="tests/video-03.mp4"  type="video/mp4">
+            </video>
+
+            <figcaption>
+              <p class="caption">fig 4. AR wayfinding signage</p>
+            </figcaption>
+          </figure>
+
+          <figure>
+            <video style="background: white; margin-bottom: 1rem; height: 500px; width: auto;" loop autoplay muted>
+              <source src="tests/video-04.mp4"  type="video/mp4">
+            </video>
+
+            <figcaption>
+              <p class="caption">fig 5. On-floor directions</p>
+            </figcaption>
+          </figure>
+
+          <figure>
+            <video style="background: white; margin-bottom: 1rem; height: 500px; width: auto;" loop autoplay muted>
+              <source src="tests/video-05.mp4"  type="video/mp4">
+            </video>
+
+            <figcaption>
+              <p class="caption">fig 6. On-floor map</p>
+            </figcaption>
+          </figure>
+
+          <figure>
+            <video style="background: white; margin-bottom: 1rem; height: 500px; width: auto;" loop autoplay muted>
+              <source src="tests/video-06.mp4"  type="video/mp4">
+            </video>
+
+            <figcaption>
+              <p class="caption">fig 7. Bathroom directions</p>
+            </figcaption>
+          </figure>
+
+          <figure>
+            <video style="background: white; margin-bottom: 1rem; height: 500px; width: auto;" loop autoplay muted>
+              <source src="tests/video-07.mp4"  type="video/mp4">
+            </video>
+
+            <figcaption>
+              <p class="caption">fig 8. AR micro-interaction</p>
+            </figcaption>
+          </figure>
+
+          <figure>
+            <video style="background: white; margin-bottom: 1rem; height: 500px; width: auto;" loop autoplay muted>
+              <source src="tests/video-08.mp4"  type="video/mp4">
+            </video>
+
+            <figcaption>
+              <p class="caption">fig 9. Patient privacy barrier</p>
+            </figcaption>
+          </figure>
+
+          <figure>
+            <video style="background: white; margin-bottom: 1rem; height: 500px; width: auto;" loop autoplay muted>
+              <source src="tests/video-09.mp4"  type="video/mp4">
+            </video>
+
+            <figcaption>
+              <p class="caption">fig 10. Fast spin tracking test</p>
+            </figcaption>
+          </figure>
+
+          <figure>
+            <video style="background: white; margin-bottom: 1rem; height: 500px; width: auto;" loop autoplay muted>
+              <source src="tests/video-10.mp4"  type="video/mp4">
+            </video>
+
+            <figcaption>
+              <p class="caption">fig 11. Adaptive UI (top right corner)</p>
+            </figcaption>
+          </figure>
+
+          <figure>
+            <video style="background: white; margin-bottom: 1rem; height: 500px; width: auto;" loop autoplay muted>
+              <source src="tests/video-11.mp4"  type="video/mp4">
+            </video>
+
+            <figcaption>
+              <p class="caption">fig 12. Open door privacy barrier</p>
+            </figcaption>
+          </figure>
+        </div>
+
+        <p class="fit mbs">These 3D wireframes gave us tremendous insight into the possibilities of AR, as well as what could realistically be pulled off. Furthermore, they pushed us to ask some major questions that ended up shaping our work over the following eight weeks, the three most important questions being:</p>
+
+        <ol class="fit mbs">
+          <li>Which problems are traditional UI better suited to solve?</li>
+          <li>How can AR fit into and augment existing infrastructure?</li>
+          <li>What is the interplay between physical and digital?</li>
+        </ol>
+
+        <p class="clean fit mb">Had we not taken the time to play, I don’t think we would have been able to come up with the solutions we did. Our explorations made clear that the story we were going to tell had to focus on the moments of delight that couldn’t exist anywhere else but in AR. To tell this story, we felt we had to find a situation that everyone could understand: navigating to a new location.</p>
+
+        <h4 class="fit mbs">The Solution</h4>
+
+        <p class="clean fit mb">The story we ended up telling imagines a person’s journey from a patient’s room to the cafeteria for the first time. As a team, Amanda and I decided that the best way to showcase our solution was through short vignettes that captured signature moments in AR. The five moments we chose to focus on were opening AR mode (MeView), using an elevator, encountering a block, screenshotting information, and returning home.</p>
+
+        <figure class="container mb">
+          <img src="whiteboard-001.jpg" style="background: #47c2ff;">
+          <figcaption class="fit">
+            <p class="caption">fig. 13 The user flow from a patient’s room to the cafeteria and back</p>
+          </figcaption>
+        </figure>
+
+        <p class="fit mbs">Unique to all five situations was the requirement that they are compliant with the <a href="https://en.wikipedia.org/wiki/Health_Insurance_Portability_and_Accountability_Act" target="_blank">Health Insurance Portability and Accountability Act</a> (H&#8288;I&#8288;P&#8288;P&#8288;A). H&#8288;I&#8288;P&#8288;P&#8288;A protects personal information within a hospital meaning our designs had to be considerate of all personal information that might be seen in the hospital, especially inside a patient’s room. As a legal matter, it made sense, but at times it was unsettling to <a href="https://youtu.be/AOHy4Ca9bkw?t=22" target="_blank">design for censorship</a>.</p>
+
+        <figure class="fit mb">
+          <video class="fit" style="background: #ffffff; margin-bottom: 0;" loop autoplay muted>
+            <source src="animations/map.mp4" type="video/mp4">
+          </video>
+          <figacaption>
+            <p class="caption">fig. 14 A user attempting to open MeView in a patient room</p>
+          </figacaption>
+        </figure>
+
+        <p class="fit mbs">↑ &nbsp; The first moment in our flow shows a person trying to open MeView in a patient’s room. Because of H&#8288;I&#8288;P&#8288;P&#8288;A, we decided AR should not be allowed in any patient room. The reason we selected this moment was for its frustrating nature. Just like slow internet connections and ridiculous pop-ups, AR is bound to have some rough patches that will take some getting used to. We felt it’s important to handle these moments with grace and avoid making the user feel like they are to blame. To do this, we paired simple animation with reassuring copy.</p>
+
+        <p class="fit mbs">It should be noted that all the UI has been pushed to the right with the intention that users could switch between right- and left-handed mode so as to ease some of the strain that might happen during long periods of navigation.</p>
+
+        <figure class="fit mb">
+          <video class="fit" style="background: #ffffff; margin-bottom: 0;" loop autoplay muted>
+            <source src="animations/elevator.mp4"  type="video/mp4">
+          </video>
+          <figacaption>
+            <p class="caption">fig. 15 A brief moment of AR complementing an already existing physical object</p>
+          </figacaption>
+        </figure>
+
+        <p class="fit mbs">↑ &nbsp; This micro-interaction came directly from our initial iterations and the question: <span class="italic">How can AR fit into and augment existing infrastructure?</span> The physical world is probably not going to change for AR and it would be better to solve problems in AR realistically, not idealistically. This tiny moment is not life-changing, but sometimes it’s the little things that make all the difference.</p>
+
+        <figure class="fit mb">
+          <video class="fit" style="background: #ffffff; margin-bottom: 0;" loop autoplay muted>
+            <source src="animations/block.mp4"  type="video/mp4">
+          </video>
+          <figacaption>
+            <p class="caption">fig. 16 Rerouting a user in AR after encountering a blockage</p>
+          </figacaption>
+        </figure>
+
+        <p class="fit mbs">↑ &nbsp; Whether intentionally or unintentionally, rerouting is likely to happen while navigating complex spaces. This made it an important moment to get right. As with many GPS apps, we felt the act of rerouting only made sense when the path was no longer being followed. The only thing a person needs to do to get a new route is to go in a different direction. To protect against unwanted rerouting, we provide the option to cancel any direction change.</p>
+
+        <p class="fit mbs">Additionally, we wanted to create a compound interaction that would allow people to notify the hospital of unknown blockages that might be causing direction changes. The user pulls down on the yellow triangle and a button is revealed that sends the hospital a geotagged location as well as an optional description from the user.</p>
+
+        <p class="fit mbs">In terms of AR UI, we felt good design and animation principles should not be forgotten. The UI on the floor consists of a wide path indicated by small dots, as well as an animated arrow through the center. After several tests, and a visit to the hospital, we realized a single line often gets blocked by foot traffic. The wide path allows for the user to see if they are on the right path or not even in situations with more traffic&mdash;of all the interactions explored, this is possibly the most unrealistic as object occlusion is computationally expensive and a problem that has yet to be solved.</p>
+
+        <figure class="fit mb">
+          <video class="fit" style="background: #ffffff; margin-bottom: 0;" loop autoplay muted>
+            <source src="animations/screenshot.mp4"  type="video/mp4">
+          </video>
+          <figacaption>
+            <p class="caption">fig. 17 Handling in-app screenshots</p>
+          </figacaption>
+        </figure>
+
+        <p class="fit mbs">↑ &nbsp; As we began to think about the interplay between physical and digital, posters and artwork immediately came to mind. Hospitals hang artwork and posters but don’t have easy ways of linking information to what is shown. In AR, this can be easily solved with callouts. Little targets floating in space can be clicked on to surface 2D cards containing more information. This interplay between phone and environment proved to us that detailed information is best served on the phone rather than in AR space.</p>
+
+        <p class="fit mbs">Along with this interaction, we also wanted to explore what would happen when a user takes a screenshot. With regards to H&#8288;I&#8288;P&#8288;P&#8288;A, we felt it might be best to override screenshotting and introduce an alternative. In this case, the person is given a high-quality scan of the artwork rather than a screenshot, ensuring that nobody is unknowingly photographed. Had there been no artwork nearby, the app would have let the user know that screenshotting is not allowed.</p>
+
+        <figure class="fit mb">
+          <video class="fit" style="background: #ffffff; margin-bottom: 0;" loop autoplay muted>
+            <source src="animations/home.mp4"  type="video/mp4">
+          </video>
+          <figacaption>
+            <p class="caption">fig. 18 UI showing the patient that they are back home</p>
+          </figacaption>
+        </figure>
+
+        <p class="fit mbs">↑ &nbsp; The final leg of our hospital journey brings us back home. For patients, especially those in long-term care, we believe it is critical to make them feel like they are home. The UI we created consists of a blurred out H&#8288;I&#8288;P&#8288;P&#8288;A Barrier” that serves to conceal any patient information that might be revealed by an open door or window, as well as a little pulsing home icon. Similar to the elevator, this simple moment adds personality to an otherwise sterile environment.</p>
+
+        <figure class="fit mb">
+          <video class="fit" style="background: #ffffff; margin-bottom: 0;" loop autoplay muted>
+            <source src="animations/car.mp4"  type="video/mp4">
+          </video>
+          <figacaption>
+            <p class="caption">fig. 19 An Easter egg car game</p>
+          </figacaption>
+        </figure>
+
+        <p class="fit mbs">↑ &nbsp; From the very beginning, we knew this project was going to be about more than just navigation. AR is a beautiful seam between the digital and physical world. Over the course of the project, we thought about what would make a hospital a happier place. This got us thinking about playrooms and building blocks and Legos and all the toys common to small waiting rooms. What if every person using the app could have their own custom toy.</p>
+
+        <p class="fit mb">The simple act of turning the phone horizontally opens up an interactive space that allows people to play and have fun while waiting. A little toy car is just the beginning. We think collaborative experiences will bring smiles to faces both young and old.</p>
+
+        <h4 class="fit mbs">The Things We Learned</h4>
+
+        <p class="clean fit mbs">AR is not new, but it is in its infancy as a creative medium. Conceptually, it is a difficult space to breach without a strong background in development. The tools we used were less than ideal, but they proved to us a few things. First, AR needs to be experienced first hand, wireframes, no matter how good, can only take a design so far. Second, glowing colors stand out well in most environments, while fully textured objects tend to blend in. It will be a matter of time before AR begins to forge its own design language. Third, and most important, AR needs to be met with a sense of curiosity to help it find a niche in society.</p>
+
+        <p class="fit mb">Hopefully, this project sparked some ideas and questions. Call me, beep me if you wanna reach me, jk just send an <a href="../../email.html" target="_blank">email</a> :) Thank you, for taking the time to read through this case study.</p>
+
+        <p class="caption fit">Last Edited: Mon. July 15, 2019</p>
+<!--
+        <h4 class="fit mbs">Creating a Pipeline</h4>
+
+        <p class="clean fit mbs">Before looking at the final screens, I wanted to share a bit of the pipeline that I set up so Amanda and I could work more freely with the final footage. Ultimatley we needed a file where we could place 2D and 3D UI without much hassle. The first part of the pipeline took all footage and pumped it through Media Encoder so we had PNG sequnces (Cinema 4D doesn’t handle mp4’s very well). From there I tracked every piece of footage in Cineam 4D and exported the tracking data for After Effects. In After Effects, I defined all major planes and nested each plane into it’s own comp. By the end we had a master AE file filled with comps that just needed UI to be filled in.</p>
+
+        <p class="fit mb">Though it was teadious, having clean and consistent files made it much easier for us to play and explore with our designs. In the future, I imagine their will be some plugin or filetype that pulls the tracking data directly from Google ARCore or Apple ARKit and makes it accesible to the designer without any hassle.</p>
+
+
+
+        <p class="fit mbs">Two other spaces we felt were ripe for AR UI would be baseboards (due to their ubiquity, and often times flat nature) as well as the person. This second idea looked to make the feet a key area of interaction in AR, similar to a “home menu.” Neither idea was fully flushed out but along with the elevator, we felt they marked playful and unique spaces that AR could capitalize on.</p> -->
+      </article>
+
+      <footer class="site__footer container flex">
+        <div><p>© 2019 Luka Schulz</p></div>
+        <ul class="flex clean">
+          <li><a href="https://samkilg.us/friends/?links=https%3A%2F%2Fsophiazapata.com%2F,http%3A%2F%2Fadb2712.cias.rit.edu%2F,http%3A%2F%2Frileyank.com%2F,http%3A%2F%2Fwww.devon-cherry.com%2F,https%3A%2F%2Famanda-ho.com%2F,http%3A%2F%2Fsarahdanseglio.com%2F,http%3A%2F%2Fkamjenny.com%2F,https%3A%2F%2Fwww.jacobdfrank.com%2F,http%3A%2F%2Fevananthony.com%2F,https%3A%2F%2Fjakecasson.com%2F,https%3A%2F%2Fneillavigne.com%2F,http%3A%2F%2Foliviagsutanto.com%2F,https%3A%2F%2Fsamkilg.us%2F,http%3A%2F%2Fabbeylee.design%2F,https%3A%2F%2Fwww.nautdesign.com%2F,http%3A%2F%2Fkah3770.cias.rit.edu%2F,http%3A%2F%2Fcoltonwoytas.net%2F,http%3A%2F%2Fwww.biagiofoto.com%2F,http%3A%2F%2Frobertaguileradesign.com%2F" target="_blank"
+    title="So no one told you life was gonna be this way
+    Your jobs a joke, you’re broke, your love life’s D.O.A.
+
+    It’s like you’re always stuck in second gear
+    And it hasn’t been your day, your week, your month,
+    or even your year
+    but..
+
+    I’ll be there for you
+    When the rain starts to pour
+    I’ll be there for you
+    Like I’ve been there before
+    I’ll be there for you
+    ’Cuz you’re there for me too...
+
+    You’re still in bed at ten
+    And work began at eight
+    You’ve burned your breakfast
+    So far... things are goin’ great
+
+    Oh but she didn’t tell you when the world has brought
+    Your mother warned you there’d be days like these
+    You down to your knees that...
+
+    Due to the character limit in the HTML5 title tag
+    you are not allowed anymore friendly goodness.
+    Please accept my sincerest apologies.">Friends</a></li>
+          <li><a href="https://lukaschulz.com/portfolio/lifeline/cool-bus.html" target="_blank" title="The cooliest.">Spirit Animal</a></li>
+        </ul>
+      </footer>
+    </section>
+  </div>
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCtKMqZqH3P64KPFdeqlY8Oyp7XGt9VwL4",
+    authDomain: "luka-schulz.firebaseapp.com",
+    databaseURL: "https://luka-schulz.firebaseio.com",
+    projectId: "luka-schulz",
+    storageBucket: "luka-schulz.appspot.com",
+    messagingSenderId: "80070852375"
+  };
+  firebase.initializeApp(config);
+</script>
+
+</html>

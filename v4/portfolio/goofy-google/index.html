@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"content="initial-scale=1">
+
+  <title>Goofy Google | Luka Schulz</title>
+
+  <meta name="theme-color" content="#00ea75" />
+
+  <link href="../../css/typography.css" rel="stylesheet" type="text/css">
+  <link href="../../css/style.css" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="../../yes-its-upsidedown.png">
+
+  <style>
+  @media (min-width: 640px){
+    /* width */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: white;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: rgb(218, 218, 218);
+    }
+  }
+  </style>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90997769-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-90997769-1');
+  </script>
+</head>
+
+<body class="project goofyGoogle">
+  <div class="parallaxWrapper">
+    <div class="banner">
+      <img class="loader" src="loader-001.gif">
+    </div>
+
+    <section class="foreground">
+      <header class="page__header fit">
+        <p class="caption">Experimental, Machine Learning | 2 Days</p>
+        <h2>Goofy Google<span class="thin">&mdash;</span></h2>
+        <h3>Learning machine learning</h3>
+      </header>
+
+      <article class="project__content">
+        <p class="mb fit">In the summer of 2018, I had the opportunity to take a week-long class in machine learning (ML) with <a href="https://andreasrefsgaard.dk/" target="_blank">Andreas Refsgaard</a> and <a href="http://genekogan.com/" target="_blank">Gene Kogan</a>. If you are curious about the Copenhagen Institue of Interaction Design Summer School program, I have written about my experience <a href="https://luka-schulz.firebaseapp.com/posts/2018/07/15/machine-learning-ciid/index.html" target="_blank">here</a>. However, if you are curious about the project I made during that week... then this is the HTML file you were looking for. The repository for this project can be found <a href="https://github.com/luka-schulz/goofy-google" target="_blank">here</a>.</p>
+
+        <h4 class="fit mbs">Learning Machine Learning</h4>
+
+        <p class="mb fit">The goal of my project was to make a thing that could leverage machine learning (yes, it was a rather vague goal, but it was my first time playing around with machine learning so it felt appropriate to give myself room to play). The idea for my project came from two rounds of brainstorming with some friends in the class. Of the 23 ideas that I came up with, Goofy Google (Tele-phoney at the time) seemed like the most fruitful.</p>
+
+        <figure class="mb fit">
+          <img src="sticky-note.jpg" style="background: rgb(255, 39, 122);">
+          <figcaption>
+            <p class="caption">fig. 1 Goofy Google in its embryonic form</p>
+          </figcaption>
+        </figure>
+
+        <p class="mb fit">The basic idea behind Goofy Google was to use the image-to-text model from <a href="https://runwayml.com/" target="_blank">Runway</a> to generate interesting Google Search queries. Conceptually the project was inspired by <a href="https://en.wikipedia.org/wiki/Chinese_whispers">Telephone</a>, a common children’s game that does a good job of highlighting the effects of random noise on a system (<a href="https://en.wikipedia.org/wiki/Noisy-channel_coding_theorem">noisy-channel coding theorem</a>). I figured running images through a machine learning model might, in theory, have the same effect but visually. Turns out it does, and at times it can produce hilarious mistakes.</p>
+
+        <figure class="mb">
+          <video style="background: rgb(123, 123, 123); margin-bottom: 1rem;" loop autoplay muted>
+            <source src="process-001.mp4"  type="video/mp4">
+          </video>
+
+          <figcaption>
+            <p class="caption fit">fig. 2 Diagram showing the flow of data through Goofy Google works</p>
+          </figcaption>
+        </figure>
+
+        <p class="mb fit">I started to build the machine learning enabled web app on a Wednesday evening. The first big hurdle was setting up a connection between a web page and Runway. Thankfully, <a href="https://socket.io/" target="_blank">Socket.IO</a> came in handy allowing me to send an image from a hosted website to Runway via HTTP.  Once Runway processes the image, it returns a JSON string which looks a little something like this:</p>
+
+        <pre class="mb fit"><code>
+{
+  "results": [
+    {
+      "caption": "a man eating a donut with sprinkles on it .",
+      "prob": 0.0008261589057873533
+    },
+    {
+      "caption": "a man is eating a donut with sprinkles .",
+      "prob": 0.0004849781811583862
+    },
+    {
+      "caption": "a man eating a donut with sprinkles on it",
+      "prob": 0.0004012762769746773
+    }
+  ]
+}
+        </code></pre>
+
+        <p class="mb fit">Though the captions aren’t drastically different, the minor variations will often return different results from a Google search. In my current implementation, I only use the first (most probable) caption, but it might be interesting to have a forking feature. Once I had the caption, I could now send it to the Google Search API which would once again return a JSON string from which I could pull the image corresponding to the caption I had just searched. Up until this point, things had been going smoothly. That changed. On Thursday afternoon, I started getting “Tainted canvas”errors. A tainted canvas error is thrown when foreign images (images not located on your server) are being converted to a URL. This conversion is required for sending an image to Runway.</p>
+
+        <figure class="mb fit">
+          <a href="https://lukaschulz.com/portfolio/goofy-google/error_01.png" title="Tainted canvas error." target="_blank">
+            <img src="error-001.png" style="background: rgb(255, 39, 122);">
+          </a>
+          <figcaption>
+            <p class="caption">fig 3. Marilyn Manson may have<span class="italic">Tainted Love</span>, but I have tainted canvas.</p>
+          </figcaption>
+        </figure>
+
+        <h4 class="fit mbs">The Comeback</h4>
+
+        <p class="mbs fit">It was Friday morning, and I still hadn’t figured out my tainted canvas error. I knew it was being caused by images housed on external servers, but I needed a way to get around the error. I tried downloading the images, using blobs, switching file names. Nothing worked.</p>
+
+        <p class="mb fit">After much head scratching, the solution was simple and something I should have tried much sooner <code style="padding: .5rem;">img.crossOrigin = "anonymous";</code>. This little flag lets the browser know it is okay to use the image even though it is not from the local server. After solving this problem, I caught my first glimpse of Goofy Google in action. It was beyond magical to see a website slowly fill up with images auto-generated through pseudo-intelligence.</p>
+
+        <figure class="mb fit">
+          <a href="https://lukaschulz.com/portfolio/goofy-google/goofy-google.mp4" title="Google images and machine learning." target="_blank">
+            <video class="fit" style="background: rgb(0, 0, 0); margin-bottom: 2.5%" loop autoplay muted>
+              <source src="demo-001.mp4"  type="video/mp4">
+            </video>
+          </a>
+          <figcaption>
+            <p class="caption">fig 4. Final results, an infinte loop of machine learning.</p>
+          </figcaption>
+        </figure>
+
+        <p class="mbs fit">Friday afternoon, at 1:00 PM I presented my project to the students and faculty of CIID. It was well received and I got lots of useful feedback from the professors. My next steps are to deploy the project on a server so that it can run indefinitely. I also would like to make a frame-by-frame animation showing how the search results change over time. For now, I am very happy with the project and I am eager to explore further applications of machine learning.</p>
+
+        <p class="mb fit">If you are interested in setting up this project for yourself, let me know. I would be more than happy to share my experience. Feel free to <a href="../../email.html" target="_blank">email</a> me :)</p>
+
+        <p class="caption fit">Last Edited: Mon. July 15, 2019</p>
+
+      <footer class="site__footer container flex">
+        <div><p>© 2019 Luka Schulz</p></div>
+        <ul class="flex clean">
+          <li><a href="https://samkilg.us/friends/?links=https%3A%2F%2Fsophiazapata.com%2F,http%3A%2F%2Fadb2712.cias.rit.edu%2F,http%3A%2F%2Frileyank.com%2F,http%3A%2F%2Fwww.devon-cherry.com%2F,https%3A%2F%2Famanda-ho.com%2F,http%3A%2F%2Fsarahdanseglio.com%2F,http%3A%2F%2Fkamjenny.com%2F,https%3A%2F%2Fwww.jacobdfrank.com%2F,http%3A%2F%2Fevananthony.com%2F,https%3A%2F%2Fjakecasson.com%2F,https%3A%2F%2Fneillavigne.com%2F,http%3A%2F%2Foliviagsutanto.com%2F,https%3A%2F%2Fsamkilg.us%2F,http%3A%2F%2Fabbeylee.design%2F,https%3A%2F%2Fwww.nautdesign.com%2F,http%3A%2F%2Fkah3770.cias.rit.edu%2F,http%3A%2F%2Fcoltonwoytas.net%2F,http%3A%2F%2Fwww.biagiofoto.com%2F,http%3A%2F%2Frobertaguileradesign.com%2F" target="_blank"
+    title="So no one told you life was gonna be this way
+    Your jobs a joke, you’re broke, your love life’s D.O.A.
+
+    It’s like you’re always stuck in second gear
+    And it hasn’t been your day, your week, your month,
+    or even your year
+    but..
+
+    I’ll be there for you
+    When the rain starts to pour
+    I’ll be there for you
+    Like I’ve been there before
+    I’ll be there for you
+    ’Cuz you’re there for me too...
+
+    You’re still in bed at ten
+    And work began at eight
+    You’ve burned your breakfast
+    So far... things are goin’ great
+
+    Oh but she didn’t tell you when the world has brought
+    Your mother warned you there’d be days like these
+    You down to your knees that...
+
+    Due to the character limit in the HTML5 title tag
+    you are not allowed anymore friendly goodness.
+    Please accept my sincerest apologies.">Friends</a></li>
+          <li><a href="https://lukaschulz.com/portfolio/goofy-google/cool-bus.html" target="_blank" title="The cooliest.">Spirit Animal</a></li>
+        </ul
+      </footer>
+
+      <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+      <script>
+        // Initialize Firebase
+        var config = {
+          apiKey: "AIzaSyCtKMqZqH3P64KPFdeqlY8Oyp7XGt9VwL4",
+          authDomain: "luka-schulz.firebaseapp.com",
+          databaseURL: "https://luka-schulz.firebaseio.com",
+          projectId: "luka-schulz",
+          storageBucket: "luka-schulz.appspot.com",
+          messagingSenderId: "80070852375"
+        };
+        firebase.initializeApp(config);
+      </script>
+    </section>
+  </div>
+  </body>
+
+  </html>

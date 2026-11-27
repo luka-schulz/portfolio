@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"content="initial-scale=1">
+
+    <title>E-mail | Luka Schulz</title>
+
+    <meta name="theme-color" content="#00ea75" />
+
+    <link href="css/typography.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+
+    <link rel="shortcut icon" href="yes-its-upsidedown.png">
+
+    <script>
+      window.onclick = function() {
+        // create a temporary input
+        let temp = document.createElement( "input" );
+        // add it to 'this', which is the currently clicked element
+        document.getElementById("email").appendChild( temp );
+        // set the value of the input to the previously assigned dataValue
+        temp.value = "hello@lukaschulz.com";
+        // select and copy the value
+        temp.select();
+        document.execCommand("copy");
+        // delete the input field
+        temp.remove();
+
+        let notification = document.getElementById("copied");
+        notification.style.opacity = .95;
+
+        window.setTimeout(
+          function(){
+            notification.style.opacity = 0;
+          }, 1000
+        );
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="copied"><h3>Copied!</h3></div>
+    <section id="email"></section>
+  </body>
+
+</html>

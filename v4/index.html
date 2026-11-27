@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"content="initial-scale=1">
+
+  <title>Luka Schulz &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Made ya look :) Nothing up here this time!</title>
+
+  <!-- <meta property="og:title" content="Luka Schulz"/>
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Luka Schulz"/>
+  <meta property="og:url" content="http://luka-schulz.firebaseapp.com/index.html"/>
+  <meta property="og:description" content="The portfolio of Luka Schulz"/>
+  <meta property="og:image" content="http://luka-schulz.firebaseapp.com/profile.jpg"/> -->
+
+  <meta name="theme-color" content="#00ea75" />
+
+  <link href="css/typography.css" rel="stylesheet" type="text/css">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="yes-its-upsidedown.png">
+
+  <style>
+  @media (min-width: 640px){
+    /* width */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: white;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: rgb(218, 218, 218);
+    }
+  }
+  </style>
+
+  <script type="text/javascript" src="me-facts.json"></script>
+  <script>
+    window.onload = function() {
+      const meFacts = JSON.parse(facts);
+      let duplicateTracker = {0: true};
+
+      drawSmile();
+
+      window.setTimeout(
+        function(){
+          updateMeFact()
+        }, 2000
+      );
+
+      function drawSmile() {
+        let scaleFactor = window.devicePixelRatio || 1;
+        let smileCanvas = document.getElementById("smile");
+        let smileCtx = scaleCtx(smileCanvas, scaleFactor);
+
+        drawEye(smileCtx);
+        drawMouth(smileCtx);
+      }
+
+      function drawEye(ctx) {
+        ctx.beginPath();
+        ctx.fillStyle = "black";
+        // ctx.arc(11, 10, 6, 0, Math.PI * 2); // 70px
+        // ctx.arc(60, 10, 6, 0, Math.PI * 2); // 70px
+        ctx.arc(0 + 35, 34, 4, 0, Math.PI * 2);
+        ctx.arc(100 - 35, 35, 4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.closePath();
+      }
+
+      function drawMouth(ctx) {
+        ctx.beginPath();
+        ctx.strokeStyle = "black";
+        // ctx.lineWidth = 12; // 70px
+        ctx.lineWidth = 7;
+        ctx.lineCap = "round";
+        // ctx.arc(35, 38, 22, Math.PI * 2.2, Math.PI * .84); // 70px
+        ctx.arc(50, 50, 14, Math.PI * 2.2, Math.PI * .84);
+        ctx.stroke();
+        ctx.closePath();
+      }
+
+      function scaleCtx(canvas, s) {
+        canvas.style.width = canvas.width + 'px';
+        canvas.style.height = canvas.height + 'px';
+
+        canvas.width = Math.ceil(canvas.width * s);
+        canvas.height = Math.ceil(canvas.height * s);
+
+        ctx = canvas.getContext('2d');
+        ctx.scale(s, s);
+
+        return ctx;
+      }
+
+      function updateMeFact() {
+        window.setTimeout(
+          function(){
+            updateMeFact()
+          }, 2000
+        );
+        oldMeFact = document.getElementById("meFact");
+        oldMeFact.innerHTML = meFacts[randNum(0, 14)].fact;
+      }
+
+      function randNum(min, max){
+        randInt = Math.round(Math.random()*(max-min+1)+min);
+
+        while ( typeof duplicateTracker[randInt] != 'undefined' ) {
+          randInt = Math.round(Math.random()*(max-min+1)+min);
+        }
+
+        if (Object.keys(duplicateTracker).length == 14) {
+          duplicateTracker = { [randInt] : true};
+          return randInt;
+        }
+        else {
+          duplicateTracker[randInt] = true;
+          return randInt;
+        }
+
+      }
+    }
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90997769-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-90997769-1');
+  </script>
+</head>
+
+<body>
+  <header class="site__header container flex">
+    <canvas width="100" height="100" id="smile"></canvas>
+  </header>
+
+  <div class="container home__intro">
+    <p class="caption">00. Me facts</p>
+    <div id="headerDescription">Luka Schulz,<br><span id="meFact">a pleasure in class.</span></div>
+    <div class="flex headerBody">
+      <p class="personalStatement">Luka Schulz is what you might call a designer. He lives in Brooklyn and firmly believes in sauce being served on the side.</p>
+
+      <ul class="flex clean">
+        <li><sup>01.</sup><a href="index.html#werk" title="Werk, werk, werk, werk, werk">Work</a></li>
+        <li><sup>02.</sup><a href="https://doodles-luka-schulz.tumblr.com/" title="My lil' brain babies!" target="_blank">Doodles</a></li>
+        <li><sup>03.</sup><a href="library.html" title="Still thinking of something witty..." target="_blank">Library</a></li>
+        <li><sup>04.</sup><a href="Resume%20|%20Luka%20Schulz.pdf" title="Résumé, if you fancy." target="_blank">Resume</a></li>
+        <li><sup>05.</sup><a href="email.html" target="_blank" title="Thou shalt not spam.">E-mail</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container home__demoReel">
+    <p style="margin-bottom: 5rem">Demo Reel &mdash;</p>
+    <figure>
+      <div style="margin-Bottom: 1rem;" class="videoWrapper">
+        <iframe src="https://player.vimeo.com/video/325208548?&loop=0&autopause=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
+      <figcaption class="caption">Music: Alone (Calvin Harris Remix)</figcaption>
+    </figure>
+  </div>
+
+  <div class="divider flex container">
+    <hr /><p id="werk" class="scrollElement">01. Work</p>
+  </div>
+
+  <div class="container home__projects">
+    <h1 class="home__projectTitle"><strong>O-Whale&ndash;  </strong>A multiplayer augmented reality game exploring the future of play.</h1>
+
+    <div class="home__projectBody">
+      <a class="home__projectImage" href="https://www.behance.net/gallery/79857747/O-Whale" target="_blank">
+        <img src="portfolio/o-whale/o-whale-banner-001.jpg"/>
+      </a>
+
+      <div class="flex home__projectCaption">
+        <p class="caption">Time: 16 Weeks (Team project, lead designer)</p>
+        <a class="caption plainLink" href="https://www.behance.net/gallery/79857747/O-Whale" target="_blank">View Project<span class="arrow">></span></a>
+      </div>
+    </div>
+
+    <h1 class="home__projectTitle"><strong>Houdini&ndash;  </strong>A word a week makes a Houdini Weenie&trade; hella fleek.</h1>
+
+    <div class="home__projectBody">
+      <a class="home__projectImage" href="portfolio/houdini/index.html" target="_blank">
+        <img src="portfolio/houdini/houdini-banner-001.jpg"/>
+      </a>
+
+      <div class="flex home__projectCaption">
+        <p class="caption">Time: 16 Weeks</p>
+        <a class="caption plainLink" href="portfolio/houdini/index.html" target="_blank">View Project<span class="arrow">></span></a>
+      </div>
+    </div>
+
+    <h1 class="home__projectTitle"><strong>Lifeline&ndash;  </strong>Hospital navigation shouldn’t be more stressful than the visit itself.</h1>
+
+    <div class="home__projectBody">
+      <a class="home__projectImage" href="portfolio/lifeline/index.html" target="_blank">
+        <img src="portfolio/lifeline/lifeline-banner-001.jpg"/>
+      </a>
+
+      <div class="flex home__projectCaption">
+        <p class="caption">Time: 10 Weeks</p>
+        <a class="caption plainLink" href="portfolio/lifeline/index.html" target="_blank">View Project<span class="arrow">></span></a>
+      </div>
+    </div>
+
+    <h1 class="home__projectTitle"><strong>Goofy Google&ndash;  </strong>Machine Learning, more like machines mis-discerning!</h1>
+
+    <div class="home__projectBody">
+      <a class="home__projectImage" href="portfolio/goofy-google/index.html" target="_blank">
+        <video loop muted autoplay
+        >
+          <source src="portfolio/goofy-google/goofy-google-banner-003.mp4" type="video/mp4">
+        </video>
+      </a>
+
+      <div class="flex home__projectCaption">
+        <p class="caption">Time: 2 Days</p>
+        <a class="caption plainLink" href="portfolio/goofy-google/index.html" target="_blank">View Project<span class="arrow">></span></a>
+      </div>
+    </div>
+  </div>
+
+
+  <footer class="site__footer container flex">
+    <div><p>© 2019 Luka Schulz</p></div>
+    <ul class="flex clean">
+      <li><a href="https://samkilg.us/friends/?links=https%3A%2F%2Fsophiazapata.com%2F,http%3A%2F%2Fadb2712.cias.rit.edu%2F,http%3A%2F%2Frileyank.com%2F,http%3A%2F%2Fwww.devon-cherry.com%2F,https%3A%2F%2Famanda-ho.com%2F,http%3A%2F%2Fsarahdanseglio.com%2F,http%3A%2F%2Fkamjenny.com%2F,https%3A%2F%2Fwww.jacobdfrank.com%2F,http%3A%2F%2Fevananthony.com%2F,https%3A%2F%2Fjakecasson.com%2F,https%3A%2F%2Fneillavigne.com%2F,http%3A%2F%2Foliviagsutanto.com%2F,https%3A%2F%2Fsamkilg.us%2F,http%3A%2F%2Fabbeylee.design%2F,https%3A%2F%2Fwww.nautdesign.com%2F,http%3A%2F%2Fkah3770.cias.rit.edu%2F,http%3A%2F%2Fcoltonwoytas.net%2F,http%3A%2F%2Fwww.biagiofoto.com%2F,http%3A%2F%2Frobertaguileradesign.com%2F,http%3A%2F%2Fdannyhawk.com%2F" target="_blank"
+title="So no one told you life was gonna be this way
+Your jobs a joke, you're broke, your love life's D.O.A.
+
+It's like you're always stuck in second gear
+And it hasn't been your day, your week, your month,
+or even your year
+but..
+
+I'll be there for you
+When the rain starts to pour
+I'll be there for you
+Like I've been there before
+I'll be there for you
+'Cuz you're there for me too...
+
+You're still in bed at ten
+And work began at eight
+You've burned your breakfast
+So far... things are goin' great
+
+Oh but she didn't tell you when the world has brought
+Your mother warned you there'd be days like these
+You down to your knees that...
+
+Due to the character limit in the HTML5 title tag
+you are not allowed anymore friendly goodness.
+Please accept my sincerest apologies.">Friends</a></li>
+      <li><a href="cool-bus.html" target="_blank" title="The cooliest.">Spirit Animal</a></li>
+    </ul
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCtKMqZqH3P64KPFdeqlY8Oyp7XGt9VwL4",
+      authDomain: "luka-schulz.firebaseapp.com",
+      databaseURL: "https://luka-schulz.firebaseio.com",
+      projectId: "luka-schulz",
+      storageBucket: "luka-schulz.appspot.com",
+      messagingSenderId: "80070852375"
+    };
+    firebase.initializeApp(config);
+  </script>
+</body>
+
+</html>

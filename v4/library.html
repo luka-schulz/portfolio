@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"content="initial-scale=1">
+
+  <title>Library | Luka Schulz</title>
+
+  <meta name="theme-color" content="#00ea75" />
+
+  <link href="css/typography.css" rel="stylesheet" type="text/css">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="yes-its-upsidedown.png">
+
+  <style>
+  @media (min-width: 640px){
+    /* width */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: white;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: rgb(218, 218, 218);
+    }
+  }
+  </style>
+
+  <script>
+    window.onload = function() {
+      drawSmile();
+
+      function drawSmile() {
+        let scaleFactor = window.devicePixelRatio || 1;
+        let smileCanvas = document.getElementById("smile");
+        let smileCtx = scaleCtx(smileCanvas, scaleFactor);
+
+        drawEye(smileCtx);
+        drawMouth(smileCtx);
+      }
+
+      function drawEye(ctx) {
+        ctx.beginPath();
+        ctx.fillStyle = "black";
+        // ctx.arc(11, 10, 6, 0, Math.PI * 2); // 70px
+        // ctx.arc(60, 10, 6, 0, Math.PI * 2); // 70px
+        ctx.arc(0 + 35, 34, 4, 0, Math.PI * 2);
+        ctx.arc(100 - 35, 35, 4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.closePath();
+      }
+
+      function drawMouth(ctx) {
+        ctx.beginPath();
+        ctx.strokeStyle = "black";
+        // ctx.lineWidth = 12; // 70px
+        ctx.lineWidth = 7;
+        ctx.lineCap = "round";
+        // ctx.arc(35, 38, 22, Math.PI * 2.2, Math.PI * .84); // 70px
+        ctx.arc(50, 50, 14, Math.PI * 2.2, Math.PI * .84);
+        ctx.stroke();
+        ctx.closePath();
+      }
+
+      function scaleCtx(canvas, s) {
+        canvas.style.width = canvas.width + 'px';
+        canvas.style.height = canvas.height + 'px';
+
+        canvas.width = Math.ceil(canvas.width * s);
+        canvas.height = Math.ceil(canvas.height * s);
+
+        ctx = canvas.getContext('2d');
+        ctx.scale(s, s);
+
+        return ctx;
+      }
+    }
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async sc="https://www.googletagmanager.com/gtag/js?id=UA-90997769-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-90997769-1');
+  </script>
+</head>
+
+<body class="library">
+  <header class="site__header container flex">
+    <canvas width="100" height="100" id="smile"></canvas>
+  </header>
+
+  <div class="library__intro">
+    <p class="clean fit">03. Library</p>
+
+    <p class="clean fit mbs"><span class="italic">What follows is a selction of stories that have shaped me and my design's.</span></p>
+
+    <p class="fit">Stories&mdash;possibly man's greatest invention&mdash;have been with us immortal. They have claimed the power to shape our minds, while also being shaped by our minds. Yet, in all their glory they were nomads like the people who told them. When man found a home, so did they.</p>
+
+    <p class="fit">The physical book gave home to the story and made eternal the power which they held. Libraries became the gardens and graves upon which society was built, and even now, stories have the power to change the world. I am very much the human I am today because of the stories I have met.</p>
+  </div>
+
+  <div class="library__books flex container">
+    <figure class="libray__book mb">
+      <a href="https://www.amazon.com/Fire-Upon-Deep-Zones-Thought/dp/0812515285/ref=tmm_mmp_swatch_0?_encoding=UTF8&qid=1562429538&sr=8-1" target="_blank">
+        <img src="images/library/a-fire-upon-the-deep.jpg" alt="A Fire Upon the Deep book cover" style="background: rgb(255, 39, 122);">
+      </a>
+      <figcaption>
+        <p class="caption">A Fire Upon the Deep</p>
+      </figcaption>
+    </figure>
+
+    <figure class="libray__book mb">
+      <a href="https://www.amazon.com/Enactivist-Interventions-Rethinking-Shaun-Gallagher-dp-0198794320/dp/0198794320/ref=mt_hardcover?_encoding=UTF8&me=&qid=1562429572" target="_blank">
+        <img src="images/library/enactivist-interventions.jpg" alt="Enactivist Interventions book cover" style="background: rgb(255, 39, 122);">
+      </a>
+      <figcaption>
+        <p class="caption">Enactivist Interventions</p>
+      </figcaption>
+    </figure>
+
+    <figure class="libray__book mb">
+      <a href="https://www.amazon.com/Envisioning-Information-Edward-R-Tufte/dp/0961392118/ref=sr_1_1?crid=3RS9L1DAZX5XG&keywords=envisioning+information&qid=1562429613&s=books&sprefix=envisioning+in%2Cstripbooks%2C129&sr=1-1" target="_blank">
+        <img src="images/library/envisioning-information.jpg" alt="Envisioning Information book cover" style="background: rgb(255, 39, 122);">
+      </a>
+      <figcaption>
+        <p class="caption">Envisioning Information</p>
+      </figcaption>
+    </figure>
+
+    <figure class="libray__book mb">
+      <a href="https://www.amazon.com/Orphans-Tales-Night-Garden/dp/0553384031/ref=sr_1_1?crid=1L0CMGPJILSZ1&keywords=in+the+night+garden&qid=1562429635&s=books&sprefix=in+the+night+garden%2Cstripbooks%2C132&sr=1-1" target="_blank">
+        <img src="images/library/in-the-night-garden.jpg" alt="In the Night Garden book cover" style="background: rgb(255, 39, 122);">
+      </a>
+      <figcaption>
+        <p class="caption">In the Night Garden</p>
+      </figcaption>
+    </figure>
+
+    <figure class="libray__book mb">
+      <a href="https://www.amazon.com/Wizard-Earthsea-Cycle/dp/0547773749/ref=tmm_mmp_swatch_0?_encoding=UTF8&qid=1562429650&sr=1-1" target="_blank">
+        <img src="images/library/a-wizard-of-earthsea.jpg" alt="A Wizard of Earthsea book cover" style="background: rgb(255, 39, 122);">
+      </a>
+      <figcaption>
+        <p class="caption">A Wizard of Earthsea</p>
+      </figcaption>
+    </figure>
+
+    <figure class="libray__book mb">
+      <a href="https://www.amazon.com/Harry-Potter-Sorcerers-Stone-Rowling/dp/059035342X/ref=sr_1_1?hvadid=78340254960776&hvbmt=be&hvdev=c&hvqmt=e&keywords=harry+potter+and+the+sourcers+stone&qid=1562426986&s=gateway&sr=8-1" target="_blank">
+        <img src="images/library/harry-potter.jpg" alt="Harry Potter and the Sourcerer's Stone book cover" style="background: rgb(255, 39, 122);">
+      </a>
+      <figcaption>
+        <p class="caption">Harry Potter and the Sourcerer's Stone</p>
+      </figcaption>
+    </figure>
+
+    <figure class="libray__book mb">
+      <a href="https://www.amazon.com/New-Way-Things-Work/dp/0395938473" target="_blank">
+        <img src="images/library/the-way-things-work.jpg" alt="The Way Things Work book cover" style="background: rgb(255, 39, 122);">
+      </a>
+      <figcaption>
+        <p class="caption">The Way Things Work</p>
+      </figcaption>
+    </figure>
+
+    <figure class="libray__book mb">
+      <a href="https://www.amazon.com/Fire-Next-Time-Reissue/dp/B006QKPNU0/ref=sr_1_5?crid=7S03D93P5W5G&keywords=the+fire+next+time+james+baldwin&qid=1562674203&s=books&sprefix=the+fire+next+%2Cstripbooks%2C132&sr=1-5" target="_blank">
+        <img src="images/library/the-fire-next-time.jpg" alt="The Fire Next Time book cover" style="background: rgb(255, 39, 122);">
+      </a>
+      <figcaption>
+        <p class="caption">The Fire Next Time</p>
+      </figcaption>
+    </figure>
+
+    <figure class="libray__book mb">
+      <a href="https://www.amazon.com/Lilith-George-MacDonald/dp/B0073XVPNS/ref=sr_1_4?crid=1ZSQV331MV1XJ&keywords=lilith+macdonald&qid=1562674233&s=books&sprefix=lilith+macd%2Cstripbooks%2C135&sr=1-4" target="_blank">
+        <img src="images/library/lilith.jpg" alt="Lilith book cover" style="background: rgb(255, 39, 122);">
+      </a>
+      <figcaption>
+        <p class="caption">Lilith</p>
+      </figcaption>
+    </figure>
+
+    <figure class="libray__book mb">
+      <a href="https://www.amazon.com/Old-Man-Sea-Ernest-Hemingway/dp/7222175849/ref=sr_1_3?crid=18GOQCNAEE6FQ&keywords=the+old+man+and+the+sea&qid=1562674288&s=books&sprefix=the+old+man+%2Cstripbooks%2C134&sr=1-3" target="_blank">
+        <img src="images/library/the-old-man-and-the-sea.jpg" alt="The Old Man and the Sea book cover" style="background: rgb(255, 39, 122);">
+      </a>
+      <figcaption>
+        <p class="caption">The Old Man and the Sea</p>
+      </figcaption>
+    </figure>
+
+    <figure class="libray__book mb">
+      <a href="https://www.amazon.com/Shortness-Life-Penguin-Great-Ideas/dp/0143036327/ref=sr_1_4?crid=22CPBKP7QMSY1&keywords=on+the+shortness+of+life+seneca&qid=1562674316&s=books&sprefix=on+the+short%2Cstripbooks%2C135&sr=1-4" target="_blank">
+        <img src="images/library/on-the-shortness-of-life.jpg" alt="On the Shortness of Life book cover" style="background: rgb(255, 39, 122);">
+      </a>
+      <figcaption>
+        <p class="caption">On the Shortness of Life</p>
+      </figcaption>
+    </figure>
+
+    <figure class="libray__book mb">
+      <a href="https://www.amazon.com/John-Steinbeck-East-Eden/dp/B00328BMR2/ref=sr_1_4?keywords=east+of+eden&qid=1562674336&s=books&sr=1-4" target="_blank">
+        <img src="images/library/east-of-eden.jpg" alt="East of Eden book cover" style="background: rgb(255, 39, 122);">
+      </a>
+      <figcaption>
+        <p class="caption">East of Eden</p>
+      </figcaption>
+    </figure>
+  </div>
+
+  </div>
+
+  <div class="container home__projects">
+
+  </div>
+
+
+  <footer class="site__footer container flex">
+    <div><p>© 2019 Luka Schulz</p></div>
+    <ul class="flex clean">
+      <li><a href="https://samkilg.us/friends/?links=https%3A%2F%2Fsophiazapata.com%2F,http%3A%2F%2Fadb2712.cias.rit.edu%2F,http%3A%2F%2Frileyank.com%2F,http%3A%2F%2Fwww.devon-cherry.com%2F,https%3A%2F%2Famanda-ho.com%2F,http%3A%2F%2Fsarahdanseglio.com%2F,http%3A%2F%2Fkamjenny.com%2F,https%3A%2F%2Fwww.jacobdfrank.com%2F,http%3A%2F%2Fevananthony.com%2F,https%3A%2F%2Fjakecasson.com%2F,https%3A%2F%2Fneillavigne.com%2F,http%3A%2F%2Foliviagsutanto.com%2F,https%3A%2F%2Fsamkilg.us%2F,http%3A%2F%2Fabbeylee.design%2F,https%3A%2F%2Fwww.nautdesign.com%2F,http%3A%2F%2Fkah3770.cias.rit.edu%2F,http%3A%2F%2Fcoltonwoytas.net%2F,http%3A%2F%2Fwww.biagiofoto.com%2F,http%3A%2F%2Frobertaguileradesign.com%2F" target="_blank"
+title="So no one told you life was gonna be this way
+Your jobs a joke, you're broke, your love life's D.O.A.
+
+It's like you're always stuck in second gear
+And it hasn't been your day, your week, your month,
+or even your year
+but..
+
+I'll be there for you
+When the rain starts to pour
+I'll be there for you
+Like I've been there before
+I'll be there for you
+'Cuz you're there for me too...
+
+You're still in bed at ten
+And work began at eight
+You've burned your breakfast
+So far... things are goin' great
+
+Oh but she didn't tell you when the world has brought
+Your mother warned you there'd be days like these
+You down to your knees that...
+
+Due to the character limit in the HTML5 title tag
+you are not allowed anymore friendly goodness.
+Please accept my sincerest apologies.">Friends</a></li>
+      <li><a href="cool-bus.html" target="_blank" title="The cooliest.">Spirit Animal</a></li>
+    </ul
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCtKMqZqH3P64KPFdeqlY8Oyp7XGt9VwL4",
+      authDomain: "luka-schulz.firebaseapp.com",
+      databaseURL: "https://luka-schulz.firebaseio.com",
+      projectId: "luka-schulz",
+      storageBucket: "luka-schulz.appspot.com",
+      messagingSenderId: "80070852375"
+    };
+    firebase.initializeApp(config);
+  </script>
+</body>
+
+</html>
