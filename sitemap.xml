@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Every public page. Add a <url> here when you add a page. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://lukaschulz.com/</loc></url>
+  <url><loc>https://lukaschulz.com/work/torre-glories/</loc></url>
+  <url><loc>https://lukaschulz.com/writing/</loc></url>
+  <url><loc>https://lukaschulz.com/writing/thinking-is-work/</loc></url>
+  <url><loc>https://lukaschulz.com/writing/do-less/</loc></url>
+  <url><loc>https://lukaschulz.com/writing/making-sense/</loc></url>
+  <url><loc>https://lukaschulz.com/photography/</loc></url>
+</urlset>

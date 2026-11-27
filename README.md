@@ -81,7 +81,8 @@ share one look; add `class="glass"` to use it elsewhere.
 ### Adding things
 
 **A project:** duplicate `work/torre-glories/`, rename the folder (that's the
-address), and swap in its images. On the home page, point the tile's link at
+address), swap in its images, and update its `<head>` (see the page checklist
+below) and `sitemap.xml`. On the home page, point the tile's link at
 `work/<project>/` and its image at `work/<project>/cover.jpg`.
 
 **A project tile (home):** copy an `<li>` in the masonry list. Add
@@ -95,7 +96,7 @@ existing wide tiles, so the grid loads the small file and the viewer the big one
 automatically.
 
 **A blog post:** duplicate `writing/making-sense/`, rename the folder, then add
-a row to the list in `writing/index.html`. Images inside the article open in
+a row to the list in `writing/index.html` and a line to `sitemap.xml`. Images inside the article open in
 the viewer.
 
 **The photo viewer** works on anything inside an element with `data-lightbox`
@@ -104,6 +105,23 @@ the viewer.
 **Fade-in on scroll:** `data-reveal` on an element, or `data-reveal-children`
 on a list to stagger its items. Hairlines listed in the "Hairlines" part of
 `components.css` fade in with them.
+
+### Page checklist
+
+Every public page should have, in its `<head>`:
+
+- [ ] `<title>` — unique: "Page — Luka André Schulz"
+- [ ] `<meta name="description">` — one or two sentences, ~150 characters, unique
+- [ ] `og:title`, `og:description` — usually the same as the two above
+- [ ] `og:url` and `<link rel="canonical">` — the page's real address on https://lukaschulz.com
+- [ ] `og:image` — `assets/share.jpg` by default; a 1200×630 image of the project is better
+- [ ] blog posts: `og:type` = `article` and `article:published_time` = the post's date
+
+And in the page and around it:
+
+- [ ] every image has real `alt` text and a descriptive file name
+- [ ] the page is listed in `sitemap.xml`
+- [ ] links to it from the home page / Writing list point at its folder (`work/<project>/`)
 
 ### Still to do
 
