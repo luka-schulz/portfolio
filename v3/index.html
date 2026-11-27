@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"content="initial-scale=1">
+
+    <title>Luka Schulz</title>
+
+    <meta property="og:title" content="Home"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Luka Schulz"/>
+    <meta property="og:url" content="http://lukaschulz.com/"/>
+    <meta property="og:description" content="The portfolio of Luka Schulz"/>
+    <meta property="og:image" content=""/>
+
+    <meta name="theme-color" content="#b4b4b4" />
+
+    <link href="css/typography.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    
+    <link rel="shortcut icon" href="yes-its-upsidedown.png">
+    
+    <script>
+      window.onload = function() {
+        const filter = document.getElementById( "filter" );
+        const filterLinks = filter.getElementsByClassName( "plainLink" );
+        const filterStatus = document.getElementById( "filterStatus" );
+        
+        for( let i = 0; i < filterLinks.length; i++ ) {
+          filterLinks[i].onclick = toggleStatus;
+        };
+        
+        function toggleStatus( element ) {
+          let elementWidth = element.target.offsetWidth;
+          let filterStatusWidth = elementWidth + "px";
+          filterStatus.style.width = filterStatusWidth;
+          
+          let offset = 0;
+          
+          for( let i = 0; i < element.target.dataset.id; i++ ) {
+            offset += filterLinks[i].offsetWidth + 14;
+          }
+          
+          filterStatus.style.marginLeft = offset + "px"
+        }
+        
+        for( let i = 0; i < filterLinks[0].offsetWidth; i++ ) {
+          filterStatus.style.width = i + 1 + "px"
+        }
+      }
+    </script>
+  </head>
+  
+  <body class="phl">
+
+    <header class="wrap sans site__header animate1"role="banner">
+      <a class="site__title b plainLink"href="./">Luka Schulz</a>
+
+      <nav class="site__nav"role="navigation">
+        <ul class="nav">
+          <li><a class="plainLink"href="./blog.html">Blog</a></li>
+          <li><a class="plainLink"href="./about.html">About</a></li>
+        </ul>
+      </nav>
+
+    </header>
+
+    <main class="wrap site__content animate1" role="main">
+      <nav>
+        <ul class="nav filter mbl" id="filter">
+          <li><a class="plainLink" data-id="0">All</a></li>
+          <li><a class="plainLink" data-id="1">UX/UI</a></li>
+          <li><a class="plainLink" data-id="2">3D</a></li>
+          <li><a class="plainLink" data-id="3">Motion</a></li>
+          <hr id="filterStatus">
+        </ul>
+      </nav>
+      
+<!--      <div class="decorationSmall mbl"></div>-->
+
+      <div class="page__content grid">
+        <div class="grid__item mbl animate2">
+          <a class="mbs grid__link" href="./portfolio/illuminated-manuscripts/index.html">
+            <img class="grid__image" src="./images/grid/everydays.jpg">
+          </a>
+          
+          <a class="grid__caption plainLink" href="./portfolio/illuminated-manuscripts/index.html">
+            <p>Illuminated Manuscripts — Untouchable beauty</p>
+          
+            <div class="viewProject">
+              <div class="small a1">View Project</div>
+              <svg id="linkArrow" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                <polygon points="8.5,17.5 8.5,9.5 13.5,13.5"/>
+              </svg>
+            </div>
+            
+          </a>
+        </div>
+        
+        <div class="grid__item mbl animate3">
+          <a class="mbs grid__link" href="./portfolio/creation-of-adam/index.html">
+            <img class="grid__image" src="./images/grid/creation-of-adam.jpg">
+          </a>
+
+          <a class="grid__caption plainLink" href="./portfolio/creation-of-adam/index.html">
+            <p>Creation of Adam — Learning to learn</p>
+
+            <div class="viewProject">
+              <div class="small a1">View Project</div>
+              <svg id="linkArrow" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                <polygon points="8.5,17.5 8.5,9.5 13.5,13.5"/>
+              </svg>
+            </div>
+            
+          </a>
+        </div>
+        
+        <div class="grid__item mbl animate4">
+          <a class="mbs grid__link" href="./portfolio/imagine-rit/index.html">
+            <img class="grid__image" src="./images/grid/imagine-rit.jpg">
+          </a>
+
+          <a class="grid__caption plainLink" href="./portfolio/imagine-rit/index.html">
+            <p>Imagine RIT Poster — Built for creativity</p>
+
+            <div class="viewProject">
+              <div class="small a1">View Project</div>
+              <svg id="linkArrow" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                <polygon points="8.5,17.5 8.5,9.5 13.5,13.5"/>
+              </svg>
+            </div>
+
+          </a>
+        </div>
+        
+        <div class="grid__item mbl animate5">
+          <a class="mbs grid__link" href="./portfolio/view-master/index.html">
+            <img class="grid__image" src="./images/grid/imagine-rit.jpg">
+          </a>
+
+          <a class="grid__caption plainLink" href="./portfolio/view-master/index.html">
+            <p>View Master — Bringing it way back</p>
+
+            <div class="viewProject">
+              <div class="small a1">View Project</div>
+              <svg id="linkArrow" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                <polygon points="8.5,17.5 8.5,9.5 13.5,13.5"/>
+              </svg>
+            </div>
+
+          </a>
+        </div>
+        
+        <div class="grid__item mbl">
+          <a class="mbs grid__link" href="./portfolio/mycourses/index.html">
+            <img class="grid__image" src="./images/grid/mycourses.png">
+          </a>
+
+          <a class="grid__caption plainLink" href="./portfolio/mycourses/index.html">
+            <p>myCourses — Making education smarter</p>
+
+            <div class="viewProject">
+              <div class="small a1">View Project</div>
+              <svg id="linkArrow" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                <polygon points="8.5,17.5 8.5,9.5 13.5,13.5"/>
+              </svg>
+            </div>
+
+          </a>
+        </div>
+        
+        <div class="grid__item mbl">
+          <a class="mbs grid__link" href="./portfolio/ar-experiments/index.html">
+            <img class="grid__image" src="./images/grid/mycourses.png">
+          </a>
+
+          <a class="grid__caption plainLink" href="./portfolio/ar-experiments/index.html">
+            <p>AR Experiments — Distributed computation</p>
+
+            <div class="viewProject">
+              <div class="small a1">View Project</div>
+              <svg id="linkArrow" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                <polygon points="8.5,17.5 8.5,9.5 13.5,13.5"/>
+              </svg>
+            </div>
+
+          </a>
+        </div>
+        
+        <div class="grid__item mbl">
+          <a class="mbs grid__link" href="./portfolio/_exout/index.html">
+            <img class="grid__image" src="./images/grid/mycourses.png">
+          </a>
+
+          <a class="grid__caption plainLink" href="./portfolio/_exout//index.html">
+            <p>#ExOut — A design system for social activism</p>
+
+            <div class="viewProject">
+              <div class="small a1">View Project</div>
+              <svg id="linkArrow" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                <polygon points="8.5,17.5 8.5,9.5 13.5,13.5"/>
+              </svg>
+            </div>
+
+          </a>
+        </div>
+        
+        <div class="grid__item mbl">
+          <a class="mbs grid__link" href="./portfolio/goofy-google/index.html">
+            <img class="grid__image" src="./images/grid/goofy-google.png">
+          </a>
+
+          <a class="grid__caption plainLink" href="./portfolio/goofy-google/index.html">
+            <p>Goofy Google — Learning machine learning</p>
+
+            <div class="viewProject">
+              <div class="small a1">View Project</div>
+              <svg id="linkArrow" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                <polygon points="8.5,17.5 8.5,9.5 13.5,13.5"/>
+              </svg>
+            </div>
+
+          </a>
+        </div>
+        
+
+      </div>
+
+    </main>
+    
+    <footer class="wrap site__footer">
+      <div>© 2018 Luka Schulz</div>
+    </footer>
+    
+    <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCtKMqZqH3P64KPFdeqlY8Oyp7XGt9VwL4",
+        authDomain: "luka-schulz.firebaseapp.com",
+        databaseURL: "https://luka-schulz.firebaseio.com",
+        projectId: "luka-schulz",
+        storageBucket: "luka-schulz.appspot.com",
+        messagingSenderId: "80070852375"
+      };
+      firebase.initializeApp(config);
+    </script>
+  </body>
+  
+</html>
