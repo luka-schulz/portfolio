@@ -66,6 +66,7 @@
 
   /* Fluid page gutter + section rhythm (grow with the screen) */
   --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+  --edge-ui: 1.625rem;   /* floating controls (back to top, photo viewer buttons) sit this far from the window edge (26px) */
   --section-space: clamp(3rem, 2rem + 5vw, 6rem);
 
   /* ---- Layout ---------------------------------------------------------- */

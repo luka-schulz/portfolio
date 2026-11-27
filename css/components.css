@@ -814,19 +814,6 @@
   .article__header > .article__meta { grid-column: 7 / -1; }
 }
 
-/* ---- Photography: count along the bottom of the mosaic head ------------ */
-
-.photo-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: var(--space-s);
-  font-size: var(--step--1);
-}
-@media (min-width: 48em) {
-  .photo-toolbar { grid-area: bar; }
-}
-
 /* ---- Site footer --------------------------------------------------------
    Phone: name | location on one row, links below (right-aligned).
    ≥48em: on the 12-col grid — name (1–3) | location (4–6) | links pushed
@@ -933,8 +920,8 @@
 .to-top {
   position: fixed;
   z-index: 90;
-  right: var(--gutter);
-  bottom: var(--gutter);
+  right: var(--edge-ui);                 /* same edge as the photo viewer's controls */
+  bottom: var(--edge-ui);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -973,7 +960,7 @@
 
 .lightbox {
   --lb-btn: 2.75rem;
-  --lb-edge: 1.625rem;                    /* controls sit this close to the window edge (26px) */
+  --lb-edge: var(--edge-ui);              /* controls sit this close to the window edge */
   --lb-slide: 0.75rem;                    /* how far controls travel as they animate in */
   position: fixed;
   z-index: 200;
