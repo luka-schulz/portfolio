@@ -12,10 +12,12 @@ folder and works exactly as it did when it was live:
 | `v1/` | 2016–17 | `luka-schulz/portfolio-archive` (`01/`, earlier `2017/` and the top level) |
 | `v2/` | 2017–19 | `luka-schulz/portfolio-archive` (top level) |
 | `v3/` | 2018 | `luka-schulz/lukaschulz.com` |
-| `v4/` | 2019 | the live lukaschulz.com (to be added) |
-| `v5/` | 2021– | lookaluka.com (to be added) |
+| `v4/` | 2019 | lukaschulz.com, saved from the live site (Nov 2026) |
+| `v5/` | 2021–26 | lookaluka.com, saved from the live site (Nov 2026) |
 
-The full commit history of both old repositories is kept here: `git log -- v1`
+v4 and v5 had no repository, so they start from a download of the live
+sites; everything else is untouched. The full commit history of both old
+repositories is kept here: `git log -- v1`
 goes back to December 2016. The tags `v1-original`, `v2-original` and
 `v3-original` mark each version exactly as it was before it moved in; the only
 later change is making links point inside each version's own folder.
