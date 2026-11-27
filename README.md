@@ -110,7 +110,7 @@ on a list to stagger its items. Hairlines listed in the "Hairlines" part of
 
 Every public page should have, in its `<head>`:
 
-- [ ] `<title>` — unique: "Page — Luka’s Work"
+- [ ] `<title>` — unique: "Page — Luka’s Stuff!"
 - [ ] `<meta name="description">` — one or two sentences, ~150 characters, unique
 - [ ] `og:title`, `og:description` — usually the same as the two above
 - [ ] `og:url` and `<link rel="canonical">` — the page's real address on https://lukaschulz.com
