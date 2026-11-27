@@ -1,7 +1,7 @@
 .hero {
     margin: 50px 30px 100px;
     height: 400px;
-    background: url(/images/project_06.jpg);
+    background: url(../images/project_06.jpg);
     background-size: cover;
     background-position: center;
 }
