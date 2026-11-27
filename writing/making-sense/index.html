@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Runs before first paint: saved theme; fade-in setup (only where it can
+       animate, with a 3s failsafe); scroll restore on reload / back-forward. -->
+  <script>(function(d,w){
+try{var t=localStorage.getItem("theme");if(t)d.dataset.theme=t}catch(e){}
+if("IntersectionObserver" in w&&w.requestAnimationFrame&&!(w.matchMedia&&w.matchMedia("(prefers-reduced-motion: reduce)").matches)){d.className+=" reveal-on";w.__revealFailsafe=setTimeout(function(){d.className=d.className.replace(" reveal-on","")},3000)}
+try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=performance.getEntriesByType&&performance.getEntriesByType("navigation")[0],k=n?n.type:"",y=+sessionStorage.getItem("scroll:"+location.pathname);if((k==="reload"||k==="back_forward")&&y>0){w.__restoreY=y;d.className+=" is-restoring";setTimeout(function(){d.className=d.className.replace(" is-restoring","")},1000)}}}catch(e){}
+})(document.documentElement,window)</script>
+  <title>Making Sense — Luka André Schulz</title>
+  <meta name="description" content="On well-made, opinionated products and the designers behind them.">
+  <meta name="theme-color" content="#faf8f8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e0e0e" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Making Sense — Luka André Schulz">
+  <meta property="og:description" content="On well-made, opinionated products and the designers behind them.">
+  <meta property="og:type" content="website">
+  <!-- CSS order matters: tokens → base → layout → components -->
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/layout.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <script src="../../js/main.js" defer></script>
+  <script src="../../_drafts/tune.js" defer></script>  <!-- TEMPORARY tuning panel: delete this line -->
+</head>
+<body class="page--reading">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__grid">
+      <a class="site-header__name" href="../../">Luka André Schulz</a>
+      <nav class="site-nav" aria-label="Main">
+        <ul role="list">
+          <li><a href="../../"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="1" width="4" height="4"/><rect x="7" y="1" width="4" height="4"/><rect x="1" y="7" width="4" height="4"/><rect x="7" y="7" width="4" height="4"/></svg>Work</a></li>
+          <li><a href="../" aria-current="page"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M1 2.5h10M1 6h10M1 9.5h6"/></svg>Writing</a></li>
+          <li><a href="../../photography/"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="2.5" width="10" height="8"/><circle cx="6" cy="6.5" r="2"/></svg>Photography</a></li>
+          <li><a href="mailto:hello@example.com"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="2.5" width="10" height="7"/><path d="M1 2.5l5 4 5-4"/></svg>E-mail</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__end">
+        <!-- Theme switch: shown by main.js (needs JS to work) -->
+        <span class="theme-label" aria-hidden="true"></span>
+        <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Dark mode" hidden></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <!-- Article layout
+         One reading column (desktop: right half of the 12-col grid, aligned
+         with the nav). Anything inside <article> sits in that column unless
+         it opts out:
+           .figure--wide   image breaks out to the full page width
+           .pullquote      hangs out to the left edge
+         Images: <figure class="figure"> + optional <figcaption>.
+         Footnotes: <sup><a href="#fn-N" id="ref-N">N</a></sup> in the text,
+         matching <li id="fn-N"> in .footnotes. -->
+    <article class="article" data-reveal-children data-lightbox>
+      <header class="article__header">
+        <p class="article__kicker type-tabular">Essay 01 · Design</p>
+        <h1 class="article__title">Making Sense</h1>
+        <dl class="article__meta">
+          <div><dt>Author</dt><dd>Luka André Schulz</dd></div>
+          <div><dt>Published</dt><dd><time datetime="2026-10-12">Oct 12, 2026</time></dd></div>
+          <div><dt>Reading</dt><dd>4 min</dd></div>
+        </dl>
+      </header>
+
+      <!-- TODO: replace with a photo of the pen -->
+      <figure class="figure figure--wide">
+        <div class="media"><img src="../../photography/photo-04.jpg" alt="Muji’s aluminium ballpoint pen" width="900" height="600" fetchpriority="high"></div>
+        <figcaption>Muji’s aliminium ballpoint pen</figcaption>
+      </figure>
+
+      <p>There is both a great pleasure and a great ache in the search for well-made products. Products that are lasting and unambiguous. This search is what leads us to products like those from companies such as Apple or Muji. Things that are beautiful and considered, through and through, thorough to the last and smallest detail. And it’s the same search that drives companies like Apple and Muji to pursue that achievement; a discontent with the now, in favor of the better.</p>
+
+      <p>The search, for the designer, is a cleansing one. “Better” is, more often than not, the dispelling of complexity until the product is as simple as possible, but no simpler.<sup><a href="#fn-1" id="ref-1">1</a></sup> Design is more to do with the process of how one might remove features, functions, and flourishes, than it is about the resulting output. Design is a verb.</p>
+
+      <blockquote class="pullquote"><p>Design is a verb.</p></blockquote>
+
+      <p>The simplicity, then, of products such as the MacBook, or the iPhone, or Muji’s humble aluminium pencil (pictured above) is no accident or chance occurrence. And the more I think about the products myself or others around me use every day, the more connected I feel to and enamoured with the designers behind them.</p>
+
+      <p>I’m writing this in Sublime Text, which was probably designed by Jon Skinner, the app’s developer. The theme I’m using was probably the result of years of separated collaboration and the consequence of many makers minds. The typeface I’m writing with (<code>Input Mono</code>) was designed by David Jonathan Ross, who no doubt was influenced by at least a handful of type designers for this typeface alone. Add to that the years of education and the fine minds behind centuries of typographic knowledge and you’ve got a long family tree.</p>
+
+      <!-- Styling demo for a code block — replace or delete -->
+      <pre><code>{
+  "font_face": "Input Mono",
+  "font_size": 14,
+  "line_padding_top": 2,
+  "word_wrap": true
+}</code></pre>
+
+      <p>The MacBook I’m writing on was designed by Sir Jony Ive and his small team of industrial designers. They worked long hours for months at a time to produce this computer. They tested iteration after iteration of keyboard springiness, trackpad smoothness, chassis design, corner radius, hinge resistance, and input positioning. Before this model, they had the same rigorous testing for the previous model, and they’ll have even more for the next one. And the same testing for every other product they have ever shipped.</p>
+
+      <!-- TODO: replace with your own image -->
+      <figure class="figure">
+        <div class="media"><img src="../../photography/photo-01.jpg" alt="Placeholder image" width="900" height="675" loading="lazy" decoding="async"></div>
+        <figcaption>An inline image sits in the text column. Captions are optional.</figcaption>
+      </figure>
+
+      <p>Ive and his team no doubt draw influences from a number of other designers, who in turn draw influence from yet more. These generations of designers go back centuries upon centuries, and yet “Design” in the public’s eye is still a very wishy-washy and usually visual thing. A lacquer.</p>
+
+      <p>But then, it’s not in the designer’s interest to necessarily recieve praise or acclaim for their work, because their work is never done. As long as there are new things being learned and created, there will always be opportunity to make sense of it, and that job lies largely in the lap of the designer.</p>
+
+      <p>The kind of “Design” that comes to the mind of the general public is that which sits delicately in the overlap of Art and Design.<sup><a href="#fn-2" id="ref-2">2</a></sup> Things that make sense and have done for years, but that provide a canvas for customisation. Things from mugs and plates to tshirts and cars and houses. The blueprints for these products remain largely unchanged. A handled container. A ceramic disk. An oblong structure. I’ve no doubt that many would argue that a world without the kind of customisation you see in these objects is a grim and lifeless one, but it’s one I dream of and inactively strive for.</p>
+
+      <p>Customisation is, really, a form of complexity. Opinionated design has the advantage of simplicity. You get what you get and nothing more. There are fewer moving parts; fewer opportunities for a product to buckle and break, provided the blueprint is matched, and matched in a well-built way.</p>
+
+      <p>Opinionated design also encourages greater creativity than customisations. Customisations are often themselves prefabricated. By following simpler blueprint design, there’s less resistance against the creations of the user or customer.</p>
+
+      <p>In light of this (no doubt drab and depressing for some) realisation, Vitsœ’s ethos comes to mind. “Living better, with less, that lasts longer.” Applying that filter to the things you buy results in an interesting pattern. Things with real density. Things stripped of pomp and frills. Things that are both very clearly present, and yet almost invisible until you need them. Things that don’t cry for attention. Living with this attitude also opens the floodgates for an appreciation of the things we most take for granted, and the people who designed them.</p>
+
+      <p>Products that are simple and unambiguous make sense. They provide clarity and consistency that unlocks a life of fulfilment and completeness. And they empower myself and others like me to do what we must; continue making things that make sense.</p>
+
+      <section class="footnotes" aria-labelledby="footnotes-title">
+        <h2 id="footnotes-title">Footnotes</h2>
+        <ol>
+          <li id="fn-1">This is, of course, a quote from Albert Einstein. Einstein was no designer—at least not by trade—but he was certainly onto something here. <a href="#ref-1" aria-label="Back to text">↩</a></li>
+          <li id="fn-2">Or, more realistically, in the overlap of Art, Design, and Advertising. <a href="#ref-2" aria-label="Back to text">↩</a></li>
+        </ol>
+      </section>
+
+      <nav class="article__folio" aria-label="Essay navigation">
+        <a href="../">← Contents</a>
+        <a href="../do-less/">Next: Do Less →</a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer container">
+    <div class="site-footer__grid" data-reveal-line>
+      <p>Luka André Schulz © 2026</p>
+      <p class="with-icon"><svg class="icon icon--pin" viewBox="0 0 8 11.6" fill="currentColor" fill-rule="evenodd" aria-hidden="true"><path d="M4 11.6C3.95 10.7 3.4 9.6 2.5 8.7 1.3 7.5 0 6.1 0 4a4 4 0 0 1 8 0C8 6.1 6.7 7.5 5.5 8.7 4.6 9.6 4.05 10.7 4 11.6zM4 2.35a1.65 1.65 0 1 0 0 3.3 1.65 1.65 0 0 0 0-3.3z"/></svg>NYC, New York</p>
+      <nav class="site-footer__links" aria-label="Elsewhere">
+        <ul role="list">
+          <!-- TODO: real URLs -->
+          <li><a href="#">Friends</a></li>
+          <li><a href="#">Spirit Animal</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

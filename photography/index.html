@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Runs before first paint: saved theme; fade-in setup (only where it can
+       animate, with a 3s failsafe); scroll restore on reload / back-forward. -->
+  <script>(function(d,w){
+try{var t=localStorage.getItem("theme");if(t)d.dataset.theme=t}catch(e){}
+if("IntersectionObserver" in w&&w.requestAnimationFrame&&!(w.matchMedia&&w.matchMedia("(prefers-reduced-motion: reduce)").matches)){d.className+=" reveal-on";w.__revealFailsafe=setTimeout(function(){d.className=d.className.replace(" reveal-on","")},3000)}
+try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=performance.getEntriesByType&&performance.getEntriesByType("navigation")[0],k=n?n.type:"",y=+sessionStorage.getItem("scroll:"+location.pathname);if((k==="reload"||k==="back_forward")&&y>0){w.__restoreY=y;d.className+=" is-restoring";setTimeout(function(){d.className=d.className.replace(" is-restoring","")},1000)}}}catch(e){}
+})(document.documentElement,window)</script>
+  <title>Photography — Luka André Schulz</title>
+  <meta name="description" content="Photographs by Luka André Schulz.">
+  <meta name="theme-color" content="#faf8f8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e0e0e" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Photography — Luka André Schulz">
+  <meta property="og:description" content="Photographs by Luka André Schulz.">
+  <meta property="og:type" content="website">
+  <!-- CSS order matters: tokens → base → layout → components -->
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <script src="../js/main.js" defer></script>
+  <script src="../_drafts/tune.js" defer></script>  <!-- TEMPORARY tuning panel: delete this line -->
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__grid">
+      <a class="site-header__name" href="../">Luka André Schulz</a>
+      <nav class="site-nav" aria-label="Main">
+        <ul role="list">
+          <li><a href="../"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="1" width="4" height="4"/><rect x="7" y="1" width="4" height="4"/><rect x="1" y="7" width="4" height="4"/><rect x="7" y="7" width="4" height="4"/></svg>Work</a></li>
+          <li><a href="../writing/"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M1 2.5h10M1 6h10M1 9.5h6"/></svg>Writing</a></li>
+          <li><a href="./" aria-current="page"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="2.5" width="10" height="8"/><circle cx="6" cy="6.5" r="2"/></svg>Photography</a></li>
+          <li><a href="mailto:hello@example.com"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="2.5" width="10" height="7"/><path d="M1 2.5l5 4 5-4"/></svg>E-mail</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__end">
+        <!-- Theme switch: shown by main.js (needs JS to work) -->
+        <span class="theme-label" aria-hidden="true"></span>
+        <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Dark mode" hidden></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <h1 class="visually-hidden">Photography</h1>
+
+    <!-- Same masonry as the home page: one list, left to right. main.js drops
+         each photo into the shortest column; data-span="2" makes a photo two
+         columns wide. Mix shapes (portrait / square / landscape) and spans so
+         no column repeats one size. To add a photo, put it in
+         assets/img/photography/ and copy an <li>: keep width/height (stops
+         layout jumps) and write real alt text. -->
+    <div class="mosaic mosaic--tight">
+      <div class="mosaic__head" data-reveal>
+        <p class="mosaic__intro type-muted">Photographs—landscape, cities and light. 35mm &amp; digital. Prints by <a href="mailto:hello@example.com">e-mail</a>.</p>
+        <div class="photo-toolbar">
+          <p class="type-muted type-tabular">24 / 24</p>
+        </div>
+      </div>
+      <ul class="masonry" role="list" data-reveal-children data-lightbox>
+        <li data-span="2"><figure class="media"><img src="brera-courtyard-rain.jpg" srcset="brera-courtyard-rain-800.jpg 800w, brera-courtyard-rain.jpg 1800w" sizes="(min-width: 150em) 16vw, (min-width: 64em) 24vw, (min-width: 48em) 32vw, 48vw" alt="Rain falling on the arcaded courtyard of a Milan palazzo, a bronze statue on a plinth at the centre and a figure with an umbrella crossing at left; black and white" width="1800" height="1132"></figure></li>
+        <li><figure class="media"><img src="profile-teal-wall.jpg" alt="Profile of a grey-haired man with eyes closed in bright sun, in front of a teal wall with pale paper notices" width="901" height="1267"></figure></li>
+        <li><figure class="media"><img src="profile-hood-glasses.jpg" alt="Close profile of a man in a black hood and clear-framed glasses, half his face in hard sunlight" width="962" height="1352"></figure></li>
+        <li><figure class="media"><img src="navy-sweater.jpg" srcset="navy-sweater-800.jpg 800w, navy-sweater.jpg 1400w" sizes="(min-width: 150em) 16vw, (min-width: 64em) 24vw, (min-width: 48em) 32vw, 48vw" alt="A smiling man in a NAVY sweatshirt walking past steel bollards and parked bikes on a busy street, holding a bottle" width="1400" height="934" loading="lazy" decoding="async"></figure></li>
+        <li data-span="2"><figure class="media"><img src="brera-loggia-columns.jpg" srcset="brera-loggia-columns-800.jpg 800w, brera-loggia-columns.jpg 1800w" sizes="(min-width: 150em) 33vw, (min-width: 64em) 48vw, (min-width: 48em) 64vw, 96vw" alt="Stone column bases along an upper loggia, a man in a grey jacket smoking at the balustrade and visitors walking beyond" width="1800" height="872" loading="lazy" decoding="async"></figure></li>
+        <li><figure class="media"><img src="fiat-steel-room.jpg" srcset="fiat-steel-room-800.jpg 800w, fiat-steel-room.jpg 1400w" sizes="(min-width: 150em) 16vw, (min-width: 64em) 24vw, (min-width: 48em) 32vw, 48vw" alt="A white vintage Fiat on a polished steel floor under rows of lights, a blurred visitor passing in front and a man in a blue cap behind" width="1400" height="933" loading="lazy" decoding="async"></figure></li>
+        <li data-span="2"><figure class="media"><img src="photo-01.jpg" alt="Photograph 01 — TODO: describe" width="900" height="675" loading="lazy" decoding="async"></figure></li>
+        <li><figure class="media"><img src="photo-02.jpg" alt="Photograph 02 — TODO: describe" width="720" height="900" loading="lazy" decoding="async"></figure></li>
+        <li><figure class="media"><img src="photo-03.jpg" alt="Photograph 03 — TODO: describe" width="900" height="900" loading="lazy" decoding="async"></figure></li>
+        <li><figure class="media"><img src="photo-05.jpg" alt="Photograph 05 — TODO: describe" width="600" height="900" loading="lazy" decoding="async"></figure></li>
+        <li><figure class="media"><img src="photo-04.jpg" alt="Photograph 04 — TODO: describe" width="900" height="600" loading="lazy" decoding="async"></figure></li>
+        <li><figure class="media"><img src="photo-06.jpg" alt="Photograph 06 — TODO: describe" width="675" height="900" loading="lazy" decoding="async"></figure></li>
+        <li data-span="2"><figure class="media"><img src="photo-10.jpg" alt="Photograph 10 — TODO: describe" width="900" height="600" loading="lazy" decoding="async"></figure></li>
+        <li><figure class="media"><img src="photo-08.jpg" alt="Photograph 08 — TODO: describe" width="720" height="900" loading="lazy" decoding="async"></figure></li>
+        <li><figure class="media"><img src="photo-09.jpg" alt="Photograph 09 — TODO: describe" width="900" height="900" loading="lazy" decoding="async"></figure></li>
+        <li><figure class="media"><img src="photo-07.jpg" alt="Photograph 07 — TODO: describe" width="900" height="675" loading="lazy" decoding="async"></figure></li>
+        <li><figure class="media"><img src="photo-11.jpg" alt="Photograph 11 — TODO: describe" width="600" height="900" loading="lazy" decoding="async"></figure></li>
+        <li data-span="2"><figure class="media"><img src="photo-13.jpg" alt="Photograph 13 — TODO: describe" width="900" height="675" loading="lazy" decoding="async"></figure></li>
+        <li><figure class="media"><img src="photo-12.jpg" alt="Photograph 12 — TODO: describe" width="675" height="900" loading="lazy" decoding="async"></figure></li>
+        <li><figure class="media"><img src="photo-14.jpg" alt="Photograph 14 — TODO: describe" width="720" height="900" loading="lazy" decoding="async"></figure></li>
+        <li><figure class="media"><img src="photo-16.jpg" alt="Photograph 16 — TODO: describe" width="900" height="600" loading="lazy" decoding="async"></figure></li>
+        <li><figure class="media"><img src="photo-15.jpg" alt="Photograph 15 — TODO: describe" width="900" height="900" loading="lazy" decoding="async"></figure></li>
+        <li><figure class="media"><img src="photo-17.jpg" alt="Photograph 17 — TODO: describe" width="600" height="900" loading="lazy" decoding="async"></figure></li>
+        <li><figure class="media"><img src="photo-18.jpg" alt="Photograph 18 — TODO: describe" width="675" height="900" loading="lazy" decoding="async"></figure></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="site-footer container">
+    <div class="site-footer__grid" data-reveal-line>
+      <p>Luka André Schulz © 2026</p>
+      <p class="with-icon"><svg class="icon icon--pin" viewBox="0 0 8 11.6" fill="currentColor" fill-rule="evenodd" aria-hidden="true"><path d="M4 11.6C3.95 10.7 3.4 9.6 2.5 8.7 1.3 7.5 0 6.1 0 4a4 4 0 0 1 8 0C8 6.1 6.7 7.5 5.5 8.7 4.6 9.6 4.05 10.7 4 11.6zM4 2.35a1.65 1.65 0 1 0 0 3.3 1.65 1.65 0 0 0 0-3.3z"/></svg>NYC, New York</p>
+      <nav class="site-footer__links" aria-label="Elsewhere">
+        <ul role="list">
+          <!-- TODO: real URLs -->
+          <li><a href="#">Friends</a></li>
+          <li><a href="#">Spirit Animal</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

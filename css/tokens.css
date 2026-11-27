@@ -1,0 +1,161 @@
+/* ==========================================================================
+   TOKENS — the design system. Every size, color and font lives here.
+   Change a value here and it updates everywhere.
+   1rem = the user's browser font size (16px by default). Never override
+   the root size; respecting it is what makes rems accessible.
+   ========================================================================== */
+
+:root {
+  /* ---- Font family -----------------------------------------------------
+     One typeface, Arial: a system font on virtually every device, so
+     nothing to download. */
+  --font-sans: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* ---- Type scale: nine roles, used everywhere (see styleguide.html) ----
+     Sizes are fluid between 320px and 1280px wide, then stop.
+     The rem part keeps browser zoom / user font settings working.
+
+     role         token      size (phone → desktop)   used for
+     mast         --step-6   56 → 160px               the writing index title
+     display      --step-5   48 → 112px               blog post titles
+     title        --step-4   40 → 72px                case study titles, big statements
+     heading      --step-3   32 → 48px                pull quotes, next project
+     subheading   --step-2   24 → 32px                case study section headings
+     lede         --step-1   20 → 24px                intros, lead sentences, h2 in posts
+     body         --step-0   16px                     all reading text, header, footer
+     small        --step--1  14px                     captions, notes, meta, footnotes
+     micro        --step--2  12px                     code, badges                      */
+  --step--2: 0.75rem;
+  --step--1: 0.875rem;
+  --step-0:  1rem;
+  --step-1:  clamp(1.25rem, 1.17rem + 0.42vw, 1.5rem);
+  --step-2:  clamp(1.5rem, 1.33rem + 0.83vw, 2rem);
+  --step-3:  clamp(2rem, 1.67rem + 1.67vw, 3rem);
+  --step-4:  clamp(2.5rem, 1.83rem + 3.33vw, 4.5rem);
+  --step-5:  clamp(3rem, 1.67rem + 6.67vw, 7rem);
+  --step-6:  clamp(3.5rem, 1rem + 9vw, 10rem);
+
+  /* Header, footer and article meta: between small and body (14 → 16px) */
+  --step-chrome:  clamp(0.875rem, 0.82rem + 0.28vw, 1rem);
+
+  /* ---- Line heights & tracking: one per size band --------------------- */
+  --leading-mast: 0.88;       /* mast */
+  --leading-display: 0.95;    /* display, title */
+  --leading-tight: 1.05;      /* heading */
+  --leading-snug: 1.2;        /* subheading, lede, small UI lines */
+  --leading-body: 1.5;        /* body, small, code */
+  --tracking-mast: -0.045em;
+  --tracking-display: -0.035em;   /* display, title */
+  --tracking-tight: -0.02em;      /* heading, subheading */
+  --tracking-wide: 0.06em;        /* uppercase micro text (badges) */
+
+  /* ---- Weights --------------------------------------------------------- */
+  --weight-regular: 400;
+  --weight-medium: 500;
+
+  /* ---- Spacing scale (rem) -------------------------------------------- */
+  --space-3xs: 0.25rem;  /*  4px */
+  --space-2xs: 0.5rem;   /*  8px */
+  --space-xs:  0.75rem;  /* 12px */
+  --space-s:   1rem;     /* 16px */
+  --space-m:   1.5rem;   /* 24px */
+  --space-l:   2rem;     /* 32px */
+  --space-xl:  3rem;     /* 48px */
+  --space-2xl: 4rem;     /* 64px */
+
+  /* Fluid page gutter + section rhythm (grow with the screen) */
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+  --section-space: clamp(3rem, 2rem + 5vw, 6rem);
+
+  /* ---- Layout ---------------------------------------------------------- */
+  --measure: 65ch;          /* comfortable line length for paragraphs */
+  --column-gap: 1.25rem;    /* 20px gutter between side-by-side images */
+  --container-max: none;    /* edge to edge (default) */
+  --container-reading: 90rem; /* 1440px cap for long-form pages — body.page--reading */
+
+  /* ---- Color (light) --------------------------------------------------- */
+  --color-bg: #faf8f8;
+  --color-text: #000000;
+  --color-muted: #707070;    /* darkest grey that still reads "soft"; passes WCAG AA on --color-bg */
+  --color-line: #e3e1e1;
+  --color-surface: #efeded;    /* image placeholders */
+  --color-badge-bg: #ebe8e8;   /* light grey chip */
+  --color-badge-text: #5c5c5c; /* on the chip ≈ 5.6:1 — passes WCAG AA */
+  --color-badge-line: rgb(0 0 0 / 0.06);  /* barely-there stroke */
+  /* Glass: toast, back to top, photo viewer controls (and class="glass") */
+  --glass-tint: 0%;           /* how much text colour is mixed into the page colour */
+  --glass-opacity: 54%;      /* how solid the glass is (lower = more see-through) */
+  --glass-blur: 8px;         /* blur of what's behind */
+  --glass-saturate: 1.6;     /* colour boost of what's behind */
+  --glass-edge: 8%;          /* hairline border strength */
+  --glass-shadow: 0 0.6875rem 1.625rem rgb(0 0 0 / 0.09);
+  --lightbox-dim: 30%;          /* photo viewer: how much page colour veils the blurred page */
+  --lightbox-blur: 10px;        /* photo viewer: blur on the page behind */
+  --lightbox-ui-shadow: none;   /* photo viewer controls: no shadow in light mode (trial) */
+  --color-focus: #2f5cff;
+  --color-switch-track: #d9d9d9;   /* light/dark switch */
+  --color-switch-knob: #000000;
+  --color-switch-line: #c4c4c4;
+
+  /* ---- Frame ratios: case study image boxes. Images fill and crop. */
+  --ratio-wide: 16 / 9;
+  --ratio-landscape: 3 / 2;
+  --ratio-square: 1 / 1;
+  --ratio-portrait: 4 / 5;
+
+  /* ---- Shape ---------------------------------------------------------- */
+  --radius: 0.32rem;        /* ≈5px — rounded corners on every image (and code blocks) */
+
+  /* ---- Motion ---------------------------------------------------------- */
+  /* Motion: one curve per job */
+  --ease: cubic-bezier(0.2, 0, 0, 1);               /* standard: hovers, row tint, card zoom, theme label */
+  --ease-fade: cubic-bezier(0, 0, 0.58, 1);          /* simple fades in (= ease-out) */
+  --ease-fade-in: cubic-bezier(0.42, 0, 1, 1);       /* viewer photo leaving (= ease-in) */
+  --ease-reveal: cubic-bezier(0.2, 0.7, 0.2, 1);     /* fade-in on scroll, hairlines */
+  --ease-settle: cubic-bezier(0.2, 0.8, 0.2, 1);     /* photo viewer: open, full-screen morph, controls sliding in */
+  --ease-close-fade: cubic-bezier(0.5, 0, 0.9, 0.6); /* viewer closing: photo fade */
+  --ease-close-scale: cubic-bezier(0.2, 0, 0.2, 1);  /* viewer closing: photo shrink */
+  --hover-fade: 0.65;       /* text links/buttons fade slightly toward the background on hover */
+  --duration: 200ms;
+
+  color-scheme: light dark;
+}
+
+/* Dark palette. Applied when the OS is in dark mode (unless the visitor chose
+   light), or when the visitor chose dark. The switch sets
+   <html data-theme="light|dark"> — see js/main.js.
+   The list appears twice because CSS can't share one block between a media
+   query and a selector; keep both copies identical. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg: #0e0e0e;
+    --color-text: #ededed;
+    --color-muted: #9a9a9a;
+    --color-line: #262626;
+    --color-surface: #1a1a1a;
+    --color-badge-bg: #262626;
+    --color-badge-text: #ababab;
+    --color-badge-line: rgb(255 255 255 / 0.06);
+    --lightbox-dim: 72%;
+    --lightbox-blur: 10px;
+    --lightbox-ui-shadow: var(--glass-shadow);
+    --color-focus: #8aa2ff;
+  }
+}
+:root[data-theme="dark"] {
+  --color-bg: #0e0e0e;
+  --color-text: #ededed;
+  --color-muted: #9a9a9a;
+  --color-line: #262626;
+  --color-surface: #1a1a1a;
+  --color-badge-bg: #262626;
+  --color-badge-text: #ababab;
+  --color-badge-line: rgb(255 255 255 / 0.06);
+  --lightbox-dim: 72%;
+  --lightbox-blur: 10px;
+  --lightbox-ui-shadow: var(--glass-shadow);
+  --color-focus: #8aa2ff;
+}
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"]  { color-scheme: dark; }

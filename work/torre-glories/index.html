@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Runs before first paint: saved theme; fade-in setup (only where it can
+       animate, with a 3s failsafe); scroll restore on reload / back-forward. -->
+  <script>(function(d,w){
+try{var t=localStorage.getItem("theme");if(t)d.dataset.theme=t}catch(e){}
+if("IntersectionObserver" in w&&w.requestAnimationFrame&&!(w.matchMedia&&w.matchMedia("(prefers-reduced-motion: reduce)").matches)){d.className+=" reveal-on";w.__revealFailsafe=setTimeout(function(){d.className=d.className.replace(" reveal-on","")},3000)}
+try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=performance.getEntriesByType&&performance.getEntriesByType("navigation")[0],k=n?n.type:"",y=+sessionStorage.getItem("scroll:"+location.pathname);if((k==="reload"||k==="back_forward")&&y>0){w.__restoreY=y;d.className+=" is-restoring";setTimeout(function(){d.className=d.className.replace(" is-restoring","")},1000)}}}catch(e){}
+})(document.documentElement,window)</script>
+  <title>Torre Glòries — Luka André Schulz</title>
+  <meta name="description" content="A permanent exhibit inside Torre Glòries, Barcelona: generative visualizations of the city's wind, sky and sound.">
+  <meta name="theme-color" content="#faf8f8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e0e0e" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Torre Glòries — Luka André Schulz">
+  <meta property="og:description" content="A permanent exhibit inside Torre Glòries, Barcelona: generative visualizations of the city's wind, sky and sound.">
+  <meta property="og:type" content="website">
+  <!-- CSS order matters: tokens → base → layout → components -->
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/layout.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <script src="../../js/main.js" defer></script>
+  <script src="../../_drafts/tune.js" defer></script>  <!-- TEMPORARY tuning panel: delete this line -->
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__grid">
+      <a class="site-header__name" href="../../">Luka André Schulz</a>
+      <nav class="site-nav" aria-label="Main">
+        <ul role="list">
+          <li><a href="../../" aria-current="page"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="1" width="4" height="4"/><rect x="7" y="1" width="4" height="4"/><rect x="1" y="7" width="4" height="4"/><rect x="7" y="7" width="4" height="4"/></svg>Work</a></li>
+          <li><a href="../../writing/"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M1 2.5h10M1 6h10M1 9.5h6"/></svg>Writing</a></li>
+          <li><a href="../../photography/"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="2.5" width="10" height="8"/><circle cx="6" cy="6.5" r="2"/></svg>Photography</a></li>
+          <li><a href="mailto:hello@example.com"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="2.5" width="10" height="7"/><path d="M1 2.5l5 4 5-4"/></svg>E-mail</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__end">
+        <!-- Theme switch: shown by main.js (needs JS to work) -->
+        <span class="theme-label" aria-hidden="true"></span>
+        <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Dark mode" hidden></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <!-- CASE STUDY — reusable modules. Copy any <section>, swap the content.
+           cs-head     kicker · title + intro + details (left) · film (right)
+           cs-text     section label + heading (left) · body (right)
+           cs-single   one image, full width
+           cs-duo      two small images, centred in white space
+           cs-float    one image off-grid. --right: image right, caption below
+                       · --left: image left, large statement (pull quote) right
+           cs-compose  two small images bottom-left · large image right, caption below
+           cs-credits  simple left-aligned list
+           cs-next     link to the next project
+         Text sits in columns 1–5 or 7–11 of the 12-column grid.
+         Image boxes have fixed shapes (see "Frames" in components.css):
+         the image fills its box and is cropped. To steer a crop, add
+         style="--focus: 30% 50%" to that image's <div class="media">. -->
+    <article class="case" data-reveal-children data-lightbox>
+
+      <header class="cs-head">
+        <p class="type-kicker">Project · Interactive Data-Viz</p>
+        <div class="cs-head__grid">
+          <div class="cs-head__text">
+            <h1 class="cs-title">Torre Glòries</h1>
+            <p>I had the tremendous opportunity to help concept, design, and animate a permanent exhibit within the Torre Glòries, Hyperview Barcelona, an experience that surfaces the day-to-day interactions between the people of Barcelona and their environment.</p>
+            <dl class="cs-details">
+              <div><dt>Role</dt><dd>Design &amp; Motion</dd></div>
+              <div><dt>Studio</dt><dd>Rare Volume</dd></div>
+              <div><dt>Location</dt><dd>Barcelona, Spain</dd></div>
+            </dl>
+          </div>
+          <!-- TODO: point href at the film (Vimeo/YouTube) -->
+          <a class="video-poster cs-head__film" href="#">
+            <span class="media"><img src="cover.jpg" alt="" width="785" height="468" fetchpriority="high"></span>
+            <span class="video-poster__play">
+              <svg viewBox="0 0 44 44" fill="none" aria-hidden="true"><circle cx="22" cy="22" r="21" stroke="currentColor"/><path d="M18 15l11 7-11 7z" fill="currentColor"/></svg>
+              <span>Play film · 2m 10s</span>
+            </span>
+          </a>
+        </div>
+      </header>
+
+      <section class="cs-text" aria-labelledby="overview">
+        <div>
+          <p class="cs-label">Overview</p>
+          <h2 id="overview" class="cs-heading">A new way of seeing</h2>
+        </div>
+        <div class="cs-body">
+          <p>The exhibit is a unique space to teach visitors a new way of seeing—to look beyond the surface of a city, and to observe the environmental interactions between the city and its population.</p>
+          <p>Housed on the base floor, I was able to work on three of the four visualizations—Wind, Sky Above Us, and Soundscapes—bringing to life the data we don’t often see with the naked eye.</p>
+        </div>
+      </section>
+
+      <section class="cs-single" aria-label="The exhibit"><figure><div class="media"><img src="torre-glories-01.jpg" alt="Close-up of a luminous blue-green banner rippling across a curved wall" width="1360" height="604" loading="lazy" decoding="async"></div></figure></section>
+
+      <section class="cs-float cs-float--right" aria-label="The exhibit, entrance">
+        <figure><div class="media"><img src="torre-glories-02.jpg" alt="Curved wall of green data lines beside the exhibit's printed introduction" width="670" height="380" loading="lazy" decoding="async"></div><figcaption class="cs-caption">The panoramic wall wraps the base floor of the tower, beside the exhibit’s printed introduction.</figcaption></figure>
+      </section>
+
+      <section class="cs-text" aria-labelledby="wind">
+        <div>
+          <p class="cs-label">01 — Wind</p>
+          <h2 id="wind" class="cs-heading">Generative art, and a meteorological instrument</h2>
+        </div>
+        <div class="cs-body">
+          <p>Powered by Barcelona’s wind data, a beautiful banner ebbs and flows across the panoramic canvas, representing a range of data sets such as wind speed, direction, air quality, and aerobiology such as pollen and spore levels.</p>
+        </div>
+      </section>
+
+      <section class="cs-compose" aria-label="Wind, gallery">
+        <figure class="cs-compose__main"><div class="media"><img src="torre-glories-04.jpg" alt="Title card reading “Wind” over a pale, iridescent banner" width="1360" height="604" loading="lazy" decoding="async"></div><figcaption class="cs-caption">Wind speed, direction, air quality, pollen and spore levels—read live from the city.</figcaption></figure>
+        <figure><div class="media"><img src="torre-glories-05.jpg" alt="Visitor standing beneath a towering white banner on the panoramic screen" width="670" height="380" loading="lazy" decoding="async"></div></figure>
+        <figure><div class="media"><img src="torre-glories-06.jpg" alt="Glass-like readout showing a wind speed of 12.1 km/h" width="670" height="380" loading="lazy" decoding="async"></div></figure>
+      </section>
+
+      <section class="cs-duo" aria-label="Wind, details">
+        <figure><div class="media"><img src="torre-glories-07.jpg" alt="Wide view of the banner sweeping across the dark gallery" width="670" height="380" loading="lazy" decoding="async"></div></figure>
+        <figure><div class="media"><img src="torre-glories-08.jpg" alt="Visitor watching a blue banner with a pollen and spore level readout" width="670" height="380" loading="lazy" decoding="async"></div></figure>
+      </section>
+
+      <section class="cs-single" aria-label="Wind"><figure><div class="media"><img src="torre-glories-09.jpg" alt="Blue and green banner rising diagonally across the screen" width="1360" height="604" loading="lazy" decoding="async"></div></figure></section>
+
+      <section class="cs-text" aria-labelledby="sky">
+        <div>
+          <p class="cs-label">02 — Sky Above Us</p>
+          <h2 id="sky" class="cs-heading">A realtime view of the heavens above Barcelona</h2>
+        </div>
+        <div class="cs-body">
+          <p>A sea of stars fill the panoramic canvas, their positions inextricably tied to the rotation of the Earth. Mapped against this backdrop are the positions of the planets, constellations, and satellites.</p>
+          <p>As visitors pass through the space, motion reveals the dimensions to which humans influence and impact the sky, whether it is light pollution, satellites, or left over rocket parts.</p>
+        </div>
+      </section>
+
+      <section class="cs-single" aria-label="Sky Above Us"><figure><div class="media"><img src="torre-glories-11.jpg" alt="Visitor silhouetted before swirling blue star trails" width="1360" height="756" loading="lazy" decoding="async"></div></figure></section>
+
+      <section class="cs-float cs-float--left" aria-label="Sky Above Us, satellites">
+        <figure><div class="media"><img src="torre-glories-12.jpg" alt="Visitor beside glowing spheres marking satellites in orbit" width="670" height="380" loading="lazy" decoding="async"></div></figure>
+        <blockquote class="cs-quote"><p>Planets, constellations and satellites— <span class="type-muted">plotted in real time against the stars.</span></p></blockquote>
+      </section>
+
+      <section class="cs-duo" aria-label="Sky Above Us, details">
+        <figure><div class="media"><img src="torre-glories-14.jpg" alt="Detail of a satellite label reading Express 80" width="670" height="380" loading="lazy" decoding="async"></div></figure>
+        <figure><div class="media"><img src="torre-glories-15.jpg" alt="Detail of a constellation line drawn across blue stars" width="670" height="380" loading="lazy" decoding="async"></div></figure>
+      </section>
+
+      <section class="cs-text" aria-labelledby="sound">
+        <div>
+          <p class="cs-label">03 — Soundscapes</p>
+          <h2 id="sound" class="cs-heading">A spectrographic picture of the city</h2>
+        </div>
+        <div class="cs-body">
+          <p>A spectrographic visualization of the sounds of Barcelona’s rivers, oceans, mountains, and city. Each of the four soundscapes (Sea, City, Mountain, River) is composed of three sources (animal sounds, nature sounds, and human sounds). Together they paint a sonic picture of Barcelona as it exists day to day.</p>
+        </div>
+      </section>
+
+      <section class="cs-compose" aria-label="Soundscapes, gallery">
+        <figure class="cs-compose__main"><div class="media"><img src="torre-glories-16.jpg" alt="Blue spectrogram of sound lines with labelled bird calls" width="1360" height="756" loading="lazy" decoding="async"></div><figcaption class="cs-caption">Sea, City, Mountain, River—each built from animal, nature and human sounds.</figcaption></figure>
+        <figure><div class="media"><img src="torre-glories-17.jpg" alt="Title card reading “Soundscapes”" width="670" height="380" loading="lazy" decoding="async"></div></figure>
+        <figure><div class="media"><img src="torre-glories-18.jpg" alt="Purple spectrogram with labelled gull and street sounds" width="670" height="380" loading="lazy" decoding="async"></div></figure>
+      </section>
+
+      <section class="cs-float cs-float--right" aria-label="Soundscapes, city">
+        <figure><div class="media"><img src="torre-glories-19.jpg" alt="Pink and gold spectrogram of city sounds across the curved wall" width="670" height="380" loading="lazy" decoding="async"></div><figcaption class="cs-caption">The City soundscape across the curved wall.</figcaption></figure>
+      </section>
+
+      <section class="cs-single" aria-label="Soundscapes, installed"><figure><div class="media"><img src="torre-glories-21.jpg" alt="Green spectrogram wall beside the dark exhibit entrance" width="1360" height="756" loading="lazy" decoding="async"></div></figure></section>
+
+      <section class="cs-credits" aria-labelledby="credits">
+        <h2 id="credits" class="cs-label">Credits</h2>
+        <dl>
+          <div><dt>Creative Director</dt> <dd>Jonathan Kim</dd></div>
+          <div><dt>Technical Director</dt> <dd>Andrew Bell</dd></div>
+          <div><dt>Head of R&amp;D</dt> <dd>Robert Hodgin</dd></div>
+          <div><dt>Head of Production</dt> <dd>Allison Keiley</dd></div>
+          <div><dt>Interactive Director</dt> <dd>Alvin Groen</dd></div>
+          <div><dt>Developers</dt> <dd>Andrew Bell, Greg Kepler, Simon Geilfus, Paul Houx</dd></div>
+          <div><dt>Design &amp; Motion</dt> <dd>Jonathan Kim, Robert Hodgin, Luka André Schulz, Alvin Groen, Evan Stalker, Hanbi Sung, Rick Kuan, John Lee</dd></div>
+          <div><dt>Executive Producer</dt> <dd>Jillian Stevens</dd></div>
+          <div><dt>Producer</dt> <dd>Grace Park</dd></div>
+        </dl>
+      </section>
+    </article>
+
+    <!-- TODO: link once the Industry City page exists -->
+    <nav class="cs-next" aria-label="Next project" data-reveal>
+      <p class="cs-label">Next project</p>
+      <a class="cs-next__link" href="../../404.html">Industry City →<span class="type-muted">Digital Signage &amp; Wayfinding</span></a>
+    </nav>
+  </main>
+
+  <footer class="site-footer container">
+    <div class="site-footer__grid" data-reveal-line>
+      <p>Luka André Schulz © 2026</p>
+      <p class="with-icon"><svg class="icon icon--pin" viewBox="0 0 8 11.6" fill="currentColor" fill-rule="evenodd" aria-hidden="true"><path d="M4 11.6C3.95 10.7 3.4 9.6 2.5 8.7 1.3 7.5 0 6.1 0 4a4 4 0 0 1 8 0C8 6.1 6.7 7.5 5.5 8.7 4.6 9.6 4.05 10.7 4 11.6zM4 2.35a1.65 1.65 0 1 0 0 3.3 1.65 1.65 0 0 0 0-3.3z"/></svg>NYC, New York</p>
+      <nav class="site-footer__links" aria-label="Elsewhere">
+        <ul role="list">
+          <!-- TODO: real URLs -->
+          <li><a href="#">Friends</a></li>
+          <li><a href="#">Spirit Animal</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Runs before first paint: saved theme; fade-in setup (only where it can
+       animate, with a 3s failsafe); scroll restore on reload / back-forward. -->
+  <script>(function(d,w){
+try{var t=localStorage.getItem("theme");if(t)d.dataset.theme=t}catch(e){}
+if("IntersectionObserver" in w&&w.requestAnimationFrame&&!(w.matchMedia&&w.matchMedia("(prefers-reduced-motion: reduce)").matches)){d.className+=" reveal-on";w.__revealFailsafe=setTimeout(function(){d.className=d.className.replace(" reveal-on","")},3000)}
+try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=performance.getEntriesByType&&performance.getEntriesByType("navigation")[0],k=n?n.type:"",y=+sessionStorage.getItem("scroll:"+location.pathname);if((k==="reload"||k==="back_forward")&&y>0){w.__restoreY=y;d.className+=" is-restoring";setTimeout(function(){d.className=d.className.replace(" is-restoring","")},1000)}}}catch(e){}
+})(document.documentElement,window)</script>
+  <title>Writing — Luka André Schulz</title>
+  <meta name="description" content="Essays and notes by Luka André Schulz on designing for space, data and motion.">
+  <meta name="theme-color" content="#faf8f8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e0e0e" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Writing — Luka André Schulz">
+  <meta property="og:description" content="Essays and notes by Luka André Schulz on designing for space, data and motion.">
+  <meta property="og:type" content="website">
+  <!-- CSS order matters: tokens → base → layout → components -->
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <script src="../js/main.js" defer></script>
+  <script src="../_drafts/tune.js" defer></script>  <!-- TEMPORARY tuning panel: delete this line -->
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__grid">
+      <a class="site-header__name" href="../">Luka André Schulz</a>
+      <nav class="site-nav" aria-label="Main">
+        <ul role="list">
+          <li><a href="../"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="1" width="4" height="4"/><rect x="7" y="1" width="4" height="4"/><rect x="1" y="7" width="4" height="4"/><rect x="7" y="7" width="4" height="4"/></svg>Work</a></li>
+          <li><a href="./" aria-current="page"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M1 2.5h10M1 6h10M1 9.5h6"/></svg>Writing</a></li>
+          <li><a href="../photography/"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="2.5" width="10" height="8"/><circle cx="6" cy="6.5" r="2"/></svg>Photography</a></li>
+          <li><a href="mailto:hello@example.com"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="2.5" width="10" height="7"/><path d="M1 2.5l5 4 5-4"/></svg>E-mail</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__end">
+        <!-- Theme switch: shown by main.js (needs JS to work) -->
+        <span class="theme-label" aria-hidden="true"></span>
+        <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Dark mode" hidden></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container writing">
+
+    <!-- Same intro block as Work and Photography (small grey text, fixed
+         height), so the big title and list start where their images do. -->
+    <div class="mosaic__head" data-reveal>
+      <p class="mosaic__intro type-muted">These are essays and field notes on designing for physical space: data, generative systems, motion, and the slow, practical craft of building things that live in public. Writing is how I slow down enough to see what I actually made.</p>
+    </div>
+
+    <!-- Title + thesis stick on the left; essays on the right. -->
+    <div class="wb-grid">
+      <div class="wb-title" data-reveal>
+        <h1 class="w-mast wb-mast">Writing<span class="w-count">[24]</span></h1>
+        <p class="w-lede">I write to make sense of the work—what happens when images leave the screen and become rooms, weather and light.</p>
+      </div>
+      <dl class="wb-index">
+        <div><dt class="visually-hidden">Essays</dt><dd>
+          <!-- TODO: placeholder essays; each links to Making Sense for now -->
+          <div class="w-head" data-reveal><span class="w-num">#</span><span class="w-title">Title</span><span class="w-date"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="2" width="10" height="9"/><path d="M1 5h10M4 .75v2.5M8 .75v2.5"/></svg><span class="visually-hidden">Date</span></span></div>
+          <ol class="w-list" role="list" data-reveal-children>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">01</span>
+              <span class="w-title">Making Sense</span>
+              <span class="w-date type-tabular">Oct 2026</span>
+              <span class="w-time">4 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="do-less/">
+              <span class="w-num type-tabular">02</span>
+              <span class="w-title">Do Less</span>
+              <span class="w-date type-tabular">Sep 2026</span>
+              <span class="w-time">5 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="thinking-is-work/">
+              <span class="w-num type-tabular">03</span>
+              <span class="w-title">Thinking Is Work</span>
+              <span class="w-date type-tabular">Aug 2026</span>
+              <span class="w-time">6 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">04</span>
+              <span class="w-title">Notes from a Night Install</span>
+              <span class="w-date type-tabular">Jul 2026</span>
+              <span class="w-time">7 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">05</span>
+              <span class="w-title">Keeping an Archive</span>
+              <span class="w-date type-tabular">Jun 2026</span>
+              <span class="w-time">3 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">06</span>
+              <span class="w-title">Rooms, Not Screens</span>
+              <span class="w-date type-tabular">May 2026</span>
+              <span class="w-time">8 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">07</span>
+              <span class="w-title">The Three Distances</span>
+              <span class="w-date type-tabular">Apr 2026</span>
+              <span class="w-time">5 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">08</span>
+              <span class="w-title">Designing for the Path</span>
+              <span class="w-date type-tabular">Mar 2026</span>
+              <span class="w-time">4 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">09</span>
+              <span class="w-title">Light as Interface</span>
+              <span class="w-date type-tabular">Feb 2026</span>
+              <span class="w-time">9 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">10</span>
+              <span class="w-title">A Wall That Never Ends</span>
+              <span class="w-date type-tabular">Jan 2026</span>
+              <span class="w-time">6 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">11</span>
+              <span class="w-title">Data You Can Stand In</span>
+              <span class="w-date type-tabular">Dec 2025</span>
+              <span class="w-time">3 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">12</span>
+              <span class="w-title">Slow Motion</span>
+              <span class="w-date type-tabular">Nov 2025</span>
+              <span class="w-time">5 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">13</span>
+              <span class="w-title">The Render Is Not the Room</span>
+              <span class="w-date type-tabular">Oct 2025</span>
+              <span class="w-time">7 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">14</span>
+              <span class="w-title">Honest Systems</span>
+              <span class="w-date type-tabular">Sep 2025</span>
+              <span class="w-time">4 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">15</span>
+              <span class="w-title">Sound, Seen</span>
+              <span class="w-date type-tabular">Aug 2025</span>
+              <span class="w-time">6 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">16</span>
+              <span class="w-title">On Opinionated Tools</span>
+              <span class="w-date type-tabular">Jul 2025</span>
+              <span class="w-time">8 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">17</span>
+              <span class="w-title">Notes on Pacing</span>
+              <span class="w-date type-tabular">Jun 2025</span>
+              <span class="w-time">5 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">18</span>
+              <span class="w-title">What a Lobby Wants</span>
+              <span class="w-date type-tabular">May 2025</span>
+              <span class="w-time">3 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">19</span>
+              <span class="w-title">Working at Building Scale</span>
+              <span class="w-date type-tabular">Apr 2025</span>
+              <span class="w-time">6 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">20</span>
+              <span class="w-title">The Quiet Frame</span>
+              <span class="w-date type-tabular">Mar 2025</span>
+              <span class="w-time">4 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">21</span>
+              <span class="w-title">Field Notes: Barcelona</span>
+              <span class="w-date type-tabular">Feb 2025</span>
+              <span class="w-time">7 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">22</span>
+              <span class="w-title">Field Notes: Hudson Yards</span>
+              <span class="w-date type-tabular">Jan 2025</span>
+              <span class="w-time">5 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">23</span>
+              <span class="w-title">Against Customisation</span>
+              <span class="w-date type-tabular">Dec 2024</span>
+              <span class="w-time">9 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">24</span>
+              <span class="w-title">Things That Last</span>
+              <span class="w-date type-tabular">Nov 2024</span>
+              <span class="w-time">4 min read</span>
+            </a></li>
+          </ol>
+        </dd></div>
+      </dl>
+    </div>
+  </main>
+
+  <footer class="site-footer container">
+    <div class="site-footer__grid" data-reveal-line>
+      <p>Luka André Schulz © 2026</p>
+      <p class="with-icon"><svg class="icon icon--pin" viewBox="0 0 8 11.6" fill="currentColor" fill-rule="evenodd" aria-hidden="true"><path d="M4 11.6C3.95 10.7 3.4 9.6 2.5 8.7 1.3 7.5 0 6.1 0 4a4 4 0 0 1 8 0C8 6.1 6.7 7.5 5.5 8.7 4.6 9.6 4.05 10.7 4 11.6zM4 2.35a1.65 1.65 0 1 0 0 3.3 1.65 1.65 0 0 0 0-3.3z"/></svg>NYC, New York</p>
+      <nav class="site-footer__links" aria-label="Elsewhere">
+        <ul role="list">
+          <!-- TODO: real URLs -->
+          <li><a href="#">Friends</a></li>
+          <li><a href="#">Spirit Animal</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

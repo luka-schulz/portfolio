@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <!-- Runs before first paint: saved theme; fade-in setup (only where it can
+       animate, with a 3s failsafe); scroll restore on reload / back-forward. -->
+  <script>(function(d,w){
+try{var t=localStorage.getItem("theme");if(t)d.dataset.theme=t}catch(e){}
+if("IntersectionObserver" in w&&w.requestAnimationFrame&&!(w.matchMedia&&w.matchMedia("(prefers-reduced-motion: reduce)").matches)){d.className+=" reveal-on";w.__revealFailsafe=setTimeout(function(){d.className=d.className.replace(" reveal-on","")},3000)}
+try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=performance.getEntriesByType&&performance.getEntriesByType("navigation")[0],k=n?n.type:"",y=+sessionStorage.getItem("scroll:"+location.pathname);if((k==="reload"||k==="back_forward")&&y>0){w.__restoreY=y;d.className+=" is-restoring";setTimeout(function(){d.className=d.className.replace(" is-restoring","")},1000)}}}catch(e){}
+})(document.documentElement,window)</script>
+  <title>Typography — Luka André Schulz</title>
+  <meta name="description" content="Essays and notes by Luka André Schulz on designing for space, data and motion.">
+  <meta name="theme-color" content="#faf8f8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e0e0e" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Writing — Luka André Schulz">
+  <meta property="og:description" content="Essays and notes by Luka André Schulz on designing for space, data and motion.">
+  <meta property="og:type" content="website">
+  <!-- CSS order matters: tokens → base → layout → components -->
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <script src="../js/main.js" defer></script>
+  <script src="tune.js" defer></script>  <!-- TEMPORARY tuning panel: delete this line -->
+  <style>
+    /* Page-only layout for the specimen. Samples use the real site classes. */
+    .sg { padding-block: var(--space-l) var(--section-space); }
+    .sg-section + .sg-section { margin-block-start: var(--section-space); }
+    .sg-section > h2 { padding-block-end: var(--space-xs); border-block-end: 1px solid var(--color-text); margin-block-end: var(--space-s); }
+    .sg-row { display: grid; gap: var(--space-s) var(--column-gap); padding-block: var(--space-m); border-block-end: 1px solid var(--color-line); }
+    .sg-meta { font-size: var(--step--1); line-height: var(--leading-snug); color: var(--color-muted); }
+    .sg-meta b { display: block; color: var(--color-text); font-weight: 400; }
+    .sg-meta code, .sg-row > p code { font-family: var(--font-mono); font-size: var(--step--2); }
+    .sg-live { font-family: var(--font-mono); font-size: var(--step--2); }
+    .sg-sample { min-inline-size: 0; overflow-wrap: anywhere; }
+    .sg-sample .article { display: block; padding: 0; }
+    .sg-sample .article > * { max-inline-size: 40rem; }
+    .sg-sample .article > * + * { margin-block-start: 1em; }
+    .sg-sample .site-header, .sg-sample .site-footer { padding-block: 0; }
+    .sg-toast { position: static; opacity: 1; translate: none; display: inline-block; }
+    @media (min-width: 64em) {
+      .sg-row { grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: baseline; }
+      .sg-meta { grid-column: 1 / span 3; }
+      .sg-sample { grid-column: 4 / -1; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__grid">
+      <a class="site-header__name" href="../">Luka André Schulz</a>
+      <nav class="site-nav" aria-label="Main">
+        <ul role="list">
+          <li><a href="../"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="1" width="4" height="4"/><rect x="7" y="1" width="4" height="4"/><rect x="1" y="7" width="4" height="4"/><rect x="7" y="7" width="4" height="4"/></svg>Work</a></li>
+          <li><a href="../writing/"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M1 2.5h10M1 6h10M1 9.5h6"/></svg>Writing</a></li>
+          <li><a href="../photography/"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="2.5" width="10" height="8"/><circle cx="6" cy="6.5" r="2"/></svg>Photography</a></li>
+          <li><a href="mailto:hello@example.com"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="2.5" width="10" height="7"/><path d="M1 2.5l5 4 5-4"/></svg>E-mail</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__end">
+        <!-- Theme switch: shown by main.js (needs JS to work) -->
+        <span class="theme-label" aria-hidden="true"></span>
+        <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Dark mode" hidden></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container sg">
+    <header class="sg-section">
+      <p class="type-kicker">Style guide</p>
+      <h1 class="type-title">Typography</h1>
+      <p class="type-lede" style="margin-block-start: var(--space-m); max-inline-size: 40rem">Nine sizes, one typeface. Every piece of text on the site uses one of these roles. Change a role in <code style="font-family:var(--font-mono);font-size:0.75em">css/tokens.css</code> and it updates everywhere.</p>
+    </header>
+
+    <section class="sg-section" aria-labelledby="scale">
+      <h2 id="scale" class="type-body">The scale</h2>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Mast</b><code>--step-6 · .type-mast</code><br>Writing index title<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><p class="type-mast">Writing</p></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Display</b><code>--step-5 · .type-display</code><br>Blog post titles<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><p class="type-display">Making Sense</p></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Title</b><code>--step-4 · .type-title</code><br>Case study titles, 404<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><p class="type-title">Torre Glòries</p></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Heading</b><code>--step-3 · .type-heading</code><br>Pull quotes, statements, next project<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><p class="type-heading">Design is a verb.</p></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Subheading</b><code>--step-2 · .type-subheading</code><br>Case study section headings<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><p class="type-subheading">A realtime view of the heavens above Barcelona</p></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Lede</b><code>--step-1 · .type-lede</code><br>Intro sentences, h2 in posts<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><p class="type-lede">I write to make sense of the work—what happens when images leave the screen and become rooms, weather and light.</p></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Body</b><code>--step-0 · .type-body</code><br>All reading text, lists, details<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><p class="type-body">The exhibit is a unique space to teach visitors a new way of seeing—to look beyond the surface of a city, and to observe the environmental interactions between the city and its population.</p></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Small</b><code>--step--1 · .type-small</code><br>Captions, notes, meta, footnotes, intros<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><p class="type-small">Sea, City, Mountain, River—each built from animal, nature and human sounds.</p></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Micro</b><code>--step--2 · .type-micro</code><br>Code, badges, play label<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><p class="type-micro">const travel = track − knob − inset × 2;</p></div>
+      </div>
+    </section>
+
+    <section class="sg-section" aria-labelledby="components">
+      <h2 id="components" class="type-body">Text components</h2>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Header: name, nav</b><code>site-header · --step-chrome</code><br>14px phone → 16px desktop<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><div class="site-header"><span class="site-header__name">Luka André Schulz</span></div><nav class="site-nav" aria-label="Main (sample)">
+        <ul role="list">
+          <li><a href="../"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="1" width="4" height="4"/><rect x="7" y="1" width="4" height="4"/><rect x="1" y="7" width="4" height="4"/><rect x="7" y="7" width="4" height="4"/></svg>Work</a></li>
+          <li><a href="../writing/"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M1 2.5h10M1 6h10M1 9.5h6"/></svg>Writing</a></li>
+          <li><a href="../photography/"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="2.5" width="10" height="8"/><circle cx="6" cy="6.5" r="2"/></svg>Photography</a></li>
+          <li><a href="mailto:hello@example.com"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="2.5" width="10" height="7"/><path d="M1 2.5l5 4 5-4"/></svg>E-mail</a></li>
+        </ul>
+      </nav></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Footer</b><code>site-footer · --step-chrome · muted</code><br>Name, location, links<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><div class="site-footer"><p>Luka André Schulz © 2026</p><p class="with-icon"><svg class="icon icon--pin" viewBox="0 0 8 11.6" fill="currentColor" fill-rule="evenodd" aria-hidden="true"><path d="M4 11.6C3.95 10.7 3.4 9.6 2.5 8.7 1.3 7.5 0 6.1 0 4a4 4 0 0 1 8 0C8 6.1 6.7 7.5 5.5 8.7 4.6 9.6 4.05 10.7 4 11.6zM4 2.35a1.65 1.65 0 1 0 0 3.3 1.65 1.65 0 0 0 0-3.3z"/></svg>NYC, New York</p><nav class="site-footer__links" aria-label="Elsewhere (sample)">
+        <ul role="list">
+          <!-- TODO: real URLs -->
+          <li><a href="#">Friends</a></li>
+          <li><a href="#">Spirit Animal</a></li>
+        </ul>
+      </nav></div></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Kicker</b><code>.type-kicker / .article__kicker</code><br>Small grey line above a title<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><p class="type-kicker">Project · Interactive Data-Viz</p></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Section label</b><code>.cs-label</code><br>Opens a case study section<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><p class="cs-label">02 — Sky Above Us</p></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Intro block</b><code>.mosaic__intro · small · muted</code><br>Top-right text on Work, Photography, Writing<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><p class="mosaic__intro type-muted">Photographs—landscape, cities and light. 35mm &amp; digital. Prints by e-mail.</p></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Tile caption + badges</b><code>.tile__caption · .tag</code><br>Home grid<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><p class="tile__caption"><span class="tile__text">AT&amp;T 5G Theatre <span class="type-muted">/ Immersive Experience</span></span> <span class="tag"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="2" y="5.5" width="8" height="5.5"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5"/></svg>NDA</span> <span class="tag"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M8 1.5l2.5 2.5-6.5 6.5H1.5V8z"/><path d="M6.5 3l2.5 2.5"/></svg>WIP</span></p></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Image caption</b><code>.cs-caption / figcaption</code><br>Under images<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><p class="cs-caption">The panoramic wall wraps the base floor of the tower, beside the exhibit’s printed introduction.</p></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Details rows</b><code>.cs-details</code><br>Role / Studio / Location<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><dl class="cs-details"><div><dt>Role</dt><dd>Design &amp; Motion</dd></div><div><dt>Studio</dt><dd>Rare Volume</dd></div></dl></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Credits</b><code>.cs-credits</code><br>End of a case study<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><div class="cs-credits"><dl><div><dt>Creative Director</dt> <dd>Jonathan Kim</dd></div><div><dt>Producer</dt> <dd>Grace Park</dd></div></dl></div></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Pull quote</b><code>.pullquote (blog) · .cs-quote (case study)</code><br>Heading size<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><blockquote class="cs-quote"><p>Planets, constellations and satellites— <span class="type-muted">plotted in real time against the stars.</span></p></blockquote></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Opening lede</b><code>.article__lede</code><br>First paragraph of a post<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><div class="article"><p class="article__lede">I’ve spoken with a lot of folks recently about a challenge imposed on us by increased remote work: losing time to think.</p></div></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Numbered section heading</b><code>.article h2 + .article__num</code><br>Post section headings<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><div class="article"><h2><span class="article__num">01</span> Delegate</h2></div></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Step list</b><code>.article__steps</code><br>Short numbered overview<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><div class="article"><ol class="article__steps"><li><a href="#">Delegate</a></li><li><a href="#">Descope</a></li><li><a href="#">Parallelise</a></li></ol></div></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Numbered list</b><code>.article ol</code><br>Inside posts<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><div class="article"><ol><li><strong>Thinking</strong> <span class="type-muted">— 50%</span></li><li><strong>Executing</strong> <span class="type-muted">— 30%</span></li><li><strong>Communicating</strong> <span class="type-muted">— 20%</span></li></ol></div></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Bullet list</b><code>.article ul</code><br>Inside posts<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><div class="article"><ul><li>The project faces delays since elements of it are technically hard to deliver</li><li>The project is artificially scoped down in real time to release an MVP</li></ul></div></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Pull quote with attribution</b><code>.pullquote footer</code><br>Blog posts<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><div class="article"><blockquote class="pullquote"><p>Money is circulated. Time is spent.</p><footer>— Frank Chimero</footer></blockquote></div></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Next project</b><code>.cs-next__link</code><br>Heading size + body subtitle<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><a class="cs-next__link" href="#">Industry City →<span class="type-muted">Digital Signage &amp; Wayfinding</span></a></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Essay row</b><code>.w-row--plain</code><br>Writing index<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><ol class="w-list" role="list" style="border:0"><li><a class="w-row w-row--plain" href="#"><span class="w-num type-tabular">01</span><span class="w-title">Making Sense</span><span class="w-date type-tabular">Oct 2026</span><span class="w-time">4 min read</span></a></li></ol></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Inline code, superscript</b><code>.article code · .article sup</code><br>Inside posts<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><div class="article"><p>The typeface I’m writing with (<code>Input Mono</code>) was designed by David Jonathan Ross.<sup><a href="#">1</a></sup></p></div></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Code block</b><code>.article pre</code><br>Inside posts<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><div class="article"><pre><code>{
+  "font_face": "Input Mono",
+  "font_size": 14
+}</code></pre></div></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Footnotes</b><code>.footnotes</code><br>End of a post<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><div class="article"><section class="footnotes"><h2>Footnotes</h2><ol><li>This is, of course, a quote from Albert Einstein. <a href="#">↩</a></li></ol></section></div></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Links</b><code>a · hover fades to --hover-fade</code><br>Everywhere<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><p class="type-body">A <a href="#">text link</a> underlines; hover fades it slightly.</p></div>
+      </div>
+      <div class="sg-row">
+        <div class="sg-meta"><b>Toast</b><code>.toast</code><br>After copying the e-mail<br><span class="sg-live"></span></div>
+        <div class="sg-sample" data-live><div class="toast sg-toast">Email copied!</div></div>
+      </div>
+    </section>
+  </main>
+  <script>
+    // Show each sample's live size / leading / tracking (updates on resize)
+    function sgLive() {
+      document.querySelectorAll('.sg-row').forEach((row) => {
+        const s = row.querySelector('.sg-sample');
+        const el = s.querySelector('p, a, blockquote p, .w-title, code, button, dt, .toast') || s;
+        const cs = getComputedStyle(el);
+        const lh = cs.lineHeight === 'normal' ? 'normal' : (parseFloat(cs.lineHeight) / parseFloat(cs.fontSize)).toFixed(2);
+        const ls = cs.letterSpacing === 'normal' ? '0' : (parseFloat(cs.letterSpacing) / parseFloat(cs.fontSize)).toFixed(3) + 'em';
+        row.querySelector('.sg-live').textContent = `${Math.round(parseFloat(cs.fontSize))}px / ${lh} / ${ls}`;
+      });
+    }
+    sgLive(); addEventListener('resize', sgLive);
+  </script>
+
+  <footer class="site-footer container">
+    <div class="site-footer__grid" data-reveal-line>
+      <p>Luka André Schulz © 2026</p>
+      <p class="with-icon"><svg class="icon icon--pin" viewBox="0 0 8 11.6" fill="currentColor" fill-rule="evenodd" aria-hidden="true"><path d="M4 11.6C3.95 10.7 3.4 9.6 2.5 8.7 1.3 7.5 0 6.1 0 4a4 4 0 0 1 8 0C8 6.1 6.7 7.5 5.5 8.7 4.6 9.6 4.05 10.7 4 11.6zM4 2.35a1.65 1.65 0 1 0 0 3.3 1.65 1.65 0 0 0 0-3.3z"/></svg>NYC, New York</p>
+      <nav class="site-footer__links" aria-label="Elsewhere">
+        <ul role="list">
+          <!-- TODO: real URLs -->
+          <li><a href="#">Friends</a></li>
+          <li><a href="#">Spirit Animal</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

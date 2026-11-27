@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Runs before first paint: saved theme; fade-in setup (only where it can
+       animate, with a 3s failsafe); scroll restore on reload / back-forward. -->
+  <script>(function(d,w){
+try{var t=localStorage.getItem("theme");if(t)d.dataset.theme=t}catch(e){}
+if("IntersectionObserver" in w&&w.requestAnimationFrame&&!(w.matchMedia&&w.matchMedia("(prefers-reduced-motion: reduce)").matches)){d.className+=" reveal-on";w.__revealFailsafe=setTimeout(function(){d.className=d.className.replace(" reveal-on","")},3000)}
+try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=performance.getEntriesByType&&performance.getEntriesByType("navigation")[0],k=n?n.type:"",y=+sessionStorage.getItem("scroll:"+location.pathname);if((k==="reload"||k==="back_forward")&&y>0){w.__restoreY=y;d.className+=" is-restoring";setTimeout(function(){d.className=d.className.replace(" is-restoring","")},1000)}}}catch(e){}
+})(document.documentElement,window)</script>
+  <title>Luka André Schulz — Design & Motion</title>
+  <meta name="description" content="The portfolio of Luka André Schulz: generative experiences, interactive data visualization, immersive installations and motion systems.">
+  <meta name="theme-color" content="#faf8f8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e0e0e" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Luka André Schulz — Design & Motion">
+  <meta property="og:description" content="The portfolio of Luka André Schulz: generative experiences, interactive data visualization, immersive installations and motion systems.">
+  <meta property="og:type" content="website">
+  <!-- CSS order matters: tokens → base → layout → components -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <script src="js/main.js" defer></script>
+  <script src="_drafts/tune.js" defer></script>  <!-- TEMPORARY tuning panel: delete this line -->
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__grid">
+      <a class="site-header__name" href="./">Luka André Schulz</a>
+      <nav class="site-nav" aria-label="Main">
+        <ul role="list">
+          <li><a href="./" aria-current="page"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="1" width="4" height="4"/><rect x="7" y="1" width="4" height="4"/><rect x="1" y="7" width="4" height="4"/><rect x="7" y="7" width="4" height="4"/></svg>Work</a></li>
+          <li><a href="writing/"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M1 2.5h10M1 6h10M1 9.5h6"/></svg>Writing</a></li>
+          <li><a href="photography/"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="2.5" width="10" height="8"/><circle cx="6" cy="6.5" r="2"/></svg>Photography</a></li>
+          <li><a href="mailto:hello@example.com"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="2.5" width="10" height="7"/><path d="M1 2.5l5 4 5-4"/></svg>E-mail</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__end">
+        <!-- Theme switch: shown by main.js (needs JS to work) -->
+        <span class="theme-label" aria-hidden="true"></span>
+        <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Dark mode" hidden></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <h1 class="visually-hidden">Luka André Schulz — Selected work</h1>
+
+    <!-- Work grid. To add a project, copy an <li> into the list where you
+         want it to appear; add data-span="2" to make it a big tile. -->
+    <div class="mosaic">
+      <div class="mosaic__head" data-reveal>
+        <p class="mosaic__intro type-muted">Design &amp; motion for physical spaces—generative experiences, interactive data-viz, immersive installations and motion systems. Based in New York.</p>
+      </div>
+      <!-- Masonry: one list in reading order (left to right). Tiles with
+           data-span="2" are twice as wide. main.js drops each tile into the
+           shortest column; without JS it falls back to a plain grid.
+           Columns: 2 phone · 3 tablet · 4 laptop to 1080p · 6 huge (see --cols). -->
+      <ul class="masonry" role="list" data-reveal-children>
+          <li data-span="2">
+            <article class="project-card">
+              <div class="media"><img src="work/jfk-terminal-6/cover.jpg" alt="Terminal lobby with a wide screen showing 55°F, 13°C and “Sunny” over a dawn-coloured sky" fetchpriority="high" width="430" height="242"></div>
+              <p class="tile__caption"><span class="tile__text"><a class="project-card__link" href="404.html">JFK Terminal 6</a> <span class="type-muted">/ Generative System</span></span></p>
+            </article>
+          </li>
+          <li>
+            <article class="project-card">
+              <div class="media"><img src="work/ddd-universe/cover.jpg" alt="Rendered white cube stage showing a projected performance, surrounded by glowing tiles" width="430" height="242"></div>
+              <p class="tile__caption"><span class="tile__text"><a class="project-card__link" href="404.html">DDD Universe</a> <span class="type-muted">/ Interactive Installation</span></span></p>
+            </article>
+          </li>
+          <li>
+            <article class="project-card">
+              <div class="media"><img src="work/ellis-island/cover.jpg" alt="Museum hall with a large wall display charting immigration through the Port of New York" width="430" height="242"></div>
+              <p class="tile__caption"><span class="tile__text"><a class="project-card__link" href="404.html">Ellis Island Museum of Immigration</a> <span class="type-muted">/ Museum Installation</span></span></p>
+            </article>
+          </li>
+          <li data-span="2">
+            <article class="project-card">
+              <div class="media"><img src="work/att-5g-theatre/cover.jpg" srcset="work/att-5g-theatre/cover-800.jpg 800w, work/att-5g-theatre/cover.jpg 1360w" sizes="(min-width: 150em) 33vw, (min-width: 64em) 48vw, (min-width: 48em) 64vw, 96vw" alt="Rendered landscape of blue and green trees beside a lake, with a drone in flight" width="1360" height="468" loading="lazy" decoding="async"></div>
+              <p class="tile__caption"><span class="tile__text"><a class="project-card__link" href="404.html">AT&amp;T 5G Theatre</a> <span class="type-muted">/ Immersive Experience</span></span> <span class="tag"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="2" y="5.5" width="8" height="5.5"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5"/></svg>NDA</span></p>
+            </article>
+          </li>
+          <li data-span="2">
+            <article class="project-card">
+              <div class="media"><img src="work/torre-glories/cover.jpg" alt="Person silhouetted before a wide projection of flowing, fabric-like forms with live wind-speed data" width="785" height="468"></div>
+              <p class="tile__caption"><span class="tile__text"><a class="project-card__link" href="work/torre-glories/">Torre Glòries</a> <span class="type-muted">/ Interactive Data-Viz</span></span></p>
+            </article>
+          </li>
+          <li data-span="2">
+            <article class="project-card">
+              <div class="media"><img src="work/wells-fargo/cover.jpg" srcset="work/wells-fargo/cover-800.jpg 800w, work/wells-fargo/cover.jpg 1400w" sizes="(min-width: 150em) 33vw, (min-width: 64em) 48vw, (min-width: 48em) 64vw, 96vw" alt="Double-height lobby with a large wall display of flowing coral and peach ribbons set into a maroon panelled wall" width="1400" height="602" loading="lazy" decoding="async"></div>
+              <p class="tile__caption"><span class="tile__text"><a class="project-card__link" href="404.html">Wells Fargo T1 Screens</a> <span class="type-muted">/ Large-Format Display</span></span></p>
+            </article>
+          </li>
+          <li>
+            <article class="project-card">
+              <div class="media"><img src="work/att-5g-speed-test/cover.jpg" alt="Wall display comparing download speeds of “Your device” and AT&amp;T 5G, with two tablets in front" width="899" height="468" loading="lazy" decoding="async"></div>
+              <p class="tile__caption"><span class="tile__text"><a class="project-card__link" href="404.html">AT&amp;T 5G Speed Test</a> <span class="type-muted">/ Interactive Data-Viz</span></span> <span class="tag"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="2" y="5.5" width="8" height="5.5"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5"/></svg>NDA</span></p>
+            </article>
+          </li>
+          <li>
+            <article class="project-card">
+              <div class="media"><img src="work/warner-media-lobbies/cover.jpg" alt="A face emerging from streaks of blue and teal light" width="430" height="242" loading="lazy" decoding="async"></div>
+              <p class="tile__caption"><span class="tile__text"><a class="project-card__link" href="404.html">Warner Media Lobbies</a> <span class="type-muted">/ Generative System</span></span></p>
+            </article>
+          </li>
+          <li data-span="2">
+            <article class="project-card">
+              <div class="media"><img src="work/bcg/cover.jpg" srcset="work/bcg/cover-800.jpg 800w, work/bcg/cover.jpg 1800w" sizes="(min-width: 150em) 33vw, (min-width: 64em) 48vw, (min-width: 48em) 64vw, 96vw" alt="BCG logo among soft green 3D shapes, a cube and a cylinder, on a grainy mint background" width="1800" height="1007" loading="lazy" decoding="async"></div>
+              <p class="tile__caption"><span class="tile__text"><a class="project-card__link" href="404.html">BCG</a> <span class="type-muted">/ Motion System</span></span></p>
+            </article>
+          </li>
+          <li>
+            <article class="project-card">
+              <div class="media"><img src="work/cbre/cover.jpg" alt="Curved wall map showing 8,643 available properties, with visitors on a round platform" width="430" height="242" loading="lazy" decoding="async"></div>
+              <p class="tile__caption"><span class="tile__text"><a class="project-card__link" href="404.html">CBRE</a> <span class="type-muted">/ Data Visualization</span></span></p>
+            </article>
+          </li>
+          <li>
+            <article class="project-card">
+              <div class="media"><img src="work/google/cover.jpg" alt="White Google “G” on a soft pink and grey gradient" width="430" height="242" loading="lazy" decoding="async"></div>
+              <p class="tile__caption"><span class="tile__text"><a class="project-card__link" href="404.html">Google</a> <span class="type-muted">/ Interactive Website</span></span> <span class="tag"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="2" y="5.5" width="8" height="5.5"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5"/></svg>NDA</span></p>
+            </article>
+          </li>
+          <li>
+            <article class="project-card">
+              <div class="media"><img src="work/warner-media-hotlines/cover.jpg" srcset="work/warner-media-hotlines/cover-800.jpg 800w, work/warner-media-hotlines/cover.jpg 1200w" sizes="(min-width: 150em) 16vw, (min-width: 64em) 24vw, (min-width: 48em) 32vw, 48vw" alt="Large LED wall in a dark office showing a portrait built from lines of Succession script text" width="1200" height="671" loading="lazy" decoding="async"></div>
+              <p class="tile__caption"><span class="tile__text"><a class="project-card__link" href="404.html">Warner Media—Hotlines</a> <span class="type-muted">/ Generative Experience</span></span></p>
+            </article>
+          </li>
+          <li>
+            <article class="project-card">
+              <div class="media"><img src="work/youtube-released/cover.jpg" alt="Open laptop lit in purple and blue light" width="440" height="468"></div>
+              <p class="tile__caption"><span class="tile__text"><a class="project-card__link" href="404.html">YouTube RELEASED</a> <span class="type-muted">/ Mnemonic</span></span></p>
+            </article>
+          </li>
+          <li>
+            <article class="project-card">
+              <div class="media"><img src="work/industry-city/cover.jpg" alt="“Yards for Days” wayfinding sign at Industry City" width="440" height="468" loading="lazy" decoding="async"></div>
+              <p class="tile__caption"><span class="tile__text"><a class="project-card__link" href="404.html">Industry City</a> <span class="type-muted">/ Wayfinding</span></span></p>
+            </article>
+          </li>
+          <li>
+            <article class="project-card">
+              <div class="media"><img src="work/marriott-bonvoy/cover.jpg" alt="World map with coral data spikes rising from the continents" width="430" height="242" loading="lazy" decoding="async"></div>
+              <p class="tile__caption"><span class="tile__text"><a class="project-card__link" href="404.html">Marriott Bonvoy</a> <span class="type-muted">/ Data Visualization</span></span></p>
+            </article>
+          </li>
+          <li>
+            <article class="project-card">
+              <div class="media"><img src="work/national-geographic/cover.jpg" alt="Silhouetted riders with eagles at dusk, framed around a small yellow-bordered rectangle" width="430" height="242" loading="lazy" decoding="async"></div>
+              <p class="tile__caption"><span class="tile__text"><a class="project-card__link" href="404.html">National Geographic</a> <span class="type-muted">/ Rebrand</span></span></p>
+            </article>
+          </li>
+          <li>
+            <article class="project-card">
+              <div class="media"><img src="work/samsung-kx/cover.jpg" alt="Yellow Samsung KX poster featuring a model in a yellow tracksuit" width="440" height="468" loading="lazy" decoding="async"></div>
+              <p class="tile__caption"><span class="tile__text"><a class="project-card__link" href="404.html">Samsung KX</a> <span class="type-muted">/ Interactive Retail Installation</span></span></p>
+            </article>
+          </li>
+          <li data-span="2">
+            <article class="project-card">
+              <div class="media"><img src="work/childhood-memories/cover.jpg" srcset="work/childhood-memories/cover-800.jpg 800w, work/childhood-memories/cover.jpg 1360w" sizes="(min-width: 150em) 33vw, (min-width: 64em) 48vw, (min-width: 48em) 64vw, 96vw" alt="Collage styleframe with brushed Japanese characters, a kunai and torn-paper textures" width="1360" height="468" loading="lazy" decoding="async"></div>
+              <p class="tile__caption"><span class="tile__text"><a class="project-card__link" href="404.html">Childhood Memories</a> <span class="type-muted">/ Styleframes</span></span> <span class="tag"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M8 1.5l2.5 2.5-6.5 6.5H1.5V8z"/><path d="M6.5 3l2.5 2.5"/></svg>WIP</span></p>
+            </article>
+          </li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="site-footer container">
+    <div class="site-footer__grid" data-reveal-line>
+      <p>Luka André Schulz © 2026</p>
+      <p class="with-icon"><svg class="icon icon--pin" viewBox="0 0 8 11.6" fill="currentColor" fill-rule="evenodd" aria-hidden="true"><path d="M4 11.6C3.95 10.7 3.4 9.6 2.5 8.7 1.3 7.5 0 6.1 0 4a4 4 0 0 1 8 0C8 6.1 6.7 7.5 5.5 8.7 4.6 9.6 4.05 10.7 4 11.6zM4 2.35a1.65 1.65 0 1 0 0 3.3 1.65 1.65 0 0 0 0-3.3z"/></svg>NYC, New York</p>
+      <nav class="site-footer__links" aria-label="Elsewhere">
+        <ul role="list">
+          <!-- TODO: real URLs -->
+          <li><a href="#">Friends</a></li>
+          <li><a href="#">Spirit Animal</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

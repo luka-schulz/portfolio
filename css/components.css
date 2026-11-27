@@ -1,0 +1,1136 @@
+/* ==========================================================================
+   COMPONENTS — in page order. Naming: .block, .block__part, .block--variant
+   Every value comes from tokens.css.
+   ========================================================================== */
+
+/* ---- Typography roles ---------------------------------------------------
+   One class per role in the type scale (tokens.css). Components use the
+   same tokens, so every size on the site is one of these nine.
+   All of them are shown on styleguide.html. */
+
+.type-mast       { font-size: var(--step-6); line-height: var(--leading-mast);    letter-spacing: var(--tracking-mast); }
+.type-display    { font-size: var(--step-5); line-height: var(--leading-display); letter-spacing: var(--tracking-display); }
+.type-title      { font-size: var(--step-4); line-height: var(--leading-display); letter-spacing: var(--tracking-display); }
+.type-heading    { font-size: var(--step-3); line-height: var(--leading-tight);   letter-spacing: var(--tracking-tight); text-wrap: balance; }
+.type-subheading { font-size: var(--step-2); line-height: var(--leading-snug);    letter-spacing: var(--tracking-tight); text-wrap: balance; }
+.type-lede       { font-size: var(--step-1); line-height: var(--leading-snug); }
+.type-body       { font-size: var(--step-0); line-height: var(--leading-body); }
+.type-small      { font-size: var(--step--1); line-height: var(--leading-body); }
+.type-micro      { font-size: var(--step--2); line-height: var(--leading-body); }
+
+/* Modifiers */
+.type-kicker  { font-size: var(--step-chrome); color: var(--color-muted); }   /* small grey line above a title */
+.type-muted   { color: var(--color-muted); }
+.type-strong  { font-weight: 700; }
+.type-tabular { font-variant-numeric: tabular-nums; }
+
+/* ---- Icon: inline SVG on a 12-unit grid, 1.25 stroke (pin is filled) -----
+   One size everywhere (12px, scales with browser zoom) so the set stays
+   consistent next to big or small text; colour follows the text. */
+
+.icon {
+  inline-size: 0.75rem;
+  block-size: 0.75rem;
+  flex-shrink: 0;
+  overflow: visible;
+}
+/* Icon + label on one line */
+.with-icon {                            /* footer location: pin sits on the baseline */
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4em;
+}
+
+/* Location pin: sized to the text, not the 12px grid. Point sits on the
+   baseline; the top rises just past the cap height (Arial caps ≈ 0.716em),
+   overshooting slightly like an "O". */
+.icon--pin {
+  block-size: 0.745em;
+  inline-size: calc(0.745em * 8 / 11.6);
+}
+
+/* ---- Site header --------------------------------------------------------
+   Phone: name + theme switch on one row, nav below.
+   ≥48em: on the 12-col grid — name (1–3) | nav (7–11) | switch (12). */
+
+.site-header {
+  padding-block: var(--space-m);
+  font-size: var(--step-chrome);
+  line-height: var(--leading-snug);
+}
+.site-header__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "name end" "nav nav";
+  gap: var(--space-2xs) var(--column-gap);
+  align-items: center;                  /* centre text on the taller switch */
+}
+.site-header__name { grid-area: name; text-decoration: none; }
+.site-header__end  { grid-area: end; justify-self: end; position: relative; }
+.site-header .site-nav { grid-area: nav; }
+
+@media (min-width: 48em) {
+  .site-header__grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-areas: none;
+  }
+  .site-header__name     { grid-area: auto; grid-column: 1 / span 3; }
+  .site-header .site-nav { grid-area: auto; grid-column: 4 / span 8; }  /* tablet: extra room */
+  .site-header__end      { grid-area: auto; grid-column: 12 / span 1; }
+}
+@media (min-width: 64em) {
+  .site-header .site-nav { grid-column: 7 / span 5; }                   /* desktop: centre line */
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs) var(--space-m);
+}
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding-block: var(--space-3xs);
+  text-decoration: none;
+}
+.site-nav a:hover,
+.site-nav a[aria-current="page"] { text-decoration: underline; }
+
+/* Theme switch: pill track + round knob. Knob left = light, right = dark.
+   Proportions from the design: track 2.35 : 1, knob 81% of the height,
+   a short centre line on the track. Sized in em, so it scales with the
+   header text; font-size sets the overall size. */
+.theme-toggle {
+  --track: 2.35em;                      /* pill width (height is 1em) */
+  --knob: 0.81em;
+  --inset: calc((1em - var(--knob)) / 2);
+  --travel: calc(var(--track) - var(--knob) - var(--inset) * 2);   /* knob slide distance */
+  position: relative;
+  display: block;
+  font-size: 0.85em;
+  inline-size: var(--track);
+  block-size: 1em;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background:
+    linear-gradient(var(--color-switch-line), var(--color-switch-line))
+      center / max(1px, 0.045em) 0.53em no-repeat,          /* centre line */
+    var(--color-switch-track);
+  cursor: pointer;
+}
+.theme-toggle::before {                 /* bigger tap target, invisible */
+  content: "";
+  position: absolute;
+  inset: -0.75rem -0.5rem;
+}
+.theme-toggle::after {                  /* knob, slides over the centre line */
+  content: "";
+  position: absolute;
+  inset-block-start: var(--inset);
+  inset-inline-start: var(--inset);
+  inline-size: var(--knob);
+  block-size: var(--knob);
+  border-radius: 50%;
+  background: var(--color-switch-knob);
+}
+.theme-toggle[aria-checked="true"]::after { transform: translateX(var(--travel)); }
+
+/* Click animation, from the Figma keyframes (0.4s): the knob accelerates
+   across, hits the end, recoils ~18% of the track, then settles.
+   .is-switching is added by main.js on the first click, so nothing
+   animates on page load. Reduced motion skips straight to the end.
+   The curves are written out here, not as tokens: browsers ignore var()
+   for timing functions inside @keyframes and fall back to linear. */
+.theme-toggle.is-switching[aria-checked="true"]::after  { animation: knob-on 400ms linear; }
+.theme-toggle.is-switching[aria-checked="false"]::after { animation: knob-off 400ms linear; }
+
+@keyframes knob-on {
+  0%      { transform: translateX(0);                              animation-timing-function: cubic-bezier(0.745, 0, 1, 0.173); }
+  54.929% { transform: translateX(var(--travel));                  animation-timing-function: cubic-bezier(0.219, 0.728, 1, 1); }
+  85.834% { transform: translateX(calc(var(--travel) * 0.8214)); }
+  86.23%  { transform: translateX(calc(var(--travel) * 0.8214));   animation-timing-function: cubic-bezier(0.889, -0.039, 1, 1); }
+  100%    { transform: translateX(var(--travel)); }
+}
+@keyframes knob-off {                   /* the same motion, mirrored */
+  0%      { transform: translateX(var(--travel));                  animation-timing-function: cubic-bezier(0.745, 0, 1, 0.173); }
+  54.929% { transform: translateX(0);                              animation-timing-function: cubic-bezier(0.219, 0.728, 1, 1); }
+  85.834% { transform: translateX(calc(var(--travel) * 0.1786)); }
+  86.23%  { transform: translateX(calc(var(--travel) * 0.1786));   animation-timing-function: cubic-bezier(0.889, -0.039, 1, 1); }
+  100%    { transform: translateX(0); }
+}
+
+/* Mode label: "Dark Mode" / "Light Mode" beside the switch after a click,
+   then fades away (main.js). Absolutely positioned, so nothing shifts. */
+.theme-label {
+  position: absolute;
+  inset-inline-end: calc(100% + var(--space-xs));
+  inset-block: 0;                       /* full row height, centred with flex: */
+  display: flex;                        /* no fractional-pixel shifts, no seams */
+  align-items: center;
+  color: var(--color-muted);
+  font-size: var(--step--1);            /* caption size */
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 400ms var(--ease);
+}
+.theme-label.is-visible { opacity: 1; transition-duration: 150ms; }
+
+/* ---- Glass: tinted, see-through, blurs what's behind it ----------------
+   One look for every floating control: the e-mail toast, back to top and
+   the photo viewer's buttons. Add class="glass" to use it elsewhere.
+   Fallbacks first: no color-mix → solid page colour; no blur → 96% tint. */
+
+.glass,
+.toast,
+.to-top,
+.lightbox__btn,
+.lightbox__count {
+  border: 1px solid rgb(128 128 128 / 0.25);
+  border: 1px solid color-mix(in srgb, var(--color-text) var(--glass-edge), transparent);
+  background: var(--color-bg);
+  background: color-mix(in srgb, color-mix(in srgb, var(--color-text) var(--glass-tint), var(--color-bg)) 96%, transparent);
+  box-shadow: var(--glass-shadow);
+}
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .glass,
+  .toast,
+  .to-top,
+  .lightbox__btn,
+  .lightbox__count {
+    background: color-mix(in srgb, color-mix(in srgb, var(--color-text) var(--glass-tint), var(--color-bg)) var(--glass-opacity), transparent);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+            backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  }
+}
+
+/* ---- Toast: "E-mail Copied!" -------------------------------------------
+   Glass pill that attaches to the lower right of the cursor (main.js). */
+
+.toast {
+  position: fixed;
+  z-index: 100;
+  padding: 0.6em 1em;
+  border-radius: var(--radius);
+  color: var(--color-muted);             /* grey text, like the captions */
+  font-size: var(--step--1);              /* small body, same as the page intros */
+  line-height: var(--leading-snug);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform-origin: 0 0;                  /* pops out of its top-left corner, at the cursor */
+}
+.toast.is-visible { opacity: 1; }        /* popped in and out by main.js (TOAST_POP) */
+
+/* ---- Media: frame for an image or video ---------------------------------
+   Keeps the image's own shape. Set --ratio (e.g. style="--ratio: 1") to crop
+   to a fixed shape; --focus steers the crop. */
+
+.media {
+  display: block;
+  aspect-ratio: var(--ratio, auto);
+  background: var(--color-surface);
+  border-radius: var(--media-radius, var(--radius));
+  overflow: hidden;
+}
+.media > img,
+.media > video {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: var(--focus, 50% 50%);
+}
+
+/* ---- Video poster: image + scrim + play button, links to the film ------- */
+
+.video-poster {
+  position: relative;
+  display: block;
+  align-self: start;
+  border-radius: var(--radius);         /* clip the scrim to the image corners */
+  overflow: hidden;
+  color: #fff;
+  text-decoration: none;
+}
+.video-poster::before {                 /* scrim */
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgb(0 0 0 / 0.4);
+  transition: background var(--duration) var(--ease);
+}
+.video-poster:hover { opacity: 1; }                 /* image link: no text fade… */
+.video-poster:hover::before { background: rgb(0 0 0 / 0.25); }   /* …the scrim lightens instead */
+.video-poster__play {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--space-2xs);
+  font-size: var(--step--2);
+}
+.video-poster__play svg { inline-size: 2.75rem; block-size: auto; }
+
+/* ---- Project card: image + caption; whole card clickable if linked ------ */
+
+.project-card {
+  position: relative;
+  display: grid;
+  gap: var(--space-xs);
+  align-content: start;
+}
+.project-card__link { text-decoration: none; }
+.project-card__link::after { content: ""; position: absolute; inset: 0; }   /* stretch the link */
+.project-card .media img { transition: transform 600ms var(--ease); }
+.project-card:has(.project-card__link):hover .media img { transform: scale(1.02); }
+.project-card:has(.project-card__link):hover .project-card__link { text-decoration: underline; }
+
+/* ---- Tag: small solid badge with an icon (NDA, WIP) --------------------- */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.45em 0.6em 0.4em;
+  border: 1px solid var(--color-badge-line);
+  border-radius: 0.3125rem;
+  background: var(--color-badge-bg);
+  color: var(--color-badge-text);
+  font-size: var(--step--2);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-wide);
+  line-height: 1;
+  text-transform: uppercase;
+  vertical-align: 0.1em;
+}
+.tag .icon { inline-size: 1em; block-size: 1em; margin-block-start: -0.2em; }
+
+/* ---- Mosaic: page head (intro + toolbar) over a masonry grid ------------
+   Used by Work, Photography and Writing. The head has a fixed minimum
+   height, so the first row of content starts at the same height on every
+   page that uses it. */
+
+.mosaic {
+  --tile-gap: var(--space-xl);
+  display: grid;
+  column-gap: var(--column-gap);
+  padding-block: var(--space-l) var(--space-2xl);
+}
+.mosaic__head {
+  display: grid;
+  gap: var(--space-s) var(--column-gap);
+  padding-block-end: var(--space-xl);   /* same space above the images on every page */
+  font-size: var(--step--1);
+  line-height: var(--leading-body);
+}
+.mosaic__intro { max-inline-size: 26rem; font-size: var(--step--1); line-height: var(--leading-body); }
+@media (min-width: 48em) {
+  .mosaic {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "head head";
+    align-items: start;
+  }
+  .mosaic__head {
+    grid-area: head;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    grid-template-areas: ". intro" "bar bar";
+    min-block-size: calc(var(--leading-body) * 7.5em);   /* room for 4 lines of intro + the bar (keeps Work, Photography, Writing aligned) */
+  }
+  .mosaic__intro { grid-area: intro; }
+}
+
+/* ---- Masonry (Work, Photography) — after searchsystem.co -----------------
+   Equal columns, read left to right. data-span="2" tiles are double width.
+   main.js places each tile in the shortest column(s) and adds .is-laid-out;
+   without JS this stays a plain CSS grid (same order, rows don't interlock). */
+
+.masonry {
+  --cols: 2;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  gap: var(--tile-gap) var(--column-gap);
+  align-items: start;
+}
+.masonry > [data-span="2"] { grid-column: span 2; }
+@media (min-width: 48em) { .masonry { --cols: 3; } }
+@media (min-width: 64em) { .masonry { --cols: 4; } }    /* laptops → 1920×1080 */
+@media (min-width: 150em) { .masonry { --cols: 6; } }   /* very wide (2400px+) */
+
+.masonry.is-laid-out { display: block; position: relative; }
+.masonry.is-laid-out > * { position: absolute; top: 0; left: 0; }
+
+.mosaic--tight { --tile-gap: var(--column-gap); }   /* no captions: same gap both ways */
+
+.media--placeholder { aspect-ratio: 16 / 9; }   /* tile without an image yet */
+
+/* Caption row: text left, NDA/WIP badge pinned to the right edge,
+   sitting on the caption's first baseline */
+.tile__caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-s);
+  font-size: var(--step--1);
+  line-height: var(--leading-snug);
+}
+.tile__caption .tag { flex-shrink: 0; }
+
+/* ---- Case study modules ------------------------------------------------
+   Type: label (small, muted) · title · heading · body (reading size) · note.
+   Spacing: --module-space between modules, --module-gap inside.
+   ≥64em: 12-column grid; text in 1–5 or 7–11; images vary in size and
+   position, leaving deliberate white space. Phones: everything stacks. */
+
+.case {
+  --module-space: var(--section-space);
+  --module-gap: var(--space-l);
+  padding-block: var(--space-l) var(--module-space);
+  font-size: var(--step-0);
+  line-height: var(--leading-body);
+}
+.case > * + * { margin-block-start: var(--module-space); }
+.case figure { margin: 0; }
+
+.cs-label   { font-size: var(--step--1); color: var(--color-muted); line-height: var(--leading-snug); }
+.cs-title   { font-size: var(--step-4); line-height: var(--leading-display); letter-spacing: var(--tracking-display); text-wrap: balance; margin-block-start: -0.1em; }
+.cs-heading { font-size: var(--step-2); line-height: var(--leading-snug); letter-spacing: var(--tracking-tight); text-wrap: balance; margin-block-start: var(--space-2xs); }
+.cs-body    { max-inline-size: 34rem; }
+.cs-body > * + * { margin-block-start: 1em; }
+.cs-caption { font-size: var(--step--1); line-height: var(--leading-snug); color: var(--color-muted); margin-block-start: var(--space-xs); max-inline-size: 28rem; }
+.cs-quote   { font-size: var(--step-3); line-height: var(--leading-tight); letter-spacing: var(--tracking-tight); text-wrap: balance; }
+
+/* Shared grid */
+.cs-head__grid, .cs-text, .cs-float, .cs-compose, .cs-duo {
+  display: grid;
+  gap: var(--module-gap) var(--column-gap);
+}
+@media (min-width: 64em) {
+  .cs-head__grid, .cs-text, .cs-float, .cs-compose, .cs-duo {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
+
+/* Frames: every image slot has a fixed shape; the image fills it (cover)
+   and is cropped to fit. Steer a crop per image with
+   style="--focus: 30% 50%" on its .media (x% y%). Shapes:
+     head film, single ........ wide (16:9)
+     float ..................... landscape (3:2)
+     compose: large ............ square (1:1) · small ...... portrait (4:5)
+     duo ....................... portrait (4:5) */
+.case .media { aspect-ratio: var(--ratio); }
+.cs-head__film .media,
+.cs-single .media             { --ratio: var(--ratio-wide); }
+.cs-float .media              { --ratio: var(--ratio-landscape); }
+.cs-compose .media            { --ratio: var(--ratio-portrait); }
+.cs-compose__main .media      { --ratio: var(--ratio-square); }
+.cs-duo .media                { --ratio: var(--ratio-portrait); }
+
+/* cs-head — kicker; title, intro, details left; film right (tops aligned) */
+.cs-head { display: grid; gap: var(--space-l); }
+.cs-head__text { display: flex; flex-direction: column; gap: var(--space-l); }
+.cs-details { margin-block-start: auto; }
+.cs-details > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: var(--column-gap);
+  padding-block: var(--space-xs);
+  border-block-start: 1px solid var(--color-line);
+  line-height: var(--leading-snug);
+}
+.cs-details dt { color: var(--color-muted); }
+@media (min-width: 64em) {
+  .cs-head__text { grid-column: 1 / span 4; }
+  .cs-head__film { grid-column: 5 / -1; }
+  .cs-head__film { align-self: start; }   /* text column stretches to the film's height, so the details sit on its bottom edge */
+}
+
+/* cs-text — label + heading left, body right */
+@media (min-width: 64em) {
+  .cs-text > :first-child { grid-column: 1 / span 5; }
+  .cs-text > .cs-body     { grid-column: 7 / span 5; padding-block-start: calc(var(--step--1) * 1.2 + var(--space-2xs)); }
+}
+
+/* cs-single — one image, full width */
+
+/* cs-duo — two small images, centred, white space either side */
+.cs-duo { align-items: end; }
+@media (max-width: 63.99em) { .cs-duo { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 64em) {
+  .cs-duo > :first-child { grid-column: 3 / span 4; }
+  .cs-duo > :last-child  { grid-column: 7 / span 4; }
+}
+
+/* cs-float — one image off-grid with a short note */
+@media (min-width: 64em) {
+  .cs-float--right > figure  { grid-column: 7 / -1; }
+  .cs-float--left > figure   { grid-column: 1 / span 6; grid-row: 1; }
+  .cs-float--left > .cs-quote { grid-column: 8 / -1; grid-row: 1; align-self: end; }
+}
+
+/* cs-compose — two small images bottom-left; large image right, note above */
+@media (max-width: 63.99em) { .cs-compose { grid-template-columns: 1fr 1fr; } }
+.cs-compose > .cs-compose__main { grid-column: 1 / -1; }
+@media (min-width: 64em) {
+  .cs-compose { align-items: end; }       /* small images sit on the large image's bottom edge */
+  .cs-compose > .cs-compose__main { grid-column: 7 / -1; grid-row: 1; }
+  .cs-compose > figure:nth-of-type(2) { grid-column: 1 / span 3; grid-row: 1; }
+  .cs-compose > figure:nth-of-type(3) { grid-column: 4 / span 3; grid-row: 1; }
+  .cs-compose { padding-block-end: 3.5em; }                       /* room for the hung caption */
+  .cs-compose__main { position: relative; }
+  .cs-compose__main figcaption { position: absolute; inset-block-start: 100%; }  /* caption hangs below, so small images align to the image edge */
+}
+
+/* cs-credits — simple left-aligned list, no rules */
+.cs-credits dl { display: grid; gap: var(--space-3xs); margin-block-start: var(--space-s); max-inline-size: 40rem; }
+.cs-credits dl > div { display: flex; flex-wrap: wrap; column-gap: 0.4em; }
+.cs-credits dt::after { content: " —"; }
+.cs-credits dd { color: var(--color-muted); }
+
+/* cs-next — its own block, after the article */
+.cs-next {
+  display: grid;
+  gap: var(--space-s);
+  padding-block: var(--space-l) var(--section-space);
+  border-block-start: 1px solid var(--color-line);
+}
+.cs-next__link {
+  font-size: var(--step-3);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  text-decoration: none;
+}
+.cs-next__link .type-muted { display: block; font-size: var(--step-0); letter-spacing: 0; margin-block-start: var(--space-2xs); }
+
+/* ---- Writing index ------------------------------------------------------
+   Shared: big masthead with a muted (05) count, a lede, and a contents list
+   (number · title · topic + date). Three draft layouts: A, B, C. */
+
+.writing { padding-block: var(--space-l) var(--section-space);   /* top padding matches .mosaic */ font-size: var(--step-0); line-height: var(--leading-body); }
+
+.w-mast {
+  font-size: var(--step-6);
+  line-height: var(--leading-mast);
+  letter-spacing: var(--tracking-mast);
+}
+.w-count { color: var(--color-muted); font-size: var(--step-3); letter-spacing: var(--tracking-tight); vertical-align: 0.95em; }
+.w-lede  { font-size: var(--step-1); line-height: var(--leading-snug); }
+
+.w-list { border-block-start: 1px solid var(--color-text); }
+.w-row {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: var(--space-3xs) var(--column-gap);
+  padding-block: var(--space-s);
+  border-block-end: 1px solid var(--color-line);
+  text-decoration: none;
+}
+.w-num   { color: var(--color-muted); }
+.w-title { font-size: var(--step-1); line-height: var(--leading-snug); }
+.w-meta  { grid-column: 2; display: flex; justify-content: space-between; gap: var(--space-s); color: var(--color-muted); font-size: var(--step--1); }
+.w-row:hover { opacity: 1; }
+.w-row:hover .w-title { opacity: var(--hover-fade); }
+
+/* A · Masthead: everything left-aligned on the centre line (col 7) */
+.wa-head  { display: grid; gap: var(--space-l) var(--column-gap); }
+.wa-thesis { display: grid; gap: 1em; max-inline-size: 36rem; }
+.wa-toc { margin-block-start: var(--section-space); }
+@media (min-width: 64em) {
+  .wa-head, .wa-toc { grid-template-columns: repeat(12, minmax(0, 1fr)); display: grid; column-gap: var(--column-gap); }
+  .wa-head .w-mast { grid-column: 7 / -1; margin-block-end: var(--space-xl); }
+  .wa-tag          { grid-column: 1 / span 3; grid-row: 2; }
+  .wa-thesis       { grid-column: 7 / span 5; grid-row: 2; }
+  .wa-toc > *      { grid-column: 7 / -1; }        /* fixed column: right half */
+}
+
+/* B · Index (after ThemeSystem: label | content rows) */
+.wb-grid { display: grid; gap: var(--space-xl) var(--column-gap); }
+.wb-index > div { padding-block: var(--space-m); }
+.wb-index > div:first-child { padding-block-start: 0; }
+.wb-index > div:first-child .w-lede { margin-block-start: -0.2em; }   /* trim line spacing so its capitals meet the image line */
+.wb-index > div + div { border-block-start: 1px solid var(--color-line); }
+.wb-index dd { max-inline-size: none; }   /* list + hairline run to the right margin */
+.wb-index .w-list {
+  border: 0;
+  border-block-start: 1px solid var(--color-line);   /* hairline above the list */
+  padding-block-start: var(--space-2xs);
+}
+.w-row--plain {                                   /* number | title + topic | date */
+  grid-template-columns: 2rem minmax(0, 1fr) auto;
+  grid-template-areas: "num title date" ". topic .";
+  align-items: baseline;
+  row-gap: 0;
+  padding-block: var(--space-2xs);
+  border: 0;
+  /* Hover: the whole row reads as a soft rectangle. Padding + matching
+     negative margin keep the text on the grid while the tint extends past it. */
+  --row-pad: 0.6rem;
+  margin-inline: calc(var(--row-pad) * -1);
+  padding-inline: var(--row-pad);
+  border-radius: var(--radius);
+  transition: background-color var(--duration) var(--ease);
+}
+.w-row--plain .w-num   { grid-area: num; }
+.w-row--plain .w-title { grid-area: title; font-size: var(--step-0); }
+.w-row--plain .w-date  { grid-area: date; color: var(--color-muted); font-size: var(--step--1); }   /* sits on the title's baseline */
+.w-row--plain .w-time  { grid-area: topic; color: var(--color-muted); font-size: var(--step--1); line-height: var(--leading-snug); }
+
+/* Column header above the list: # · Title · calendar (date).
+   Pulled up by its own height so the hairline stays level with
+   "Writing[24]"; the label line sits in the space above it. */
+.w-head {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr) auto;
+  column-gap: var(--column-gap);          /* same columns as the rows */
+  align-items: center;
+  block-size: 2em;
+  margin-block-start: -2em;
+  padding-block-end: 0.75em;
+  font-size: var(--step--1);
+  line-height: 1.25;
+  color: var(--color-muted);
+}
+.w-head > * { font-size: inherit; line-height: inherit; }   /* labels, not the row type sizes */
+.w-head .w-date { justify-self: end; display: flex; }
+.w-head .icon { inline-size: 1em; block-size: 1em; }
+
+.w-row--plain:hover,
+.w-row--plain:focus-visible { background: color-mix(in srgb, var(--color-text) 5%, transparent); }
+.w-row--plain:hover .w-title { opacity: 1; }        /* tint instead of the text fade */
+@media (min-width: 64em) {
+  .wb-grid  { grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: start; }
+  .wb-mast  { grid-column: 1 / span 6; position: sticky; inset-block-start: var(--space-l); margin-block-start: -0.09em; }   /* cap height meets the hairline */
+  .wb-index { grid-column: 7 / -1; }
+}
+
+/* C · Typographic: statement left, paragraph beside it, list on col 7 */
+.wc-head { display: grid; gap: var(--space-l) var(--column-gap); margin-block-end: var(--section-space); }
+.wc-statement {
+  font-size: var(--step-4);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
+}
+.wc-why  { max-inline-size: 36rem; }
+.wc-row  { grid-template-columns: 3rem minmax(0, 1fr); padding-block: var(--space-m); align-items: baseline; }
+.wc-row .w-title { font-size: var(--step-3); line-height: var(--leading-tight); letter-spacing: var(--tracking-tight); }
+@media (min-width: 48em) {
+  .wc-row { grid-template-columns: 3rem minmax(0, 1fr) 10rem; }
+  .wc-row .w-meta { grid-column: 3; flex-direction: column; align-items: flex-end; gap: 0; }
+}
+@media (min-width: 64em) {
+  .wc-head { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .wc-head > .type-kicker { grid-column: 1 / -1; }
+  .wc-statement { grid-column: 1 / span 6; }
+  .wc-why       { grid-column: 7 / span 5; padding-block-start: 0.6em; }   /* top-aligned with the statement's first line */
+  .wc-list      { margin-inline-start: calc(50% + var(--column-gap) / 2); }  /* starts on col 7, with the paragraph */
+}
+
+/* ---- Writing title: "Writing (24)" with the lede underneath ------------ */
+.wb-mast .w-count { font-size: var(--step-1); vertical-align: calc(0.716 * (var(--step-6) - var(--step-1)) - 0.2em);   /* 0.716 = Arial cap height; brackets rise 0.2em above caps */ letter-spacing: 0; margin-inline-start: 0.4em; }   /* small [24], top-aligned with the capitals */
+.wb-title { display: grid; gap: var(--space-l); align-content: start; }
+.wb-title .w-lede { max-inline-size: 30rem; }
+@media (min-width: 64em) {
+  .wb-title { grid-column: 1 / span 6; position: sticky; inset-block-start: var(--space-l); }
+  .wb-title .wb-mast { position: static; }
+}
+
+/* ---- Article (blog post) ------------------------------------------------
+   One reading column. Every child of .article sits in it unless it opts out.
+   Phone/tablet: a single column, capped at a comfortable line length.
+   ≥64em: 12-col grid; the column is the right half (7–12), aligned with the
+   nav. Two things break out to the left edge (col 1):
+     .figure--wide — key images, full page width
+     .pullquote    — large quote, hanging into the left half
+   On phones, wide figures bleed to the screen edges. */
+
+.article {
+  --flow: 1em;                                /* space between paragraphs */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  padding-block: var(--space-l) var(--space-2xl);
+  font-size: var(--step-0);
+  line-height: var(--leading-body);
+}
+.article > * { max-inline-size: var(--measure); }
+.article > * + * { margin-block-start: var(--flow); }
+
+/* Header: kicker, big title, meta row under a rule */
+.article__header { display: grid; gap: var(--space-m); max-inline-size: none; padding-block-end: var(--space-xl); }
+.article__kicker { font-size: var(--step-chrome); color: var(--color-muted); }
+.article__title {
+  font-size: var(--step-5);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+}
+.article__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs) var(--space-l);
+  padding-block-start: var(--space-s);
+  border-block-start: 1px solid var(--color-text);
+  font-size: var(--step-chrome);
+}
+.article__meta dt { color: var(--color-muted); }
+
+/* Headings inside the text */
+.article h2 { font-size: var(--step-1); --flow: 2em; }
+
+/* Figures: optional caption, small and muted */
+.figure { --flow: 2em; display: grid; gap: var(--space-2xs); }
+.figure + * { --flow: 2em; }
+.figure figcaption { font-size: var(--step--1); line-height: var(--leading-snug); color: var(--color-muted); }
+.figure--wide { max-inline-size: none; margin-inline: calc(var(--gutter) * -1); }   /* phone: edge to edge */
+.figure--wide .media { --media-radius: 0; }
+.figure--wide figcaption { padding-inline: var(--gutter); }
+
+/* Pull quote: larger, set off by space, not decoration */
+.pullquote {
+  --flow: 1.5em;
+  margin-block-end: 0.5em;
+  font-size: var(--step-3);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+/* Opening paragraph: lede size */
+.article__lede { font-size: var(--step-1); line-height: var(--leading-snug); }
+
+/* Section number before an h2 ("01 Delegate") */
+.article__num { color: var(--color-muted); font-variant-numeric: tabular-nums; margin-inline-end: 0.5em; }
+
+/* Lists: body size, hanging markers, a little air between items */
+.article ul,
+.article ol { padding-inline-start: 1.25em; }
+.article li + li { margin-block-start: 0.5em; }
+.article ul li::marker { color: var(--color-muted); }
+.article ol li::marker { color: var(--color-muted); font-variant-numeric: tabular-nums; }
+
+/* Steps: a short numbered overview list, set as ruled rows */
+.article .article__steps {
+  --flow: 1.5em;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+  border-block-start: 1px solid var(--color-line);
+}
+.article .article__steps li {
+  counter-increment: step;
+  display: flex;
+  gap: 1.25em;
+  margin: 0;
+  padding-block: var(--space-2xs);
+  border-block-end: 1px solid var(--color-line);
+}
+.article__steps li::before {
+  content: counter(step, decimal-leading-zero);
+  color: var(--color-muted);
+  font-variant-numeric: tabular-nums;
+}
+.article__steps a { text-decoration: none; }
+
+/* Pull quote attribution */
+.pullquote footer {
+  margin-block-start: var(--space-s);
+  font-size: var(--step--1);
+  letter-spacing: 0;
+  color: var(--color-muted);
+}
+
+/* Code: monospace, micro size (12px) */
+.article code {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+}
+.article :not(pre) > code {
+  padding: 0.1em 0.3em;
+  border-radius: 0.25rem;
+  background: var(--color-surface);
+}
+.article pre {
+  --flow: 1.5em;
+  overflow-x: auto;
+  padding: var(--space-s) var(--space-m);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  line-height: var(--leading-body);
+  tab-size: 2;
+}
+.article pre + * { --flow: 1.5em; }
+
+/* Footnote markers + list */
+.article sup { line-height: 0; font-size: 0.65em; }
+.article sup a { text-decoration: none; padding-inline: 0.15em; }
+.article sup a:hover { text-decoration: underline; }
+.footnotes {
+  --flow: var(--space-2xl);
+  padding-block-start: var(--space-s);
+  border-block-start: 1px solid var(--color-line);
+  font-size: var(--step--1);
+  line-height: var(--leading-snug);
+  color: var(--color-muted);
+}
+.footnotes h2 { font-size: inherit; color: var(--color-text); margin-block-end: var(--space-xs); }
+.footnotes ol { padding-inline-start: 1.25em; }
+.footnotes li + li { margin-block-start: var(--space-2xs); }
+.footnotes a[href^="#ref"] { text-decoration: none; }
+:target { scroll-margin-block-start: var(--space-xl); }   /* footnote jumps don't hug the top */
+
+/* Folio: back / next */
+.article__folio {
+  --flow: var(--space-xl);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-s);
+  max-inline-size: none;
+  padding-block-start: var(--space-s);
+  border-block-start: 1px solid var(--color-text);
+  font-size: var(--step-chrome);
+  color: var(--color-muted);
+}
+
+@media (min-width: 48em) {
+  .figure--wide { margin-inline: 0; }
+  .figure--wide .media { --media-radius: var(--radius); }
+  .figure--wide figcaption { padding-inline: 0; }
+}
+
+@media (min-width: 64em) {
+  .article { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--column-gap); }
+  .article > * { grid-column: 7 / -1; max-inline-size: none; }
+  .article__header,
+  .figure--wide,
+  .article__folio { grid-column: 1 / -1; }
+  .pullquote { grid-column: 1 / -1; max-inline-size: 16em; }
+  .article__header { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--column-gap); }
+  .article__header > * { grid-column: 1 / -1; }
+  .article__header > .article__meta { grid-column: 7 / -1; }
+}
+
+/* ---- Photography: count along the bottom of the mosaic head ------------ */
+
+.photo-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-s);
+  font-size: var(--step--1);
+}
+@media (min-width: 48em) {
+  .photo-toolbar { grid-area: bar; }
+}
+
+/* ---- Site footer --------------------------------------------------------
+   Phone: name | location on one row, links below (right-aligned).
+   ≥48em: on the 12-col grid — name (1–3) | location (4–6) | links pushed
+   to the right edge (7–12). */
+
+.site-footer {
+  padding-block: var(--space-xl) var(--space-l);
+  font-size: var(--step-chrome);
+  line-height: var(--leading-snug);
+  color: var(--color-muted);
+}
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-s) var(--column-gap);
+  padding-block-start: var(--space-s);
+  border-block-start: 1px solid var(--color-line);
+}
+.site-footer__links { grid-column: 1 / -1; }
+.site-footer__links ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-2xs) var(--space-m);
+}
+@media (min-width: 48em) {
+  .site-footer__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .site-footer__grid > :nth-child(1) { grid-column: 1 / span 3; }
+  .site-footer__grid > :nth-child(2) { grid-column: 4 / span 3; }
+  .site-footer__links                { grid-column: 7 / -1; }
+}
+
+/* ---- 404 ----------------------------------------------------------------- */
+.notfound {
+  display: grid;
+  align-content: center;
+  gap: var(--space-s);
+  min-block-size: 60svh;
+  max-inline-size: 40rem;
+}
+
+
+/* ==========================================================================
+   Reveal: fade in and drift up on load and scroll
+   --------------------------------------------------------------------------
+   <div data-reveal>                 the element itself
+   <ul data-reveal-children>         each direct child, staggered
+   <div data-reveal-line>            no fade; only its hairline fades on
+   Only active when the head script adds .reveal-on (needs
+   IntersectionObserver, no reduced-motion). Otherwise everything is
+   simply visible. main.js adds .is-revealed to things that fade in and
+   .is-in to containers and lines.
+   ========================================================================== */
+.reveal-on [data-reveal],
+.reveal-on [data-reveal-children] > * {
+  overflow-anchor: none;   /* don't let the browser pin your scroll to an element that's still settling */
+  opacity: 0;
+  transform: translate3d(0, 0.75rem, 0);
+  transition: opacity 700ms var(--ease-reveal), transform 900ms var(--ease-reveal);
+}
+.reveal-on [data-reveal].is-revealed,
+.reveal-on [data-reveal-children] > .is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hairlines fade on. The real border stays put; a 1px strip in the page
+   colour covers it and fades away, so the line keeps its own colour in both
+   themes. It goes when the element (or something it sits in) comes in, a
+   beat after the fade. To give another bordered element this, add it to the
+   three lists below (top border → first two, bottom border → first and third). */
+.reveal-on :is(.cs-details > div, .cs-next, .w-list, .wb-index > div + div, .article__meta, .article__steps,
+               .footnotes, .article__folio, .site-footer__grid, .w-row, .article__steps li) { position: relative; }
+.reveal-on :is(.cs-details > div, .cs-next, .w-list, .wb-index > div + div, .article__meta, .article__steps,
+               .footnotes, .article__folio, .site-footer__grid, .w-row, .article__steps li)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-bg);
+  transition: opacity 900ms var(--ease-reveal) calc(var(--reveal-delay, 0ms) + 120ms);
+  pointer-events: none;
+}
+.reveal-on :is(.cs-details > div, .cs-next, .w-list, .wb-index > div + div, .article__meta, .article__steps,
+               .footnotes, .article__folio, .site-footer__grid)::after { top: -1px; }
+.reveal-on :is(.w-row, .article__steps li)::after { bottom: -1px; }
+.reveal-on :is(.is-in, .is-revealed, .is-revealed *):is(.cs-details > div, .cs-next, .w-list, .wb-index > div + div,
+               .article__meta, .article__steps, .footnotes, .article__folio, .site-footer__grid, .w-row, .article__steps li)::after { opacity: 0; }
+
+@media print {
+  .reveal-on [data-reveal],
+  .reveal-on [data-reveal-children] > * { opacity: 1; transform: none; }
+  .reveal-on :is(.cs-details > div, .cs-next, .w-list, .wb-index > div + div, .article__meta, .article__steps,
+                 .footnotes, .article__folio, .site-footer__grid, .w-row, .article__steps li)::after { display: none; }   /* no hairline covers */
+}
+
+
+/* ==========================================================================
+   Back to top: round glass button, locked in the lower-right corner.
+   main.js adds it to every page, pops it in once you've scrolled
+   (TO_TOP_POP) and turns the arrow like a compass needle while you scroll.
+   ========================================================================== */
+.to-top {
+  position: fixed;
+  z-index: 90;
+  right: var(--gutter);
+  bottom: var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 3rem;
+  block-size: 3rem;
+  padding: 0;
+  border-radius: 50%;
+  color: var(--color-text);              /* lightest colour in dark mode, darkest in light */
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: color var(--duration) var(--ease);
+}
+.to-top.is-visible { opacity: 1; visibility: visible; }
+.to-top:hover,
+.to-top:focus-visible { opacity: 1; }
+.to-top .icon {
+  inline-size: 1.125rem;
+  block-size: 1.125rem;
+  overflow: visible;
+  transform-origin: 50% 50%;             /* JS turns it with the scroll */
+  transition: opacity var(--duration) var(--ease);
+}
+.to-top:hover .icon { opacity: var(--hover-fade); }   /* same hover fade as links */
+@media print { .to-top { display: none; } }
+
+
+/* ==========================================================================
+   Lightbox: click a photo inside any [data-lightbox] element (photo grid,
+   case studies, blog posts) to view it centred over a blurred, dimmed page.
+   Esc / click / × closes; ← → (keys or buttons) step through. Controls use
+   the same glass as the toast and back-to-top.
+   ========================================================================== */
+[data-lightbox] img:not(a img) { cursor: zoom-in; }                     /* images inside links keep their link */
+[data-lightbox] img:focus-visible { outline: 2px solid var(--color-text); outline-offset: 2px; }
+
+.lightbox {
+  --lb-btn: 2.75rem;
+  --lb-edge: 1.625rem;                    /* controls sit this close to the window edge (26px) */
+  --lb-slide: 0.75rem;                    /* how far controls travel as they animate in */
+  position: fixed;
+  z-index: 200;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--lb-edge) * 2 + var(--lb-btn)) var(--lb-edge);
+  background: rgb(0 0 0 / 0);
+  background: color-mix(in srgb, var(--color-bg) 0%, transparent);
+  cursor: default;                        /* click the background: close */
+  outline: none;                          /* the dialog takes focus; no ring on it */
+  visibility: hidden;
+  /* Fade the dim itself, not the whole layer: a blurred (glass) control
+     inside a fading parent can't blur until the fade ends, which flickers */
+  transition: background-color 160ms var(--ease-fade), visibility 0s linear 160ms;
+}
+@media (min-width: 48em) {                /* room for the side arrows */
+  .lightbox { padding: var(--lb-edge) calc(var(--lb-edge) * 2 + var(--lb-btn)); }
+}
+.lightbox.is-open {
+  background: rgb(0 0 0 / 0.82);
+  background: color-mix(in srgb, var(--color-bg) 88%, transparent);   /* page colour: white in light mode, black in dark */
+  visibility: visible;
+  transition: background-color 180ms var(--ease-fade), visibility 0s;
+}
+/* Blur the page under the dim (where supported), easing in with it */
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .lightbox {
+    -webkit-backdrop-filter: blur(0);
+            backdrop-filter: blur(0);
+    transition: background-color 160ms var(--ease-fade), -webkit-backdrop-filter 160ms var(--ease-fade),
+                backdrop-filter 160ms var(--ease-fade), visibility 0s linear 160ms;
+  }
+  .lightbox.is-open {
+    background: color-mix(in srgb, var(--color-bg) var(--lightbox-dim, 72%), transparent);   /* 30% white in light mode, 72% black in dark */
+    -webkit-backdrop-filter: blur(var(--lightbox-blur, 10px));
+            backdrop-filter: blur(var(--lightbox-blur, 10px));
+    transition: background-color 220ms var(--ease-fade), -webkit-backdrop-filter 220ms var(--ease-fade),
+                backdrop-filter 220ms var(--ease-fade), visibility 0s;
+  }
+}
+
+/* Everything inside: leaving / arriving */
+.lightbox > * {
+  opacity: 0;
+  transition: opacity 140ms var(--ease-fade), transform 160ms var(--ease-fade-in);
+}
+.lightbox.is-open > * {
+  opacity: 1;
+  transform: none;
+  transition: opacity 180ms var(--ease-fade), transform 320ms var(--ease-settle);
+}
+/* Entrances: ← from the left, → from the right, count and × drop down,
+   the photo scales up — each settles into place as it fades in */
+.lightbox__prev  { transform: translate3d(calc(var(--lb-slide) * -1), 0, 0); }
+.lightbox__next  { transform: translate3d(var(--lb-slide), 0, 0); }
+.lightbox__close,
+.lightbox__count { transform: translate3d(0, calc(var(--lb-slide) * -1), 0); }
+
+.lightbox__img {
+  display: block;
+  /* Matting: never wider than 75rem (1200px) or taller than 50rem (800px)
+     or 80% of the window height, so there's always space around it */
+  max-width: min(100%, 75rem);
+  max-height: min(100%, 80vh, 50rem);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius);
+  cursor: zoom-in;                        /* click the photo: full screen */
+  transform: scale(0.97);                 /* opens by scaling up, no slide */
+}
+.lightbox.is-open .lightbox__img { transform: none; }
+/* Closing: no slide, the photo just shrinks slightly and fades with the dim;
+   the shrink starts right away and the fade holds a beat, so both read */
+.lightbox.is-closing .lightbox__img {
+  transform: scale(0.95);
+  transition: opacity 200ms var(--ease-close-fade), transform 200ms var(--ease-close-scale);
+}
+
+/* Glass controls: × (circle), count (pill), ← → (rounded squares) */
+.lightbox__btn,
+.lightbox__count {
+  position: absolute;
+  color: var(--color-text);
+  box-shadow: var(--lightbox-ui-shadow, var(--glass-shadow));   /* none in light mode */
+}
+.lightbox__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--lb-btn);
+  height: var(--lb-btn);
+  padding: 0;
+  cursor: pointer;
+}
+.lightbox__btn .icon { width: 1rem; height: 1rem; transition: opacity var(--duration) var(--ease); }
+.lightbox__btn:hover .icon { opacity: var(--hover-fade); }
+.lightbox__btn:focus { outline: none; }
+.lightbox__btn:focus-visible { outline: 2px solid var(--color-text); outline-offset: 2px; }
+
+.lightbox__close { top: var(--lb-edge); right: var(--lb-edge); border-radius: 50%; }
+.lightbox__prev,
+.lightbox__next {
+  top: 50%;
+  margin-top: calc(var(--lb-btn) / -2);
+  border-radius: 0.625rem;                /* rounded square */
+}
+.lightbox__prev { left: var(--lb-edge); }
+.lightbox__next { right: var(--lb-edge); }
+.lightbox.is-single :is(.lightbox__prev, .lightbox__next, .lightbox__count) { display: none; }
+
+.lightbox__count {
+  top: calc(var(--lb-edge) + (var(--lb-btn) - 1.75rem) / 2);   /* centred on the × button's line */
+  left: var(--lb-edge);
+  height: 1.75rem;
+  padding: 0 0.65em;
+  border-radius: 999px;                   /* pill */
+  line-height: calc(1.75rem - 2px);
+  font-size: var(--step--1);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Photo tools: full screen + open in new tab, pinned in the photo's
+   bottom-left corner (JS positions them); small glass squares */
+.lightbox__tools {
+  position: absolute;
+  display: flex;
+  gap: 0.375rem;
+  transform: none;                        /* stays pinned to the photo's corner */
+}
+.lightbox__tools .lightbox__btn { position: static; }
+.lightbox__tool {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+}
+.lightbox__tool .icon { width: 0.875rem; height: 0.875rem; }
+.lightbox__full .i-shrink { display: none; }
+.lightbox.is-full .lightbox__full .i-expand { display: none; }
+.lightbox.is-full .lightbox__full .i-shrink { display: inline; }
+
+/* Full mode: solid page colour, no matting, photo fills the window height
+   (or width) as far as its own pixels allow; controls stay on top */
+.lightbox.is-full { padding: 0; }                  /* kept while closing, so the photo doesn't jump size */
+.lightbox.is-open.is-full { background: var(--color-bg); }   /* solid: white in light mode, black in dark */
+.lightbox.is-full .lightbox__img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 0;
+  cursor: zoom-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox > *, .lightbox.is-open > *,
+  .lightbox__img, .lightbox.is-open .lightbox__img { transform: none; }
+}
+@media print { .lightbox { display: none; } }

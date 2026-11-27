@@ -1,0 +1,47 @@
+/* ==========================================================================
+   LAYOUT — reusable layout primitives. Mobile-first: the default is the
+   phone layout; wider screens are added with min-width queries.
+   Breakpoints use em (most reliable with browser zoom):
+     48em ≈ 768px (tablet)   64em ≈ 1024px (desktop)   80em ≈ 1280px (wide)
+   Custom properties can't be used in media queries, so these three values
+   are repeated wherever needed — keep them in sync.
+   ========================================================================== */
+
+/* Page width with fluid side padding (edge to edge unless --container-max is set) */
+.container {
+  inline-size: 100%;
+  max-inline-size: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Long-form pages (blog posts): cap the page width and centre it.
+   Put class="page--reading" on <body>; header and footer follow the same
+   edges because they use .container too. */
+.page--reading .container { max-inline-size: var(--container-reading); }
+
+/* Readable text column */
+.measure { max-inline-size: var(--measure); }
+
+
+/* Section spacing */
+.section { padding-block: var(--section-space); }
+
+/* Grid: 1 column on phones, as many ~20rem columns as fit above that.
+   No media queries needed — it responds to its own space. */
+.grid {
+  display: grid;
+  gap: var(--grid-gap, var(--space-xl) var(--space-m));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--grid-min, 20rem)), 1fr));
+}
+
+
+/* Split: stacked on phones, two columns (label | content) on desktop */
+.split {
+  display: grid;
+  gap: var(--space-s) var(--space-xl);
+}
+@media (min-width: 64em) {
+  .split { grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); }
+}
+

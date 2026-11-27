@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Runs before first paint: saved theme; fade-in setup (only where it can
+       animate, with a 3s failsafe); scroll restore on reload / back-forward. -->
+  <script>(function(d,w){
+try{var t=localStorage.getItem("theme");if(t)d.dataset.theme=t}catch(e){}
+if("IntersectionObserver" in w&&w.requestAnimationFrame&&!(w.matchMedia&&w.matchMedia("(prefers-reduced-motion: reduce)").matches)){d.className+=" reveal-on";w.__revealFailsafe=setTimeout(function(){d.className=d.className.replace(" reveal-on","")},3000)}
+try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=performance.getEntriesByType&&performance.getEntriesByType("navigation")[0],k=n?n.type:"",y=+sessionStorage.getItem("scroll:"+location.pathname);if((k==="reload"||k==="back_forward")&&y>0){w.__restoreY=y;d.className+=" is-restoring";setTimeout(function(){d.className=d.className.replace(" is-restoring","")},1000)}}}catch(e){}
+})(document.documentElement,window)</script>
+  <title>Do Less — Luka André Schulz</title>
+  <meta name="description" content="On doing more with less: delegate, descope, parallelise, time-box.">
+  <meta name="theme-color" content="#faf8f8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e0e0e" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Do Less — Luka André Schulz">
+  <meta property="og:description" content="On doing more with less: delegate, descope, parallelise, time-box.">
+  <meta property="og:type" content="website">
+  <!-- CSS order matters: tokens → base → layout → components -->
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/layout.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <script src="../../js/main.js" defer></script>
+  <script src="../../_drafts/tune.js" defer></script>  <!-- TEMPORARY tuning panel: delete this line -->
+</head>
+<body class="page--reading">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__grid">
+      <a class="site-header__name" href="../../">Luka André Schulz</a>
+      <nav class="site-nav" aria-label="Main">
+        <ul role="list">
+          <li><a href="../../"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="1" width="4" height="4"/><rect x="7" y="1" width="4" height="4"/><rect x="1" y="7" width="4" height="4"/><rect x="7" y="7" width="4" height="4"/></svg>Work</a></li>
+          <li><a href="../" aria-current="page"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M1 2.5h10M1 6h10M1 9.5h6"/></svg>Writing</a></li>
+          <li><a href="../../photography/"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="2.5" width="10" height="8"/><circle cx="6" cy="6.5" r="2"/></svg>Photography</a></li>
+          <li><a href="mailto:hello@example.com"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="2.5" width="10" height="7"/><path d="M1 2.5l5 4 5-4"/></svg>E-mail</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__end">
+        <!-- Theme switch: shown by main.js (needs JS to work) -->
+        <span class="theme-label" aria-hidden="true"></span>
+        <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Dark mode" hidden></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <!-- TODO: sample text for layout. No images: text, headings,
+         a numbered list, bullet lists and a pull quote with attribution. -->
+    <article class="article" data-reveal-children data-lightbox>
+      <header class="article__header">
+        <p class="article__kicker type-tabular">Essay 02 · Practice</p>
+        <h1 class="article__title">Do Less</h1>
+        <dl class="article__meta">
+          <div><dt>Author</dt><dd>Luka André Schulz</dd></div>
+          <div><dt>Published</dt><dd><time datetime="2026-09-03">Sep 3, 2026</time></dd></div>
+          <div><dt>Reading</dt><dd>5 min</dd></div>
+        </dl>
+      </header>
+
+      <p class="article__lede">As I’m writing this post, I’m getting ready to publish my most recent app, Ora, to the App Store. Ora is a funny project, since it took me over a year to get it into a shippable state—but for most of that time, I didn’t touch the codebase at all.</p>
+
+      <p>I stopped working on it in June of 2024, and when I opened it again in January of 2025, I spent most of my time removing features from the app.</p>
+
+      <p>The benefit of stepping away from the work was the clarity and confidence to remove all the parts that no longer seemed so important. Being able to see your friends’ time zones, recurring alarms, Live Activities and calendar events—all this seemed like cruft that only delayed the launch of an app that was ready months before it was “finished”.</p>
+
+      <p>At the same time, Meta, the company I work for at the time of writing, is going through a period of intensity. In fact, 2025 has been dubbed the “year of intensity” at Meta in the media. Intensity comes in many forms, but in tech, it usually means doing more with less resources.</p>
+
+      <p>After almost 9 years at Meta, I’ve found that the only way to do more with less is to actually… do less. Whenever I’m confronted with a new project, problem, bug, or vision, I go through the same set of steps:</p>
+
+      <ol class="article__steps">
+        <li><a href="#delegate">Delegate</a></li>
+        <li><a href="#descope">Descope</a></li>
+        <li><a href="#parallelise">Parallelise</a></li>
+        <li><a href="#time-box">Time-box</a></li>
+      </ol>
+
+      <h2 id="delegate"><span class="article__num">01</span> Delegate</h2>
+      <p>I don’t mean this in the passing-the-buck sense; I think delegation is critical to scaling yourself. At Meta, nothing is someone else’s problem—but that isn’t to say that you are the best person to solve every problem.</p>
+      <p>Whenever a new project lands on my doorstep, one of the first things I ask is: is there someone else who can do this better than—or at least as well as—myself? It might be that the project would benefit from a specific skillset or historical context I don’t have; or it could be that the project would be a great opportunity for someone else to gain new skills or experience.</p>
+      <p>Understanding why you were selected and helping the team objectively evaluate the needs from your role can help identify the right person for the job, whether or not it’s you.</p>
+
+      <h2 id="descope"><span class="article__num">02</span> Descope</h2>
+      <p>Projects that don’t begin with all the necessary functional roles filled often end up ballooning in scope. When the functional roles are filled and the work is actually happening, one of two things (or both) tend to happen:</p>
+      <ul>
+        <li>The project faces delays since elements of it are technically hard or impossible to deliver</li>
+        <li>The project is artificially scoped down in real time in order to release an MVP, or minimum viable product, which fails to deliver the core promise of the idea</li>
+      </ul>
+      <p>Instead, spend the time to challenge the scope of the work to distill the minimum <em>valuable</em> product and make that the initial milestone. This exercise allows your team to deliver something of value quickly, learn from that work and adjust the ambitious plan accordingly.</p>
+
+      <h2 id="parallelise"><span class="article__num">03</span> Parallelise</h2>
+      <p>If we really want to move fast, no person on a project should be left feeling “blocked” while they wait for the work of someone else. In product design, we’re often asked for “final designs” to provide to engineers so that they can begin coding. But at large companies, “final designs” often have to go through rigorous review cycles, from design system teams, product reviews, and one or more groups of executives. In my experience, this way of working presents several failures:</p>
+      <ul>
+        <li>It creates animosity between designers and engineers, where designers feel rushed to provide something airtight in impossible timelines, and engineers feel frustrated that designers are slowing their progress down</li>
+        <li>It produces unrealistic designs and back-and-forth between designers and engineers at build time. As products are built in code, new constraints are encountered that invalidates designs and causes the team to pause and re-litigate decisions.</li>
+        <li>It creates design review processes that are somewhat detached from reality. When design reviews precede any engineering progress, it means that whatever design is approved by executives will always mismatch the actual, built product.</li>
+      </ul>
+      <p>Instead, insist that engineers begin prototyping based on the knowledge you have of which parts of the product are absolutely essential. Think about the data types, the creation and management of those types, the privacy and integrity requirements, and even the novel interactions that you know you want to explore, and have engineers build those pieces as part of what I would call “design discovery”.</p>
+      <p>This parallelising of design and engineering means that designers can adapt to constraints encountered by engineers during the design process, and not after designs have already been approved by reviewers. This results in less time spent revising work, more realistic designs, and more accurately-built products.</p>
+
+      <h2 id="time-box"><span class="article__num">04</span> Time-box</h2>
+      <blockquote class="pullquote">
+        <p>Money is circulated. Time is spent.</p>
+        <footer>— Frank Chimero</footer>
+      </blockquote>
+      <p>Your time is your most precious and finite resource. Work has a tendency to fill the time allotted to it. This can actually be helpful for accomplishing the three above approaches, if you know how to spend your time wisely.</p>
+      <p>A small change you can make to begin practicing these behaviours is being judicious in limiting your availability for projects. For example, telling your partners on a new project that you can only dedicate a certain number of hours per week to a project, and sticking to it. Whether it’s through 1-hour long calendar blocks you use to focus on a specific project, or hosting office hours where people can come and ask you for tactical guidance, this limiting can be helpful for both descoping work and parallelising progress.</p>
+      <p>It will also leave you with a greater sense of control if you—rather than your work—are the master of how your time is spent.</p>
+
+      <nav class="article__folio" aria-label="Essay navigation">
+        <a href="../making-sense/">← Making Sense</a>
+        <a href="../thinking-is-work/">Next: Thinking Is Work →</a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer container">
+    <div class="site-footer__grid" data-reveal-line>
+      <p>Luka André Schulz © 2026</p>
+      <p class="with-icon"><svg class="icon icon--pin" viewBox="0 0 8 11.6" fill="currentColor" fill-rule="evenodd" aria-hidden="true"><path d="M4 11.6C3.95 10.7 3.4 9.6 2.5 8.7 1.3 7.5 0 6.1 0 4a4 4 0 0 1 8 0C8 6.1 6.7 7.5 5.5 8.7 4.6 9.6 4.05 10.7 4 11.6zM4 2.35a1.65 1.65 0 1 0 0 3.3 1.65 1.65 0 0 0 0-3.3z"/></svg>NYC, New York</p>
+      <nav class="site-footer__links" aria-label="Elsewhere">
+        <ul role="list">
+          <!-- TODO: real URLs -->
+          <li><a href="#">Friends</a></li>
+          <li><a href="#">Spirit Animal</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
