@@ -10,8 +10,7 @@ const QUIPS = [
   "Pick one mother f*cker",
 ];
 
-// Back-to-top arrow: turns with the page as you scroll. Tune in
-// arrow-lab.html (temporary), then paste the values back here.
+// Back-to-top arrow: turns with the page as you scroll.
 // Turns over a full scroll = turns × (page length ÷ referenceScreens) ^ lengthScale,
 // rounded to whole turns (wholeTurns) so it points north at the top and the bottom.
 var TO_TOP = {
@@ -33,14 +32,14 @@ var TO_TOP = {
 // Pop in / out. Sizes are scale (1 = full size); "At" is where in the
 // animation the overshoot peaks (0–1 of the duration). Each ease is a
 // cubic-bezier: [x1, y1, x2, y2].
-// Back-to-top button (tune in arrow-lab.html):
+// Back-to-top button:
 var TO_TOP_POP = {
   inMs: 250,  inFrom: 0.9, inPeak: 1.2, inPeakAt: 0.05, inFadeMs: 100,         // appear: grows past full size, settles back
   inEase: [0.2, 0.6, 0.35, 1], settleEase: [0.45, 0, 0.55, 1],
   outMs: 240, outPeak: 1.2, outPeakAt: 0.34, outTo: 0.9, outFadeMs: 100,       // disappear: swells a little, then shrinks away
   swellEase: [0.35, 0, 0.5, 1], awayEase: [0.6, 0, 1, 0.7]
 };
-// "E-mail Copied!" toast (tune in the Tune panel):
+// "E-mail Copied!" toast:
 var TOAST_POP = {
   inMs: 250,  inFrom: 0.9, inPeak: 1.05, inPeakAt: 0.05, inFadeMs: 100,
   inEase: [0.2, 0.6, 0.35, 1], settleEase: [0.45, 0, 0.55, 1],
@@ -326,16 +325,6 @@ function showToast(text, anchor, event) {
   toastTimer = setTimeout(() => pop(toast, false, TOAST_POP), TOAST_POP.holdMs);
 }
 
-// Tune panel: play the toast at (x, y). "in" pops in and stays, "out" pops
-// it out from fully shown, "full" is the real thing (in, hold, out).
-window.__toastDemo = function (mode, x, y) {
-  showToast("E-mail Copied!", null, { detail: 1, clientX: x, clientY: y });
-  delete toast.dataset.follow;                // stay put while you use the panel
-  clearTimeout(toastTimer);
-  if (mode === "out") { (toast.__pops || []).forEach((a) => a.cancel()); toast.__pops = []; pop(toast, false, TOAST_POP); }
-  if (mode === "full") toastTimer = setTimeout(() => pop(toast, false, TOAST_POP), TOAST_POP.holdMs);
-};
-
 async function copyText(text) {
   try {
     await navigator.clipboard.writeText(text);
@@ -384,7 +373,7 @@ document.addEventListener("click", async (event) => {
   // The arrow's bounding box sits dead centre in the circle and it spins
   // around that centre. The box is measured from the real ink in a hidden
   // canvas, so it stays exact at any line weight.
-  window.__toTopGeom = function (s) {
+  function arrowGeom(s) {
     var y0 = 1.75 + s * 0.7, d = "M6 10.75V" + y0.toFixed(2) + "M2.25 5.5L6 1.75 9.75 5.5";
     var top = 1.75 - s / 2, bottom = 10.75 + s / 2;                          // estimates if canvas isn't available
     try {
@@ -403,7 +392,7 @@ document.addEventListener("click", async (event) => {
   };
   var nudgePx = 0;
   function drawArrow() {                         // line weight + centring from TO_TOP
-    var g = window.__toTopGeom(C.stroke);
+    var g = arrowGeom(C.stroke);
     needle.setAttribute("stroke-width", C.stroke);
     arrow.setAttribute("d", g.d);                // shaft ends inside the head so it never pokes through the tip
     arrow.setAttribute("transform", "translate(0 " + g.shift.toFixed(3) + ")");   // box centre = circle centre = pivot
@@ -472,10 +461,6 @@ document.addEventListener("click", async (event) => {
   isShown = (window.pageYOffset || document.documentElement.scrollTop) > 0;   // no pop on load
   btn.classList.toggle("is-visible", isShown);
 
-  window.__toTopRedraw = function () { drawArrow(); render(); };   // arrow lab: redraw live
-  window.__toTopPop = popBtn;                                          // arrow lab: play it by hand
-  window.__toTopInfo = function () { return { progress: progress(), turns: turnsForPage(), angle: shown, speed: speed, winding: winding }; };
-  window.__toTopKnock = function (deg) { shown += deg; winding = true; lastFast = -1e9; wake(); };   // arrow lab: wind it by hand
 
   btn.addEventListener("click", function (e) {
     try { window.scrollTo({ top: 0, behavior: reduceMotion.matches ? "auto" : "smooth" }); }

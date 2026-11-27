@@ -34,7 +34,7 @@ photography/index.html          Photo grid + the photos (click a photo for the v
 404.html                        Not found / "coming soon"
 archive/                        Every earlier version of the site (see below)
 _drafts/                        Tools and drafts, not linked from the site: styleguide,
-                                unlinked Writing layouts (A, C), arrow lab, tune panel
+                                unlinked Writing layouts (A, C)
 
 css/
   tokens.css      Type scale, spacing, colours, radii, theme values  ← edit here first
@@ -128,7 +128,6 @@ And in the page and around it:
 - Real images and `alt` text (all current images are placeholders)
 - Friends / Spirit Animal links in the footer
 - Project pages for the tiles that point to `404.html`
-- Remove `_drafts/tune.js` and its `<script>` line on each page when tuning is done
 - E-mail address (`hello@example.com` placeholder)
 
 ## The archive
