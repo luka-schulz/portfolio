@@ -824,7 +824,7 @@
    to the right edge (7–12). */
 
 .site-footer {
-  padding-block: var(--space-xl) var(--space-l);
+  padding-block: var(--space-xl) calc(var(--edge-ui) + 3rem + var(--space-s));   /* text clears the back-to-top button (3rem) */
   font-size: var(--step-chrome);
   line-height: var(--leading-snug);
   color: var(--color-muted);
