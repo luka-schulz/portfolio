@@ -100,6 +100,7 @@
   --color-switch-line: #c4c4c4;
 
   /* ---- Frame ratios: case study image boxes. Images fill and crop. */
+  --ratio-cinema: 21 / 9;
   --ratio-wide: 16 / 9;
   --ratio-landscape: 3 / 2;
   --ratio-square: 1 / 1;

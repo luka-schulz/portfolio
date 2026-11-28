@@ -424,6 +424,7 @@
    and is cropped to fit. Steer a crop per image with
    style="--focus: 30% 50%" on its .media (x% y%). Shapes:
      head film, single ........ wide (16:9)
+     quad ...................... cinema (21:9)
      float ..................... landscape (3:2)
      compose: large ............ square (1:1) · small ...... portrait (4:5)
      duo ....................... portrait (4:5) */
@@ -434,6 +435,7 @@
 .cs-compose .media            { --ratio: var(--ratio-portrait); }
 .cs-compose__main .media      { --ratio: var(--ratio-square); }
 .cs-duo .media                { --ratio: var(--ratio-portrait); }
+.cs-quad .media               { --ratio: var(--ratio-cinema); }
 
 /* cs-head — kicker; title, intro, details left; film right (tops aligned) */
 .cs-head { display: grid; gap: var(--space-l); }
@@ -470,6 +472,10 @@
   .cs-duo > :first-child { grid-column: 3 / span 4; }
   .cs-duo > :last-child  { grid-column: 7 / span 4; }
 }
+
+/* cs-quad — four images, 2 × 2 (stacked on phones), gaps match the columns */
+.cs-quad { display: grid; gap: var(--column-gap); }
+@media (min-width: 64em) { .cs-quad { grid-template-columns: 1fr 1fr; } }
 
 /* cs-float — one image off-grid with a short note */
 @media (min-width: 64em) {
