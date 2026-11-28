@@ -9,15 +9,27 @@
 
   const css = document.createElement('style');
   css.textContent = `
-    .le-bar { position: fixed; left: 1rem; bottom: 1rem; z-index: 2147483000; display: flex; gap: .375rem; align-items: center;
-      font: 500 13px/1 -apple-system, system-ui, sans-serif; color: #111; background: #fff; padding: .375rem;
-      border-radius: 999px; box-shadow: 0 1px 2px rgba(0,0,0,.15), 0 4px 16px rgba(0,0,0,.12); }
-    .le-bar button { font: inherit; color: inherit; background: #eee; border: 0; border-radius: 999px; padding: .5rem .875rem; cursor: pointer; }
-    .le-bar button[aria-pressed="true"] { background: #2563eb; color: #fff; }
-    .le-bar button.le-save { background: #111; color: #fff; }
-    .le-bar button:disabled { opacity: .35; cursor: default; }
-    .le-msg { padding: 0 .5rem; color: #555; white-space: nowrap; }
-    .le-msg.is-error { color: #c00; white-space: normal; max-width: 22rem; line-height: 1.3; }
+    /* the site's glass (see .glass in components.css), colours swapped:
+       dark glass in light mode, white glass in dark mode */
+    .le-bar { position: fixed; left: var(--edge-ui, 1.625rem); bottom: var(--edge-ui, 1.625rem); z-index: 2147483000;
+      display: flex; gap: .25rem; align-items: center; min-block-size: 3rem; padding: .375rem; border-radius: 1.5rem;
+      font: var(--step--1, .875rem)/1 var(--font-sans, Arial, sans-serif); color: var(--color-bg);
+      border: 1px solid color-mix(in srgb, var(--color-bg) var(--glass-edge, 8%), transparent);
+      background: color-mix(in srgb, var(--color-text) 92%, transparent); box-shadow: var(--glass-shadow); }
+    @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+      .le-bar { background: color-mix(in srgb, var(--color-text) var(--glass-opacity, 54%), transparent);
+        -webkit-backdrop-filter: blur(var(--glass-blur, 8px)) saturate(var(--glass-saturate, 1.6));
+                backdrop-filter: blur(var(--glass-blur, 8px)) saturate(var(--glass-saturate, 1.6)); } }
+    .le-bar button { font: inherit; color: inherit; background: transparent; border: 0; border-radius: 1.125rem;
+      block-size: 2.25rem; padding: 0 1rem; cursor: pointer; transition: background-color 160ms, color 160ms, opacity 160ms; }
+    .le-bar button:hover:not(:disabled) { background: color-mix(in srgb, var(--color-bg) 14%, transparent); }
+    .le-bar button[aria-pressed="true"] { background: color-mix(in srgb, var(--color-bg) 18%, transparent); }
+    .le-bar button.le-save:not(:disabled) { background: var(--color-bg); color: var(--color-text); }
+    .le-bar button:disabled { opacity: .4; cursor: default; }
+    .le-msg { padding: 0 .625rem 0 .25rem; opacity: .75; white-space: nowrap; }
+    .le-msg.is-error { opacity: 1; color: #ff6b6b; white-space: normal; max-width: 22rem; line-height: 1.3; }
+    :root[data-theme="dark"] .le-msg.is-error { color: #c00; }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .le-msg.is-error { color: #c00; } }
     html.le-on [data-edit] { outline: 1px dashed rgba(37,99,235,.45); outline-offset: 3px; cursor: text; }
     html.le-on [data-edit]:hover { outline-color: rgba(37,99,235,.9); }
     html.le-on [data-edit]:focus { outline: 2px solid #2563eb; }
