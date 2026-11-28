@@ -18,6 +18,18 @@ Then open http://localhost:8000. (Use the server rather than opening `index.html
 directly: links go to folders like `writing/`, which only a server turns into pages.)
 To test on your phone: same Wi-Fi, open `http://<your-mac's-IP>:8000`.
 
+### Edit text in the browser
+
+Double-click `_drafts/editor/Edit site.command` (or run `python3 _drafts/editor/edit.py`).
+It opens the site with an **Edit** button in the bottom-left corner. Click it, click
+into any heading, paragraph, caption or detail, and type; **⌘S** saves the change
+straight into that page's `.html` file. Esc stops editing. Close the Terminal window
+to quit. Only the text you changed is rewritten; the rest of the file stays as it was.
+
+The edit button exists only while this local server runs: the `.html` files never
+contain it, so the published site is unaffected. The editor lives entirely in
+`_drafts/editor/`.
+
 ### Structure
 
 Every page is a folder with an `index.html`, so addresses read
