@@ -76,14 +76,14 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
          Image boxes have fixed shapes (see "Frames" in components.css):
          the image fills its box and is cropped. To steer a crop, add
          style="--focus: 30% 50%" to that image's <div class="media">. -->
-    <article class="case" data-reveal-children data-lightbox>
+    <article class="case" data-lightbox>
 
       <header class="cs-head">
-        <p class="type-kicker">Project · Large-Format Display</p>
+        <p class="type-kicker" data-reveal>Project · Large-Format Display</p>
         <div class="cs-head__grid">
           <div class="cs-head__text">
-            <h1 class="cs-title">HLBMA</h1>
-            <p>For the lobby of HLBMA (Hyundai and LG’s joint battery manufacturing facility) Rare Volume worked with HSAD to design content for a 60-foot LED wall. As the centerpiece of the lobby, and the first thing seen upon entering, the content needed to strike a balance between beauty and elegance. We created a series of backgrounds inspired by nature that keep the space fresh while carrying daily news, weather and brand messaging.</p>
+            <h1 class="cs-title" data-reveal>HLBMA</h1>
+            <p data-reveal>For the lobby of HLBMA (Hyundai and LG’s joint battery manufacturing facility) Rare Volume worked with HSAD to design content for a 60-foot LED wall. As the centerpiece of the lobby, and the first thing seen upon entering, the content needed to strike a balance between beauty and elegance. We created a series of backgrounds inspired by nature that keep the space fresh while carrying daily news, weather and brand messaging.</p>
             <dl class="cs-details">
               <div data-reveal><dt>Client</dt><dd>HLBMA (Hyundai × LG)</dd></div>
               <div data-reveal><dt>Agency</dt><dd>HSAD</dd></div>
@@ -92,7 +92,7 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
             </dl>
           </div>
           <!-- TODO: point href at the film (Vimeo/YouTube) -->
-          <a class="video-poster cs-head__film" href="#" aria-label="Play the HLBMA film, 1 minute 2 seconds">
+          <a class="video-poster cs-head__film" data-reveal href="#" aria-label="Play the HLBMA film, 1 minute 2 seconds">
             <span class="media"><img src="poster.jpg" srcset="poster-800.jpg 800w, poster.jpg 1726w" sizes="(min-width: 64em) 60vw, 96vw" alt="" width="1726" height="911" fetchpriority="high"></span>
             <span class="video-poster__play">
               <svg viewBox="0 0 44 44" fill="none" aria-hidden="true"><circle cx="22" cy="22" r="21" stroke="currentColor"/><path d="M18 15l11 7-11 7z" fill="currentColor"/></svg>
@@ -103,12 +103,12 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
       </header>
 
       <!-- TODO: every image below is a placeholder; swap in the real frames -->
-      <section class="cs-float cs-float--left" aria-label="The wall">
+      <section class="cs-float cs-float--left" data-reveal-children aria-label="The wall">
         <figure><div class="media"><img src="../../photography/photo-05.jpg" alt="" loading="lazy" decoding="async"></div></figure>
         <blockquote class="cs-quote"><p>Nature, rendered at scale&#8288;— <span class="type-muted">four textures across eighteen meters of wall.</span></p></blockquote>
       </section>
 
-      <section class="cs-text" aria-labelledby="visual-direction">
+      <section class="cs-text" data-reveal-children aria-labelledby="visual-direction">
         <div>
           <p class="cs-label">Visual direction</p>
           <h2 id="visual-direction" class="cs-heading">An organic visual language</h2>
@@ -119,7 +119,7 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
       </section>
 
       <!-- Spread: tops line up per row; sizes vary. Captions: name, then colorway -->
-      <section class="cs-free" aria-label="The four textures">
+      <section class="cs-free" data-reveal-children aria-label="The four textures">
         <figure style="--at: 1 / span 6"><div class="media"><img src="../../photography/photo-01.jpg" alt="" loading="lazy" decoding="async"></div><figcaption class="cs-caption"><span class="cs-caption__title">Water</span>Colorway 01</figcaption></figure>
         <figure style="--at: 7 / span 3; --at-sm: span 1"><div class="media"><img src="../../photography/photo-04.jpg" alt="" loading="lazy" decoding="async"></div><figcaption class="cs-caption"><span class="cs-caption__title">Stone</span>Colorway 01</figcaption></figure>
         <figure style="--at: 11 / span 2; --at-sm: span 1; --ratio: var(--ratio-portrait)"><div class="media"><img src="../../photography/photo-03.jpg" alt="" loading="lazy" decoding="async"></div><figcaption class="cs-caption"><span class="cs-caption__title">Grass</span>Colorway 01</figcaption></figure>
@@ -130,7 +130,7 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
 
       <!-- Palette spread: note and small image top-left, a large image under
            them, a tall image right, two small ones bottom-right -->
-      <section class="cs-free" aria-label="The palette">
+      <section class="cs-free" data-reveal-children aria-label="The palette">
         <div class="cs-note" style="--at: 1 / span 3; --row: 1">
           <p class="cs-label">The palette</p>
           <p>Four textures, each in two or three colorways: eleven backgrounds, all made to sit quietly behind the messaging.</p>
@@ -143,14 +143,14 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
       </section>
 
       <!-- Four backgrounds, all 21:9: two large stepping right, then a large/medium pair sitting on one baseline -->
-      <section class="cs-free" style="--row-gap: var(--column-gap)" aria-label="Backgrounds on the wall">
+      <section class="cs-free" data-reveal-children style="--row-gap: var(--column-gap)" aria-label="Backgrounds on the wall">
         <figure style="--ratio: var(--ratio-cinema); --at: 1 / span 8"><div class="media"><img src="../../photography/photo-15.jpg" alt="" loading="lazy" decoding="async"></div></figure>
         <figure style="--ratio: var(--ratio-cinema); --at: 5 / span 8"><div class="media"><img src="../../photography/photo-18.jpg" alt="" loading="lazy" decoding="async"></div></figure>
         <figure style="--ratio: var(--ratio-cinema); --at: 1 / span 7"><div class="media"><img src="../../photography/photo-16.jpg" alt="" loading="lazy" decoding="async"></div></figure>
         <figure style="--ratio: var(--ratio-cinema); --at: 8 / span 5; --align: end"><div class="media"><img src="../../photography/photo-17.jpg" alt="" loading="lazy" decoding="async"></div></figure>
       </section>
 
-      <section class="cs-text" aria-labelledby="system">
+      <section class="cs-text" data-reveal-children aria-labelledby="system">
         <div>
           <p class="cs-label">System / CMS</p>
           <h2 id="system" class="cs-heading">Designed for change</h2>
@@ -161,7 +161,7 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
       </section>
 
       <!-- TODO: point href at the CMS film; swap the poster and duration -->
-      <section class="cs-single" aria-label="The CMS in use">
+      <section class="cs-single" data-reveal-children aria-label="The CMS in use">
         <figure>
           <a class="video-poster" href="#" aria-label="Play the CMS film">
             <span class="media"><img src="../../photography/photo-08.jpg" alt="" loading="lazy" decoding="async"></span>
@@ -175,7 +175,7 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
       </section>
 
       <!-- Templates: small spec note, then the three templates at the wall's shape -->
-      <section class="cs-free" aria-label="The canvas and its templates">
+      <section class="cs-free" data-reveal-children aria-label="The canvas and its templates">
         <div class="cs-note" style="--at: 1 / span 3">
           <p class="cs-label">The canvas</p>
           <dl>
@@ -190,18 +190,18 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
         <figure style="--at: 9 / span 4; --ratio: var(--ratio-cinema)"><div class="media"><img src="../../photography/photo-01.jpg" alt="" loading="lazy" decoding="async"></div><figcaption class="cs-caption"><span class="cs-caption__title">Message</span>Full-screen announcements</figcaption></figure>
       </section>
 
-      <section class="cs-statement" aria-label="Closing">
+      <section class="cs-statement" data-reveal-children aria-label="Closing">
         <p>Built to keep evolving&#8288;— <span class="type-muted">one wall, endless stories.</span></p>
       </section>
 
       <!-- TODO: the final beauty render -->
-      <section class="cs-single" aria-label="The wall in the lobby">
+      <section class="cs-single" data-reveal-children aria-label="The wall in the lobby">
         <figure><div class="media" style="--ratio: var(--ratio-cinema)"><img src="../../photography/photo-11.jpg" alt="" loading="lazy" decoding="async"></div></figure>
       </section>
 
       <section class="cs-credits" aria-labelledby="credits">
-        <h2 id="credits" class="cs-label">Credits</h2>
-        <dl>
+        <h2 id="credits" class="cs-label" data-reveal>Credits</h2>
+        <dl data-reveal-children>
           <div><dt>Creative Director</dt> <dd>Jonathan Kim</dd></div>
           <div><dt>Executive Producer</dt> <dd>Jillian Stevens</dd></div>
           <div><dt>Art Director</dt> <dd>Luka Schulz</dd></div>

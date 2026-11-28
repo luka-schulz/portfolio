@@ -71,14 +71,14 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
          Image boxes have fixed shapes (see "Frames" in components.css):
          the image fills its box and is cropped. To steer a crop, add
          style="--focus: 30% 50%" to that image's <div class="media">. -->
-    <article class="case" data-reveal-children data-lightbox>
+    <article class="case" data-lightbox>
 
       <header class="cs-head">
-        <p class="type-kicker">Project · Interactive Data-Viz</p>
+        <p class="type-kicker" data-reveal>Project · Interactive Data-Viz</p>
         <div class="cs-head__grid">
           <div class="cs-head__text">
-            <h1 class="cs-title">Torre Glòries</h1>
-            <p>I had the tremendous opportunity to help concept, design, and animate a permanent exhibit within the Torre Glòries, Hyperview Barcelona, an experience that surfaces the day-to-day interactions between the people of Barcelona and their environment.</p>
+            <h1 class="cs-title" data-reveal>Torre Glòries</h1>
+            <p data-reveal>I had the tremendous opportunity to help concept, design, and animate a permanent exhibit within the Torre Glòries, Hyperview Barcelona, an experience that surfaces the day-to-day interactions between the people of Barcelona and their environment.</p>
             <dl class="cs-details">
               <div data-reveal><dt>Role</dt><dd>Design &amp; Motion</dd></div>
               <div data-reveal><dt>Studio</dt><dd>Rare Volume</dd></div>
@@ -86,7 +86,7 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
             </dl>
           </div>
           <!-- TODO: point href at the film (Vimeo/YouTube) -->
-          <a class="video-poster cs-head__film" href="#" aria-label="Play the Torre Glòries film, 2 minutes 10 seconds">
+          <a class="video-poster cs-head__film" data-reveal href="#" aria-label="Play the Torre Glòries film, 2 minutes 10 seconds">
             <span class="media"><img src="cover.jpg" alt="" width="785" height="468" fetchpriority="high"></span>
             <span class="video-poster__play">
               <svg viewBox="0 0 44 44" fill="none" aria-hidden="true"><circle cx="22" cy="22" r="21" stroke="currentColor"/><path d="M18 15l11 7-11 7z" fill="currentColor"/></svg>
@@ -96,7 +96,7 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
         </div>
       </header>
 
-      <section class="cs-text" aria-labelledby="overview">
+      <section class="cs-text" data-reveal-children aria-labelledby="overview">
         <div>
           <p class="cs-label">Overview</p>
           <h2 id="overview" class="cs-heading">A new way of seeing</h2>
@@ -107,13 +107,13 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
         </div>
       </section>
 
-      <section class="cs-single" aria-label="The exhibit"><figure><div class="media"><img src="torre-glories-01.jpg" alt="Close-up of a luminous blue-green banner rippling across a curved wall" width="1360" height="604" loading="lazy" decoding="async"></div></figure></section>
+      <section class="cs-single" data-reveal-children aria-label="The exhibit"><figure><div class="media"><img src="torre-glories-01.jpg" alt="Close-up of a luminous blue-green banner rippling across a curved wall" width="1360" height="604" loading="lazy" decoding="async"></div></figure></section>
 
-      <section class="cs-float cs-float--right" aria-label="The exhibit, entrance">
+      <section class="cs-float cs-float--right" data-reveal-children aria-label="The exhibit, entrance">
         <figure><div class="media"><img src="torre-glories-02.jpg" alt="Curved wall of green data lines beside the exhibit's printed introduction" width="670" height="380" loading="lazy" decoding="async"></div><figcaption class="cs-caption">The panoramic wall wraps the base floor of the tower, beside the exhibit’s printed introduction.</figcaption></figure>
       </section>
 
-      <section class="cs-text" aria-labelledby="wind">
+      <section class="cs-text" data-reveal-children aria-labelledby="wind">
         <div>
           <p class="cs-label">01 — Wind</p>
           <h2 id="wind" class="cs-heading">Generative art, and a meteorological instrument</h2>
@@ -123,20 +123,20 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
         </div>
       </section>
 
-      <section class="cs-compose" aria-label="Wind, gallery">
+      <section class="cs-compose" data-reveal-children aria-label="Wind, gallery">
         <figure class="cs-compose__main"><div class="media"><img src="torre-glories-04.jpg" alt="Title card reading “Wind” over a pale, iridescent banner" width="1360" height="604" loading="lazy" decoding="async"></div><figcaption class="cs-caption">Wind speed, direction, air quality, pollen and spore levels—read live from the city.</figcaption></figure>
         <figure><div class="media"><img src="torre-glories-05.jpg" alt="Visitor standing beneath a towering white banner on the panoramic screen" width="670" height="380" loading="lazy" decoding="async"></div></figure>
         <figure><div class="media"><img src="torre-glories-06.jpg" alt="Glass-like readout showing a wind speed of 12.1 km/h" width="670" height="380" loading="lazy" decoding="async"></div></figure>
       </section>
 
-      <section class="cs-duo" aria-label="Wind, details">
+      <section class="cs-duo" data-reveal-children aria-label="Wind, details">
         <figure><div class="media"><img src="torre-glories-07.jpg" alt="Wide view of the banner sweeping across the dark gallery" width="670" height="380" loading="lazy" decoding="async"></div></figure>
         <figure><div class="media"><img src="torre-glories-08.jpg" alt="Visitor watching a blue banner with a pollen and spore level readout" width="670" height="380" loading="lazy" decoding="async"></div></figure>
       </section>
 
-      <section class="cs-single" aria-label="Wind"><figure><div class="media"><img src="torre-glories-09.jpg" alt="Blue and green banner rising diagonally across the screen" width="1360" height="604" loading="lazy" decoding="async"></div></figure></section>
+      <section class="cs-single" data-reveal-children aria-label="Wind"><figure><div class="media"><img src="torre-glories-09.jpg" alt="Blue and green banner rising diagonally across the screen" width="1360" height="604" loading="lazy" decoding="async"></div></figure></section>
 
-      <section class="cs-text" aria-labelledby="sky">
+      <section class="cs-text" data-reveal-children aria-labelledby="sky">
         <div>
           <p class="cs-label">02 — Sky Above Us</p>
           <h2 id="sky" class="cs-heading">A realtime view of the heavens above Barcelona</h2>
@@ -147,19 +147,19 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
         </div>
       </section>
 
-      <section class="cs-single" aria-label="Sky Above Us"><figure><div class="media"><img src="torre-glories-11.jpg" alt="Visitor silhouetted before swirling blue star trails" width="1360" height="756" loading="lazy" decoding="async"></div></figure></section>
+      <section class="cs-single" data-reveal-children aria-label="Sky Above Us"><figure><div class="media"><img src="torre-glories-11.jpg" alt="Visitor silhouetted before swirling blue star trails" width="1360" height="756" loading="lazy" decoding="async"></div></figure></section>
 
-      <section class="cs-float cs-float--left" aria-label="Sky Above Us, satellites">
+      <section class="cs-float cs-float--left" data-reveal-children aria-label="Sky Above Us, satellites">
         <figure><div class="media"><img src="torre-glories-12.jpg" alt="Visitor beside glowing spheres marking satellites in orbit" width="670" height="380" loading="lazy" decoding="async"></div></figure>
         <blockquote class="cs-quote"><p>Planets, constellations and satellites— <span class="type-muted">plotted in real time against the stars.</span></p></blockquote>
       </section>
 
-      <section class="cs-duo" aria-label="Sky Above Us, details">
+      <section class="cs-duo" data-reveal-children aria-label="Sky Above Us, details">
         <figure><div class="media"><img src="torre-glories-14.jpg" alt="Detail of a satellite label reading Express 80" width="670" height="380" loading="lazy" decoding="async"></div></figure>
         <figure><div class="media"><img src="torre-glories-15.jpg" alt="Detail of a constellation line drawn across blue stars" width="670" height="380" loading="lazy" decoding="async"></div></figure>
       </section>
 
-      <section class="cs-text" aria-labelledby="sound">
+      <section class="cs-text" data-reveal-children aria-labelledby="sound">
         <div>
           <p class="cs-label">03 — Soundscapes</p>
           <h2 id="sound" class="cs-heading">A spectrographic picture of the city</h2>
@@ -169,21 +169,21 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
         </div>
       </section>
 
-      <section class="cs-compose" aria-label="Soundscapes, gallery">
+      <section class="cs-compose" data-reveal-children aria-label="Soundscapes, gallery">
         <figure class="cs-compose__main"><div class="media"><img src="torre-glories-16.jpg" alt="Blue spectrogram of sound lines with labelled bird calls" width="1360" height="756" loading="lazy" decoding="async"></div><figcaption class="cs-caption">Sea, City, Mountain, River—each built from animal, nature and human sounds.</figcaption></figure>
         <figure><div class="media"><img src="torre-glories-17.jpg" alt="Title card reading “Soundscapes”" width="670" height="380" loading="lazy" decoding="async"></div></figure>
         <figure><div class="media"><img src="torre-glories-18.jpg" alt="Purple spectrogram with labelled gull and street sounds" width="670" height="380" loading="lazy" decoding="async"></div></figure>
       </section>
 
-      <section class="cs-float cs-float--right" aria-label="Soundscapes, city">
+      <section class="cs-float cs-float--right" data-reveal-children aria-label="Soundscapes, city">
         <figure><div class="media"><img src="torre-glories-19.jpg" alt="Pink and gold spectrogram of city sounds across the curved wall" width="670" height="380" loading="lazy" decoding="async"></div><figcaption class="cs-caption">The City soundscape across the curved wall.</figcaption></figure>
       </section>
 
-      <section class="cs-single" aria-label="Soundscapes, installed"><figure><div class="media"><img src="torre-glories-21.jpg" alt="Green spectrogram wall beside the dark exhibit entrance" width="1360" height="756" loading="lazy" decoding="async"></div></figure></section>
+      <section class="cs-single" data-reveal-children aria-label="Soundscapes, installed"><figure><div class="media"><img src="torre-glories-21.jpg" alt="Green spectrogram wall beside the dark exhibit entrance" width="1360" height="756" loading="lazy" decoding="async"></div></figure></section>
 
       <section class="cs-credits" aria-labelledby="credits">
-        <h2 id="credits" class="cs-label">Credits</h2>
-        <dl>
+        <h2 id="credits" class="cs-label" data-reveal>Credits</h2>
+        <dl data-reveal-children>
           <div><dt>Creative Director</dt> <dd>Jonathan Kim</dd></div>
           <div><dt>Technical Director</dt> <dd>Andrew Bell</dd></div>
           <div><dt>Head of R&amp;D</dt> <dd>Robert Hodgin</dd></div>
