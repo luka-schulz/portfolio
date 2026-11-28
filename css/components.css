@@ -1111,8 +1111,10 @@
   }
 }
 .idle__time {
+  display: flex;
+  align-items: baseline;
   font-size: min(38vh, 27vw);              /* big: digits about a quarter of the screen tall */
-  line-height: 0.8;
+  line-height: 1;
   white-space: nowrap;
   letter-spacing: var(--tracking-display);
   font-variant-numeric: tabular-nums;
@@ -1126,6 +1128,10 @@
   transform: none;
   transition: opacity 700ms var(--ease-fade) 150ms, transform 900ms var(--ease-settle) 150ms;
 }
+/* each digit's window: the old number slides up out of it, the new one up into it */
+.idle__digit { position: relative; display: inline-block; clip-path: inset(0); }   /* clip-path keeps the baseline (overflow would move it) */
+.idle__digit > span { display: block; }
+.idle__digit > .is-next { position: absolute; inset: 0; }
 .idle__colon { display: inline-block; margin-inline: 0.02em; animation: idle-blink 1s steps(1, end) infinite; }
 .idle__period { font-size: 0.14em; letter-spacing: 0; margin-inline-start: 0.6em; color: var(--color-muted); }   /* AM / PM: small, on the baseline */
 @keyframes idle-blink { 50% { opacity: 0; } }

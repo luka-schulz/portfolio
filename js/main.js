@@ -714,17 +714,51 @@ document.addEventListener("click", async (event) => {
   el.setAttribute("aria-hidden", "true");
   el.innerHTML = '<p class="idle__time"></p>';
   document.body.append(el);
-  var timeEl = el.firstChild, timer = 0, tick = 0, on = false, wokeAt = 0, shown = "";
+  var timeEl = el.firstChild, timer = 0, tick = 0, on = false, wokeAt = 0;
   var fmt = new Intl.DateTimeFormat(undefined, { hour: "numeric", minute: "2-digit" });
+  var slots = [], layout = "";
 
-  function render() {
-    var html = fmt.formatToParts(new Date()).map(function (p) {
+  // Each digit sits in its own window (.idle__digit). When it changes, the old
+  // number slides up and out and the new one slides up into place.
+  function build(parts) {
+    timeEl.innerHTML = parts.map(function (p) {
+      if (p.type === "hour" || p.type === "minute")
+        return p.value.split("").map(function (d) { return '<span class="idle__digit"><span>' + d + "</span></span>"; }).join("");
       if (p.type === "literal" && p.value.trim() === ":") return '<span class="idle__colon">:</span>';
       if (p.type === "dayPeriod") return '<span class="idle__period">' + p.value + "</span>";
-      if (p.type === "literal" && !p.value.trim()) return "";      // the space before AM/PM would be giant; CSS sets the gap
-      return p.value.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+      return "";                                   // the space before AM/PM would be giant; CSS sets the gap
     }).join("");
-    if (html !== shown) { timeEl.innerHTML = html; shown = html; }   // only when the minute changes
+    slots = [].slice.call(timeEl.querySelectorAll(".idle__digit"));
+  }
+  function roll(slot, digit, delay) {
+    var old = slot.lastChild;
+    if (!on || !old.animate || reduceMotion.matches) { old.textContent = digit; return; }
+    var next = document.createElement("span");
+    next.className = "is-next";
+    next.textContent = digit;
+    slot.append(next);
+    var o = { duration: 700, delay: delay, easing: "cubic-bezier(0.2, 0.8, 0.2, 1)", fill: "both" };
+    old.animate([{ transform: "translateY(0)" }, { transform: "translateY(-105%)" }], o);
+    next.animate([{ transform: "translateY(105%)" }, { transform: "translateY(0)" }], o).onfinish = function () {
+      old.remove();
+      next.className = "";
+      next.getAnimations().forEach(function (a) { a.cancel(); });   // rests where it landed
+    };
+  }
+  function render() {
+    var parts = fmt.formatToParts(new Date()), digits = [], key = "";
+    parts.forEach(function (p) {
+      if (p.type === "hour" || p.type === "minute") { digits = digits.concat(p.value.split("")); key += p.type[0] + p.value.length; }
+      else if (p.type === "dayPeriod") key += p.value;
+    });
+    if (key !== layout) { build(parts); layout = key; }         // first time, 9:59 → 10:00, AM → PM
+    else {
+      var n = 0;
+      for (var i = slots.length - 1; i >= 0; i--) {              // right to left, a beat apart
+        var now = slots[i].lastChild.textContent;
+        if (now !== digits[i]) roll(slots[i], digits[i], 70 * n++);
+      }
+    }
     // keep the colon's blink on the real second: on for its first half, off for the second
     var colon = timeEl.querySelector(".idle__colon");
     if (colon) colon.style.animationDelay = -(Date.now() % 1000) + "ms";
