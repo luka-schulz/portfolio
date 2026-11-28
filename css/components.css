@@ -1081,9 +1081,9 @@
   z-index: 300;                           /* over everything, the photo viewer too */
   inset: 0;
   display: flex;
-  align-items: center;                    /* right of centre, a little below the middle */
+  align-items: center;                    /* right of centre, vertically centred */
   justify-content: flex-end;
-  padding: 12vh 10vw 0 var(--edge-ui);
+  padding: 0 10vw 0 var(--edge-ui);
   background: color-mix(in srgb, var(--color-bg) 0%, transparent);
   pointer-events: none;
   visibility: hidden;
