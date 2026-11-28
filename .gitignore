@@ -1,3 +1,5 @@
 .DS_Store
 # old placeholder images and the previous tune panel, kept on the Mac only
 _drafts/_unused/
+# full-size originals (the site uses the .jpg copies made from them)
+work/**/*.png
