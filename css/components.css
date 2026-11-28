@@ -272,7 +272,7 @@
   place-content: center;
   justify-items: center;
   gap: var(--space-2xs);
-  font-size: var(--step--2);
+  font-size: var(--step-0);              /* body size */
   font-variant-numeric: tabular-nums;   /* the film's length */
 }
 .video-poster__play svg { inline-size: 4.65rem; block-size: auto; }   /* 74px */
