@@ -14,37 +14,7 @@ const QUIPS = [
 // shadow. on: false turns it off. Tune it on _drafts/dapple.html, then paste
 // its "Copy settings" over this block. Anything left out uses dapple.js's default.
 var DAPPLE = {
-  on: true,
-  angle: -28,
-  shadowShare: 0.6,
-  lightShadow: "#949494",
-  lightShadowStrength: 0.29,
-  lightLight: "#e8e1d4",
-  lightLightStrength: 0.6,
-  darkShadow: "#000000",
-  darkShadowStrength: 0.35,
-  darkLight: "#ffecd2",
-  darkLightStrength: 0.07,
-  speed: 0.64,
-  drift: 0.22,
-  wobble: 0.047,
-  twist: 5.5,
-  stretch: 0.6,
-  fade: 1,
-  fps: 41,
-  sharpCount: 30,
-  sharpLength: 0.41,
-  sharpWidth: 0.14,
-  sharpSoftness: 4,
-  sharpHardness: 0,
-  sharpStrength: 0.55,
-  softCount: 9,
-  softLength: 0.92,
-  softWidth: 0.12,
-  softSoftness: 14,
-  softHardness: 0.1,
-  softStrength: 0.5,
-  seed: 7
+  on: true
 };
 
 // Back-to-top arrow: turns with the page as you scroll.

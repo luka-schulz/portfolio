@@ -261,7 +261,7 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
     <div id="dt-fields"></div>
     <div class="row" id="dt-presets"><span style="align-self:center;color:var(--color-muted)">Presets</span></div>
     <div class="row">
-      <button type="button" id="dt-boost" aria-pressed="false">Boost ×6</button>
+      <button type="button" id="dt-boost" aria-pressed="false">Boost ×4</button>
       <button type="button" id="dt-theme">Light / dark</button>
       <button type="button" id="dt-shuffle">Shuffle layout</button>
     </div>
@@ -270,6 +270,7 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
       <button type="button" id="dt-reset">Reset</button>
       <button type="button" id="dt-hide">Hide</button>
     </div>
+    <p class="note" id="dt-cost"></p>
     <p class="note" id="dt-note">Boost shows the shapes clearly while you tune them; it isn't saved. Your tweaks are kept in this browser until you Reset.</p>
   </div>
   <button type="button" class="dt-show glass" id="dt-show" hidden>Dapple</button>
@@ -278,44 +279,47 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
     var FIELDS = [
       ["Light mode"],
       ["lightShadow", "Shadow colour", "color"], ["lightShadowStrength", "Shadow strength", 0, 1, 0.005],
-      ["lightLight", "Light colour", "color"],   ["lightLightStrength", "Light strength", 0, 1, 0.005],
+      ["lightLight", "Light colour", "color"],   ["lightLightStrength", "Light tint", 0, 1, 0.01],
       ["Dark mode"],
       ["darkShadow", "Shadow colour", "color"],  ["darkShadowStrength", "Shadow strength", 0, 1, 0.005],
-      ["darkLight", "Light colour", "color"],    ["darkLightStrength", "Light strength", 0, 1, 0.005],
-      ["Light"],
+      ["darkLight", "Light colour", "color"],    ["darkLightStrength", "Light tint", 0, 1, 0.01],
+      ["Shape"],
       ["angle", "Angle", -90, 90, 1],
-      ["shadowShare", "Shadow share", 0, 1, 0.05],
+      ["ragged", "Raggedness", 1, 6, 1],
       ["Movement"],
       ["speed", "Speed", 0, 1, 0.01],
-      ["drift", "Slide (along)", 0, 0.3, 0.005],
-      ["wobble", "Sway (across)", 0, 0.08, 0.001],
+      ["drift", "Clump slide", 0, 0.2, 0.005],
+      ["wobble", "Clump sway", 0, 0.08, 0.001],
+      ["flutter", "Patch flutter", 0, 0.06, 0.001],
       ["twist", "Twist °", 0, 20, 0.5],
-      ["stretch", "Stretch", 0, 0.6, 0.01],
+      ["stretch", "Stretch", 0, 1, 0.01],
       ["fade", "Fade in / out", 0, 1, 0.05],
       ["fps", "Frame rate", 5, 60, 1],
       ["Crisp layer (on top)"],
-      ["sharpCount", "Bands", 0, 30, 1],
-      ["sharpLength", "Length", 0.05, 1.5, 0.01],
-      ["sharpWidth", "Width", 0.005, 0.3, 0.005],
-      ["sharpSoftness", "Blur", 1, 24, 1],
+      ["sharpCount", "Clumps", 0, 40, 1],
+      ["sharpPieces", "Patches each", 1, 16, 1],
+      ["sharpSpread", "Clump size", 0, 0.4, 0.005],
+      ["sharpLength", "Patch length", 0.01, 0.4, 0.005],
+      ["sharpWidth", "Patch width", 0.002, 0.15, 0.002],
+      ["sharpSoftness", "Blur", 1, 16, 1],
       ["sharpHardness", "Edge", 0, 0.9, 0.05],
       ["sharpStrength", "Strength", 0, 2, 0.05],
       ["Soft layer (under)"],
-      ["softCount", "Bands", 0, 30, 1],
-      ["softLength", "Length", 0.05, 1.5, 0.01],
-      ["softWidth", "Width", 0.005, 0.4, 0.005],
-      ["softSoftness", "Blur", 1, 32, 1],
+      ["softCount", "Clumps", 0, 30, 1],
+      ["softPieces", "Patches each", 1, 12, 1],
+      ["softSpread", "Clump size", 0, 0.5, 0.005],
+      ["softLength", "Patch length", 0.02, 0.8, 0.01],
+      ["softWidth", "Patch width", 0.005, 0.4, 0.005],
+      ["softSoftness", "Blur", 2, 32, 1],
       ["softHardness", "Edge", 0, 0.9, 0.05],
       ["softStrength", "Strength", 0, 2, 0.05],
       ["Arrangement"],
       ["seed", "Layout", 1, 200, 1]
     ];
     var PRESETS = {
-      "Luka’s pass": {"angle": -28, "shadowShare": 0.6, "lightShadow": "#949494", "lightShadowStrength": 0.29, "lightLight": "#e8e1d4", "lightLightStrength": 0.6, "darkShadow": "#000000", "darkShadowStrength": 0.35, "darkLight": "#ffecd2", "darkLightStrength": 0.07, "speed": 0.64, "drift": 0.22, "wobble": 0.047, "twist": 5.5, "stretch": 0.6, "fade": 1, "fps": 41, "sharpCount": 30, "sharpLength": 0.41, "sharpWidth": 0.14, "sharpSoftness": 4, "sharpHardness": 0, "sharpStrength": 0.55, "softCount": 9, "softLength": 0.92, "softWidth": 0.12, "softSoftness": 14, "softHardness": 0.1, "softStrength": 0.5, "seed": 7},
-      "Claude’s pass": {"angle": -24, "shadowShare": 0.55, "lightShadow": "#8f8a84", "lightShadowStrength": 0.2, "lightLight": "#ece4d6", "lightLightStrength": 0.55, "darkShadow": "#000000", "darkShadowStrength": 0.45, "darkLight": "#ffe6c4", "darkLightStrength": 0.13, "speed": 0.32, "drift": 0.2, "wobble": 0.018, "twist": 3, "stretch": 0.35, "fade": 0.85, "fps": 30, "sharpCount": 14, "sharpLength": 0.6, "sharpWidth": 0.045, "sharpSoftness": 4, "sharpHardness": 0.35, "sharpStrength": 0.6, "softCount": 8, "softLength": 1.1, "softWidth": 0.2, "softSoftness": 16, "softHardness": 0.05, "softStrength": 0.55, "seed": 7},
-      "Defaults": {}
+      "Defaults (Claude’s pass 2)": {}
     };
-    var KEY = "dapple-tune-2", boost = false, vals = {};
+    var KEY = "dapple-tune-3", boost = false, vals = {};
     function ready(fn) { window.__dapple ? fn() : setTimeout(function () { ready(fn); }, 50); }
     function hex(rgb) { return "#" + rgb.split(",").map(function (n) { return (+n).toString(16).padStart(2, "0"); }).join(""); }
     function rgb(h) { return [1, 3, 5].map(function (i) { return parseInt(h.slice(i, i + 2), 16); }).join(", "); }
@@ -348,7 +352,7 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
       function apply() {
         try { localStorage.setItem(KEY, JSON.stringify(vals)); } catch (e) {}
         var v = Object.assign({}, vals);
-        if (boost) ["lightShadowStrength", "lightLightStrength", "darkShadowStrength", "darkLightStrength"].forEach(function (k) { v[k] = Math.min(1, v[k] * 6); });
+        if (boost) ["lightShadowStrength", "darkShadowStrength", "darkLightStrength"].forEach(function (k) { v[k] = Math.min(1, v[k] * 4); });
         D.set(v);
       }
       function sync() { box.querySelectorAll("label[data-name]").forEach(function (l) { var n = l.dataset.name, r = l.querySelector("input"); r.value = vals[n]; l.querySelector("output").textContent = fmt(vals[n], +r.step); }); }
@@ -365,6 +369,8 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
         btn.onclick = function () { setAll(PRESETS[name]); };
         pre.append(btn);
       });
+      var costEl = document.getElementById("dt-cost");
+      setInterval(function () { var c = D.cost(); costEl.textContent = "Cost on this machine: " + c.msPerFrame.toFixed(2) + " ms per frame · " + Math.round(c.msPerSecond) + " ms per second (under ~20 is light)"; }, 500);
       var boostBtn = document.getElementById("dt-boost");
       function toggleBoost() { boost = !boost; boostBtn.setAttribute("aria-pressed", boost); apply(); }
       boostBtn.onclick = toggleBoost;
