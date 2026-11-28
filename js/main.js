@@ -720,6 +720,7 @@ document.addEventListener("click", async (event) => {
     var html = fmt.formatToParts(new Date()).map(function (p) {
       if (p.type === "literal" && p.value.trim() === ":") return '<span class="idle__colon">:</span>';
       if (p.type === "dayPeriod") return '<span class="idle__period">' + p.value + "</span>";
+      if (p.type === "literal" && !p.value.trim()) return "";      // the space before AM/PM would be giant; CSS sets the gap
       return p.value.replace(/&/g, "&amp;").replace(/</g, "&lt;");
     }).join("");
     if (html !== shown) { timeEl.innerHTML = html; shown = html; }   // only when the minute changes
