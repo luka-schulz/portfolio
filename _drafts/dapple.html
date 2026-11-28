@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Runs before first paint: saved theme; fade-in setup (only where it can
+       animate, with a 3s failsafe); scroll restore on reload / back-forward. -->
+  <script>(function(d,w){
+try{var t=localStorage.getItem("theme");if(t)d.dataset.theme=t}catch(e){}
+if("IntersectionObserver" in w&&w.requestAnimationFrame&&!(w.matchMedia&&w.matchMedia("(prefers-reduced-motion: reduce)").matches)){d.className+=" reveal-on";w.__revealFailsafe=setTimeout(function(){d.className=d.className.replace(" reveal-on","")},3000)}
+try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=performance.getEntriesByType&&performance.getEntriesByType("navigation")[0],k=n?n.type:"",y=+sessionStorage.getItem("scroll:"+location.pathname);if((k==="reload"||k==="back_forward")&&y>0){w.__restoreY=y;d.className+=" is-restoring";setTimeout(function(){d.className=d.className.replace(" is-restoring","")},1000)}}}catch(e){}
+})(document.documentElement,window)</script>
+  <title>Dapple tuning — Luka Schulz</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Essays and notes by Luka Schulz on designing for space, data and motion.">
+  <meta name="theme-color" content="#faf8f8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e0e0e" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta property="og:title" content="Writing — Luka Schulz">
+  <meta property="og:description" content="Essays and notes by Luka Schulz on designing for space, data and motion.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lukaschulz.com/writing/">
+  <meta property="og:site_name" content="Luka Schulz">
+  <meta property="og:image" content="https://lukaschulz.com/assets/share.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Luka Schulz — Design &amp; Motion">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- CSS order matters: tokens → base → layout → components -->
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <script src="../js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__grid">
+      <a class="site-header__name" href="../"><svg class="smile" viewBox="30 29 40 40" aria-hidden="true"><circle cx="35" cy="34" r="4"/><circle cx="65" cy="35" r="4"/><path d="M61.33 58.23A14 14 0 0 1 37.73 56.74"/></svg>Luka Schulz</a>
+      <nav class="site-nav" aria-label="Main">
+        <ul role="list">
+          <li><a href="../"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="1" width="4" height="4"/><rect x="7" y="1" width="4" height="4"/><rect x="1" y="7" width="4" height="4"/><rect x="7" y="7" width="4" height="4"/></svg>Work</a></li>
+          <li><a href="./" aria-current="page"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M1 2.5h10M1 6h10M1 9.5h6"/></svg>Writing</a></li>
+          <li><a href="../photography/"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="2.5" width="10" height="8"/><circle cx="6" cy="6.5" r="2"/></svg>Photography</a></li>
+          <li><a href="mailto:hello@example.com"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="2.5" width="10" height="7"/><path d="M1 2.5l5 4 5-4"/></svg>E-mail</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__end">
+        <!-- Theme switch: shown by main.js (needs JS to work) -->
+        <span class="theme-label" aria-hidden="true"></span>
+        <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Dark mode" hidden></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container writing">
+
+    <!-- Same intro block as Work and Photography (small grey text, fixed
+         height), so the big title and list start where their images do. -->
+    <div class="mosaic__head" data-reveal>
+      <p class="mosaic__intro type-muted">These are essays and field notes on designing for physical space: data, generative systems, motion, and the slow, practical craft of building things that live in public. Writing is how I slow down enough to see what I actually made.</p>
+    </div>
+
+    <!-- Title + thesis stick on the left; essays on the right. -->
+    <div class="wb-grid">
+      <div class="wb-title" data-reveal>
+        <h1 class="w-mast wb-mast">Writing<span class="w-count">[24]</span></h1>
+        <p class="w-lede">I write to make sense of the work—what happens when images leave the screen and become rooms, weather and light.</p>
+      </div>
+      <dl class="wb-index">
+        <div><dt class="visually-hidden">Essays</dt><dd>
+          <!-- TODO: placeholder essays; each links to Making Sense for now -->
+          <div class="w-head" data-reveal><span class="w-num">#</span><span class="w-title">Title</span><span class="w-date"><svg class="icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="1" y="2" width="10" height="9"/><path d="M1 5h10M4 .75v2.5M8 .75v2.5"/></svg><span class="visually-hidden">Date</span></span></div>
+          <ol class="w-list" role="list" data-reveal-children data-reveal-line>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">01</span>
+              <span class="w-title">Making Sense</span>
+              <span class="w-date type-tabular">Oct 2026</span>
+              <span class="w-time">4 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="do-less/">
+              <span class="w-num type-tabular">02</span>
+              <span class="w-title">Do Less</span>
+              <span class="w-date type-tabular">Sep 2026</span>
+              <span class="w-time">5 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="thinking-is-work/">
+              <span class="w-num type-tabular">03</span>
+              <span class="w-title">Thinking Is Work</span>
+              <span class="w-date type-tabular">Aug 2026</span>
+              <span class="w-time">6 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">04</span>
+              <span class="w-title">Notes from a Night Install</span>
+              <span class="w-date type-tabular">Jul 2026</span>
+              <span class="w-time">7 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">05</span>
+              <span class="w-title">Keeping an Archive</span>
+              <span class="w-date type-tabular">Jun 2026</span>
+              <span class="w-time">3 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">06</span>
+              <span class="w-title">Rooms, Not Screens</span>
+              <span class="w-date type-tabular">May 2026</span>
+              <span class="w-time">8 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">07</span>
+              <span class="w-title">The Three Distances</span>
+              <span class="w-date type-tabular">Apr 2026</span>
+              <span class="w-time">5 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">08</span>
+              <span class="w-title">Designing for the Path</span>
+              <span class="w-date type-tabular">Mar 2026</span>
+              <span class="w-time">4 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">09</span>
+              <span class="w-title">Light as Interface</span>
+              <span class="w-date type-tabular">Feb 2026</span>
+              <span class="w-time">9 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">10</span>
+              <span class="w-title">A Wall That Never Ends</span>
+              <span class="w-date type-tabular">Jan 2026</span>
+              <span class="w-time">6 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">11</span>
+              <span class="w-title">Data You Can Stand In</span>
+              <span class="w-date type-tabular">Dec 2025</span>
+              <span class="w-time">3 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">12</span>
+              <span class="w-title">Slow Motion</span>
+              <span class="w-date type-tabular">Nov 2025</span>
+              <span class="w-time">5 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">13</span>
+              <span class="w-title">The Render Is Not the Room</span>
+              <span class="w-date type-tabular">Oct 2025</span>
+              <span class="w-time">7 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">14</span>
+              <span class="w-title">Honest Systems</span>
+              <span class="w-date type-tabular">Sep 2025</span>
+              <span class="w-time">4 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">15</span>
+              <span class="w-title">Sound, Seen</span>
+              <span class="w-date type-tabular">Aug 2025</span>
+              <span class="w-time">6 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">16</span>
+              <span class="w-title">On Opinionated Tools</span>
+              <span class="w-date type-tabular">Jul 2025</span>
+              <span class="w-time">8 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">17</span>
+              <span class="w-title">Notes on Pacing</span>
+              <span class="w-date type-tabular">Jun 2025</span>
+              <span class="w-time">5 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">18</span>
+              <span class="w-title">What a Lobby Wants</span>
+              <span class="w-date type-tabular">May 2025</span>
+              <span class="w-time">3 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">19</span>
+              <span class="w-title">Working at Building Scale</span>
+              <span class="w-date type-tabular">Apr 2025</span>
+              <span class="w-time">6 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">20</span>
+              <span class="w-title">The Quiet Frame</span>
+              <span class="w-date type-tabular">Mar 2025</span>
+              <span class="w-time">4 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">21</span>
+              <span class="w-title">Field Notes: Barcelona</span>
+              <span class="w-date type-tabular">Feb 2025</span>
+              <span class="w-time">7 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">22</span>
+              <span class="w-title">Field Notes: Hudson Yards</span>
+              <span class="w-date type-tabular">Jan 2025</span>
+              <span class="w-time">5 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">23</span>
+              <span class="w-title">Against Customisation</span>
+              <span class="w-date type-tabular">Dec 2024</span>
+              <span class="w-time">9 min read</span>
+            </a></li>
+            <li><a class="w-row w-row--plain" href="making-sense/">
+              <span class="w-num type-tabular">24</span>
+              <span class="w-title">Things That Last</span>
+              <span class="w-date type-tabular">Nov 2024</span>
+              <span class="w-time">4 min read</span>
+            </a></li>
+          </ol>
+        </dd></div>
+      </dl>
+    </div>
+  </main>
+
+  <footer class="site-footer container">
+    <div class="site-footer__grid">
+      <p>Luka Schulz © 2026</p>
+      <p class="with-icon"><svg class="icon icon--pin" viewBox="0 0 8 11.6" fill="currentColor" fill-rule="evenodd" aria-hidden="true"><path d="M4 11.6C3.95 10.7 3.4 9.6 2.5 8.7 1.3 7.5 0 6.1 0 4a4 4 0 0 1 8 0C8 6.1 6.7 7.5 5.5 8.7 4.6 9.6 4.05 10.7 4 11.6zM4 2.35a1.65 1.65 0 1 0 0 3.3 1.65 1.65 0 0 0 0-3.3z"/></svg>NYC, New York</p>
+      <nav class="site-footer__links" aria-label="Elsewhere">
+        <ul role="list">
+          <!-- TODO: real URLs -->
+          <li><a href="#">Friends</a></li>
+          <li><a href="#">Spirit Animal</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- ============ Dapple tuning panel (this page is a draft; delete when done) ============ -->
+  <style>
+    .dt { position: fixed; z-index: 200; top: 1rem; right: 1rem; inline-size: 19rem; max-block-size: calc(100vh - 2rem); overflow: auto;
+          padding: 0.875rem 1rem 1rem; border-radius: 0.75rem; font: 12px/1.3 var(--font-sans); color: var(--color-text); }
+    .dt[hidden] { display: none; }
+    .dt h2 { font-size: 12px; font-weight: 600; margin: 0 0 0.5rem; display: flex; justify-content: space-between; }
+    .dt h3 { font-size: 11px; color: var(--color-muted); font-weight: 400; margin: 0.875rem 0 0.25rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .dt label { display: grid; grid-template-columns: 6.5rem 1fr 3rem; align-items: center; gap: 0.5rem; padding-block: 0.2rem; }
+    .dt input[type=range] { inline-size: 100%; accent-color: var(--color-text); }
+    .dt output { text-align: end; font-variant-numeric: tabular-nums; color: var(--color-muted); }
+    .dt .row { display: flex; gap: 0.375rem; flex-wrap: wrap; margin-block-start: 0.75rem; }
+    .dt button { font: inherit; color: inherit; background: color-mix(in srgb, var(--color-text) 8%, transparent); border: 0; border-radius: 999px; padding: 0.4rem 0.75rem; cursor: pointer; }
+    .dt button:hover { background: color-mix(in srgb, var(--color-text) 15%, transparent); }
+    .dt button[aria-pressed=true] { background: var(--color-text); color: var(--color-bg); }
+    .dt .note { color: var(--color-muted); margin-block-start: 0.5rem; }
+    .dt-show { position: fixed; z-index: 200; top: 1rem; right: 1rem; font: 12px var(--font-sans); padding: 0.4rem 0.75rem; border-radius: 999px; color: var(--color-text); cursor: pointer; }
+  </style>
+  <div class="dt glass" id="dt">
+    <h2>Dapple <span>H hides · B boosts</span></h2>
+    <div id="dt-fields"></div>
+    <div class="row">
+      <button type="button" id="dt-boost" aria-pressed="false">Boost ×8</button>
+      <button type="button" id="dt-theme">Light / dark</button>
+      <button type="button" id="dt-shuffle">Shuffle layout</button>
+    </div>
+    <div class="row">
+      <button type="button" id="dt-copy">Copy settings</button>
+      <button type="button" id="dt-reset">Reset</button>
+      <button type="button" id="dt-hide">Hide</button>
+    </div>
+    <p class="note" id="dt-note">Boost shows the shapes clearly while you tune them; it isn't saved. Your tweaks are kept in this browser until you Reset.</p>
+  </div>
+  <button type="button" class="dt-show glass" id="dt-show" hidden>Dapple</button>
+  <script>
+  (function () {
+    var FIELDS = [
+      ["Strength"],
+      ["lightOpacity", "Light mode", 0, 0.3, 0.005],
+      ["darkOpacity", "Dark mode", 0, 0.3, 0.005],
+      ["Movement"],
+      ["speed", "Speed", 0, 1, 0.01],
+      ["sway", "Sway", 0, 0.12, 0.001],
+      ["flutter", "Flutter", 0, 0.05, 0.001],
+      ["fps", "Frame rate", 5, 60, 1],
+      ["Shapes"],
+      ["clusters", "Clusters", 1, 30, 1],
+      ["leaves", "Leaves each", 1, 20, 1],
+      ["size", "Leaf size", 0.01, 0.25, 0.005],
+      ["spread", "Spread", 0, 0.4, 0.005],
+      ["scale", "Softness", 2, 24, 1],
+      ["seed", "Layout", 1, 200, 1],
+      ["Colour"],
+      ["darkColor", "Dark-mode light"]
+    ];
+    var KEY = "dapple-tune", boost = false, vals = {};
+    function ready(fn) { window.__dapple ? fn() : setTimeout(function () { ready(fn); }, 50); }
+    function hex(rgb) { return "#" + rgb.split(",").map(function (n) { return (+n).toString(16).padStart(2, "0"); }).join(""); }
+    function rgb(h) { return [1, 3, 5].map(function (i) { return parseInt(h.slice(i, i + 2), 16); }).join(", "); }
+    function fmt(v, step) { return step >= 1 ? String(v) : (+v).toFixed(String(step).split(".")[1].length); }
+
+    ready(function () {
+      var D = window.__dapple, start = D.get();
+      try { Object.assign(start, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) {}
+      vals = start;
+      var box = document.getElementById("dt-fields");
+      FIELDS.forEach(function (f) {
+        if (f.length === 1) { var h = document.createElement("h3"); h.textContent = f[0]; box.append(h); return; }
+        var l = document.createElement("label"), name = f[0];
+        if (name === "darkColor") {
+          l.innerHTML = "<span>" + f[1] + "</span><input type=color><output></output>";
+          var c = l.querySelector("input"); c.value = hex(vals.darkColor);
+          c.addEventListener("input", function () { vals.darkColor = rgb(c.value); apply(); });
+        } else {
+          l.innerHTML = "<span>" + f[1] + "</span><input type=range min=" + f[2] + " max=" + f[3] + " step=" + f[4] + "><output></output>";
+          var r = l.querySelector("input"), o = l.querySelector("output");
+          r.value = vals[name]; o.textContent = fmt(vals[name], f[4]);
+          r.addEventListener("input", function () { vals[name] = +r.value; o.textContent = fmt(r.value, f[4]); apply(); });
+          l.dataset.name = name;
+        }
+        box.append(l);
+      });
+      apply();
+
+      function apply() {
+        try { localStorage.setItem(KEY, JSON.stringify(vals)); } catch (e) {}
+        var v = Object.assign({}, vals);
+        if (boost) { v.lightOpacity = Math.min(1, v.lightOpacity * 8); v.darkOpacity = Math.min(1, v.darkOpacity * 8); }
+        D.set(v);
+      }
+      function sync() { box.querySelectorAll("label[data-name]").forEach(function (l) { var n = l.dataset.name, r = l.querySelector("input"); r.value = vals[n]; l.querySelector("output").textContent = fmt(vals[n], +r.step); }); }
+
+      var boostBtn = document.getElementById("dt-boost");
+      function toggleBoost() { boost = !boost; boostBtn.setAttribute("aria-pressed", boost); apply(); }
+      boostBtn.onclick = toggleBoost;
+      document.getElementById("dt-theme").onclick = function () { document.querySelector(".theme-toggle").click(); };
+      document.getElementById("dt-shuffle").onclick = function () { vals.seed = 1 + Math.floor(Math.random() * 200); sync(); apply(); };
+      document.getElementById("dt-reset").onclick = function () { vals = Object.assign({}, D.defaults); try { localStorage.removeItem(KEY); } catch (e) {} sync(); box.querySelector("input[type=color]").value = hex(vals.darkColor); apply(); };
+      var panel = document.getElementById("dt"), show = document.getElementById("dt-show");
+      function hide(h) { panel.hidden = h; show.hidden = !h; }
+      document.getElementById("dt-hide").onclick = function () { hide(true); };
+      show.onclick = function () { hide(false); };
+      document.addEventListener("keydown", function (e) {
+        if (e.target.closest("input")) return;
+        if (e.key === "h" || e.key === "H") hide(!panel.hidden);
+        if (e.key === "b" || e.key === "B") toggleBoost();
+      });
+      document.getElementById("dt-copy").onclick = function () {
+        var keys = Object.keys(D.defaults), lines = keys.map(function (k) {
+          var v = vals[k]; return "  " + k + ": " + (typeof v === "string" ? JSON.stringify(v) : +(+v).toFixed(4));
+        });
+        var text = "var DAPPLE = {\n  on: true,\n" + lines.join(",\n") + "\n};";
+        var note = document.getElementById("dt-note");
+        (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).then(
+          function () { note.textContent = "Copied. Paste it over the DAPPLE block in js/main.js, or send it to Claude."; },
+          function () { note.textContent = text; });
+      };
+    });
+  })();
+  </script>
+</body>
+</html>
