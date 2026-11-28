@@ -1193,15 +1193,22 @@
 @media print { .lightbox { display: none; } }
 
 
-/* Dappled light (js/dapple.js): a tiny canvas stretched over the screen,
-   behind everything. Its strength is set in main.js (DAPPLE). */
+/* Dappled light (js/dapple.js): a box as tall as the page, behind
+   everything, so the shadows scroll with the page like a wall. Two small
+   canvases slide inside it to wherever you are. Settings: DAPPLE in main.js. */
 .dapple {
-  position: fixed;
-  inset: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
   z-index: -1;
   inline-size: 100%;
-  block-size: 100%;
+  overflow: hidden;
   pointer-events: none;
-  transition: opacity 400ms var(--ease);
+}
+.dapple canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  inline-size: 100%;
 }
 @media print { .dapple { display: none; } }
