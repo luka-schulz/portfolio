@@ -102,10 +102,14 @@ function pop(el, show, P) {
 
   function show(el, delay) {
     // containers and line-only elements don't fade; they just mark "in" so their hairline draws
-    var cls = el.hasAttribute("data-reveal-children") || el.hasAttribute("data-reveal-line") ? " is-in" : " is-revealed";
-    el.style.transitionDelay = delay ? delay + "ms" : "";
+    var line = el.hasAttribute("data-reveal-children") || el.hasAttribute("data-reveal-line");
     if (el.style.setProperty) el.style.setProperty("--reveal-delay", delay + "ms");   // hairlines inside follow the same beat
-    el.className += cls;
+    if (!line && delay) {
+      el.style.transitionDelay = delay + "ms";
+      // drop the delay once the reveal is done, or later changes (a theme switch) would wait for it too
+      setTimeout(function () { el.style.transitionDelay = ""; }, delay + 1000);
+    }
+    el.className += line ? " is-in" : " is-revealed";
   }
   function flush() {
     queue.sort(function (a, b) {
