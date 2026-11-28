@@ -485,12 +485,13 @@
      --at-sm: span 1           phone: half width (default: full width)
      --ratio: var(--ratio-square)   image shape (default 3:2, any --ratio-*)
      --align: end              sit on the row's bottom edge (default: top)
+   On the section itself: --row-gap: var(--column-gap) for a tighter stack.
    Children: <figure> (image, optional caption), .cs-note (small text),
    .cs-numeral (big number, image over its foot). */
 .cs-free {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-l) var(--column-gap);
+  gap: var(--row-gap, var(--space-l)) var(--column-gap);
 }
 .cs-free > * {
   --ratio: var(--ratio-landscape);
@@ -498,7 +499,7 @@
   align-self: var(--align, start);
 }
 @media (min-width: 64em) {
-  .cs-free { grid-template-columns: repeat(12, minmax(0, 1fr)); row-gap: var(--space-xl); }
+  .cs-free { grid-template-columns: repeat(12, minmax(0, 1fr)); row-gap: var(--row-gap, var(--space-xl)); }
   .cs-free > * { grid-column: var(--at, 1 / -1); grid-row: var(--row, auto); }
 }
 .cs-caption__title { display: block; color: var(--color-text); }   /* first line of a caption, in text colour */
