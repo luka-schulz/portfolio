@@ -704,8 +704,9 @@ document.addEventListener("click", async (event) => {
 
 /* Idle screen (styles: .idle in components.css; settings: IDLE at the top).
    After IDLE.afterMs without input, dim and blur the page and show the
-   visitor's local time; the colon blinks with the seconds. Any input wakes
-   it; a click that wakes it doesn't reach the page underneath. */
+   visitor's local time; the colon blinks with the seconds. Leaving the tab
+   or window turns it on at once. Any input wakes it; a click that wakes it
+   doesn't reach the page underneath. */
 (function () {
   if (!IDLE.on) return;
   var el = document.createElement("div");
@@ -729,7 +730,8 @@ document.addEventListener("click", async (event) => {
     if (colon) colon.style.animationDelay = -(Date.now() % 1000) + "ms";
   }
   function show() {
-    if (document.hidden) return schedule();
+    clearTimeout(timer);
+    if (on) return render();
     render();
     on = true;
     el.classList.add("is-on");
@@ -751,6 +753,9 @@ document.addEventListener("click", async (event) => {
   addEventListener("click", function (e) {
     if (Date.now() - wokeAt < 400) { e.preventDefault(); e.stopPropagation(); }
   }, true);
-  document.addEventListener("visibilitychange", function () { if (!document.hidden) activity(); });
+  // switching to another tab or app turns it on straight away, so it's there when you
+  // come back; it stays until you actually move, type, scroll or tap
+  document.addEventListener("visibilitychange", function () { if (document.hidden) show(); else if (on) render(); });
+  addEventListener("blur", show);
   schedule();
 })();
