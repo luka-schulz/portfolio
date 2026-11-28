@@ -489,6 +489,8 @@
      --at-sm: span 1           phone: half width (default: full width)
      --ratio: var(--ratio-square)   image shape (default 3:2, any --ratio-*)
      --align: end              sit on the row's bottom edge (default: top)
+     --nudge: -2rem            desktop: move up (−) or down (+) and take the room with it.
+                               % = share of its own width (−50% on a square = half its height)
    On the section itself: --row-gap: var(--column-gap) for a tighter stack.
    Children: <figure> (image, optional caption), .cs-note (small text),
    .cs-numeral (big number, image over its foot). */
@@ -505,6 +507,7 @@
 @media (min-width: 64em) {
   .cs-free { grid-template-columns: repeat(12, minmax(0, 1fr)); row-gap: var(--row-gap, var(--space-xl)); }
   .cs-free > * { grid-column: var(--at, 1 / -1); grid-row: var(--row, auto); }
+  .case .cs-free > * { margin-block-start: var(--nudge, 0); }   /* beats .case figure { margin: 0 } */
 }
 .cs-caption__title { display: block; color: var(--color-text); }   /* first line of a caption, in text colour */
 
