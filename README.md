@@ -141,6 +141,7 @@ And in the page and around it:
 - Friends / Spirit Animal links in the footer
 - Project pages for the tiles that point to `404.html`
 - E-mail address (`hello@example.com` placeholder)
+- About page: where I've worked, plus awards, press and talks
 
 ### Ideas to add
 
