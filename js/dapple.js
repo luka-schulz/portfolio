@@ -18,6 +18,8 @@
    Still for Reduce Motion; pauses in hidden tabs. */
 (function () {
   var DEFAULTS = {
+    overlay: true,                // true: over the page like real light (shadow dims images and
+                                  // background, light lifts text and images); false: background only
     angle: -40,                   // direction the patches lean, degrees
 
     // colours. Shadow strength = how dark the shaded wall is;
@@ -26,6 +28,8 @@
     lightLight: "#fffaf0",  lightLightStrength: 0.5,
     darkShadow: "#000000",  darkShadowStrength: 0.3,
     darkLight: "#ffe2b8",   darkLightStrength: 0.06,
+    // overlay only: how much the light lifts what it falls on (black text, images)
+    lightGlow: 0.1, darkGlow: 0.08,
 
     // movement
     speed: 0.28,                  // overall pace (0 = still)
@@ -57,15 +61,21 @@
   }
 
   var root = document.documentElement;
-  // a box the size of the whole page, behind everything; the canvases slide inside it
-  var wall = document.createElement("div");
-  wall.className = "dapple";
-  wall.setAttribute("aria-hidden", "true");
-  document.body.prepend(wall);
+  // boxes the size of the whole page; the canvases slide inside them.
+  // shade: the shadow (multiplies in overlay mode); glow: the light (screens; overlay only)
+  function makeWall(name) {
+    var w = document.createElement("div");
+    w.className = "dapple dapple--" + name;
+    w.setAttribute("aria-hidden", "true");
+    document.body.prepend(w);
+    return w;
+  }
+  var glowWall = makeWall("glow"), wall = makeWall("shade");
+  var walls = [wall, glowWall];
   var layers = ["soft", "sharp"].map(function (key) {      // soft first, crisp on top
-    var c = document.createElement("canvas");
-    wall.append(c);
-    return { key: key, canvas: c, ctx: c.getContext("2d"), tiles: {} };
+    var c = document.createElement("canvas"), g = document.createElement("canvas");
+    wall.append(c); glowWall.append(g);
+    return { key: key, canvas: c, ctx: c.getContext("2d"), glow: g, gctx: g.getContext("2d"), tiles: {} };
   });
   if (!layers[0].ctx) return;
 
@@ -139,17 +149,19 @@
     });
   }
   function measure() {
-    wall.style.height = "0";                       // so the wall itself doesn't count
+    walls.forEach(function (w) { w.style.height = "0"; });          // so the walls themselves don't count
     pageH = Math.max(document.documentElement.scrollHeight, innerHeight);
-    wall.style.height = pageH + "px";
+    walls.forEach(function (w) { w.style.height = pageH + "px"; });
     vw = document.documentElement.clientWidth; vh = innerHeight;
     span = Math.min(pageH, Math.round(vh * (1 + 2 * MARGIN)));     // drawn height, page px
     layers.forEach(function (L) {
       var s = Math.max(1, S[L.key + "Softness"]);
       L.s = s;
-      L.canvas.width = Math.max(16, Math.ceil(vw / s));
-      L.canvas.height = Math.max(16, Math.ceil(span / s));
-      L.canvas.style.height = span + "px";
+      [L.canvas, L.glow].forEach(function (c) {
+        c.width = Math.max(16, Math.ceil(vw / s));
+        c.height = Math.max(16, Math.ceil(span / s));
+        c.style.height = span + "px";
+      });
     });
     draw(last);
   }
@@ -159,12 +171,12 @@
     var t = time / 1000 * S.speed;
     var mode = dark ? "dark" : "light";
     var shadowCol = rgb(S[mode + "Shadow"]);
-    var shadowA = S[mode + "ShadowStrength"], lightA = S[mode + "LightStrength"];
+    var shadowA = S[mode + "ShadowStrength"], lightA = S[mode + "LightStrength"], glowA = S[mode + "Glow"];
     var base = S.angle * Math.PI / 180;
 
     layers.forEach(function (L) {
       var ctx = L.ctx, k = L.key, s = L.s, W = L.canvas.width, H = L.canvas.height;
-      L.canvas.style.transform = "translateY(" + top + "px)";
+      L.canvas.style.transform = L.glow.style.transform = "translateY(" + top + "px)";
       ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1;
       ctx.globalCompositeOperation = "source-over";
       ctx.clearRect(0, 0, W, H);
@@ -207,8 +219,13 @@
       }
       ctx.globalCompositeOperation = "destination-out";          // cut the light out of the shadow
       for (var q = 0; q < shapes.length; q++) { var z = shapes[q]; stamp(ctx, L.cut, z[0], z[1], z[2], z[3], z[4], z[5]); }
-      if (lightA > 0) {
-        ctx.globalCompositeOperation = "source-over";            // and warm it a little
+      if (S.overlay) {                                            // the light itself, screened over the page
+        var g = L.gctx, ga = glowA * S[k + "Strength"];
+        g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.clearRect(0, 0, W, H);
+        if (ga > 0) for (q = 0; q < shapes.length; q++) { z = shapes[q]; stamp(g, L.tint, z[0], z[1], z[2], z[3], z[4], ga * z[5]); }
+        g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1;
+      } else if (lightA > 0) {
+        ctx.globalCompositeOperation = "source-over";            // background only: warm the light a little
         var la = lightA * S[k + "Strength"];
         for (q = 0; q < shapes.length; q++) { z = shapes[q]; stamp(ctx, L.tint, z[0], z[1], z[2], z[3], z[4], la * z[5]); }
       }
@@ -220,6 +237,8 @@
   function build() {
     S = readSettings();
     layers.forEach(function (L) { L.tiles = {}; });
+    wall.classList.toggle("is-over", !!S.overlay);
+    glowWall.hidden = !S.overlay;
     readTheme(); measure();
   }
   build();

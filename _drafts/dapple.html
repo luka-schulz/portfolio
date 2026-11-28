@@ -277,12 +277,16 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
   <script>
   (function () {
     var FIELDS = [
+      ["Mode"],
+      ["overlay", "Over the page", "check"],
       ["Light mode"],
       ["lightShadow", "Shadow colour", "color"], ["lightShadowStrength", "Shadow strength", 0, 1, 0.005],
-      ["lightLight", "Light colour", "color"],   ["lightLightStrength", "Light tint", 0, 1, 0.01],
+      ["lightLight", "Light colour", "color"],   ["lightLightStrength", "Light tint (background)", 0, 1, 0.01],
+      ["lightGlow", "Light lift (overlay)", 0, 0.6, 0.005],
       ["Dark mode"],
       ["darkShadow", "Shadow colour", "color"],  ["darkShadowStrength", "Shadow strength", 0, 1, 0.005],
-      ["darkLight", "Light colour", "color"],    ["darkLightStrength", "Light tint", 0, 1, 0.01],
+      ["darkLight", "Light colour", "color"],    ["darkLightStrength", "Light tint (background)", 0, 1, 0.01],
+      ["darkGlow", "Light lift (overlay)", 0, 0.6, 0.005],
       ["Shape"],
       ["angle", "Angle", -90, 90, 1],
       ["ragged", "Raggedness", 1, 6, 1],
@@ -319,7 +323,7 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
     var PRESETS = {
       "Defaults (Claude’s pass 2)": {}
     };
-    var KEY = "dapple-tune-3", boost = false, vals = {};
+    var KEY = "dapple-tune-4", boost = false, vals = {};
     function ready(fn) { window.__dapple ? fn() : setTimeout(function () { ready(fn); }, 50); }
     function hex(rgb) { return "#" + rgb.split(",").map(function (n) { return (+n).toString(16).padStart(2, "0"); }).join(""); }
     function rgb(h) { return [1, 3, 5].map(function (i) { return parseInt(h.slice(i, i + 2), 16); }).join(", "); }
@@ -333,7 +337,12 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
       FIELDS.forEach(function (f) {
         if (f.length === 1) { var h = document.createElement("h3"); h.textContent = f[0]; box.append(h); return; }
         var l = document.createElement("label"), name = f[0];
-        if (f[2] === "color") {
+        if (f[2] === "check") {
+          l.innerHTML = "<span>" + f[1] + "</span><input type=checkbox><output></output>";
+          var cb = l.querySelector("input"), cbo = l.querySelector("output"); cb.checked = !!vals[name]; cbo.textContent = cb.checked ? "on" : "off";
+          cb.addEventListener("change", function () { vals[name] = cb.checked; cbo.textContent = cb.checked ? "on" : "off"; apply(); });
+          l.dataset.check = name;
+        } else if (f[2] === "color") {
           l.innerHTML = "<span>" + f[1] + "</span><input type=color><output></output>";
           var c = l.querySelector("input"), co = l.querySelector("output"); c.value = vals[name]; co.textContent = vals[name];
           c.addEventListener("input", function () { vals[name] = c.value; co.textContent = c.value; apply(); });
@@ -352,7 +361,7 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
       function apply() {
         try { localStorage.setItem(KEY, JSON.stringify(vals)); } catch (e) {}
         var v = Object.assign({}, vals);
-        if (boost) ["lightShadowStrength", "darkShadowStrength", "darkLightStrength"].forEach(function (k) { v[k] = Math.min(1, v[k] * 4); });
+        if (boost) ["lightShadowStrength", "darkShadowStrength", "darkLightStrength", "lightGlow", "darkGlow"].forEach(function (k) { v[k] = Math.min(1, v[k] * 4); });
         D.set(v);
       }
       function sync() { box.querySelectorAll("label[data-name]").forEach(function (l) { var n = l.dataset.name, r = l.querySelector("input"); r.value = vals[n]; l.querySelector("output").textContent = fmt(vals[n], +r.step); }); }
@@ -361,6 +370,7 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
         vals = Object.assign({}, D.defaults, o);
         sync();
         box.querySelectorAll("label[data-color]").forEach(function (l) { l.querySelector("input").value = vals[l.dataset.color]; l.querySelector("output").textContent = vals[l.dataset.color]; });
+        box.querySelectorAll("label[data-check]").forEach(function (l) { var on = !!vals[l.dataset.check]; l.querySelector("input").checked = on; l.querySelector("output").textContent = on ? "on" : "off"; });
         apply();
       }
       var pre = document.getElementById("dt-presets");
@@ -376,7 +386,7 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
       boostBtn.onclick = toggleBoost;
       document.getElementById("dt-theme").onclick = function () { document.querySelector(".theme-toggle").click(); };
       document.getElementById("dt-shuffle").onclick = function () { vals.seed = 1 + Math.floor(Math.random() * 200); sync(); apply(); };
-      document.getElementById("dt-reset").onclick = function () { vals = Object.assign({}, D.defaults); try { localStorage.removeItem(KEY); } catch (e) {} sync(); box.querySelectorAll("label[data-color]").forEach(function (l) { l.querySelector("input").value = vals[l.dataset.color]; l.querySelector("output").textContent = vals[l.dataset.color]; }); apply(); };
+      document.getElementById("dt-reset").onclick = function () { try { localStorage.removeItem(KEY); } catch (e) {} setAll({}); };
       var panel = document.getElementById("dt"), show = document.getElementById("dt-show");
       function hide(h) { panel.hidden = h; show.hidden = !h; }
       document.getElementById("dt-hide").onclick = function () { hide(true); };
@@ -388,7 +398,7 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
       });
       document.getElementById("dt-copy").onclick = function () {
         var keys = Object.keys(D.defaults), lines = keys.map(function (k) {
-          var v = vals[k]; return "  " + k + ": " + (typeof v === "string" ? JSON.stringify(v) : +(+v).toFixed(4));
+          var v = vals[k]; return "  " + k + ": " + (typeof v === "string" ? JSON.stringify(v) : typeof v === "boolean" ? v : +(+v).toFixed(4));
         });
         var text = "var DAPPLE = {\n  on: true,\n" + lines.join(",\n") + "\n};";
         var note = document.getElementById("dt-note");

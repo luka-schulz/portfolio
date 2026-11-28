@@ -1205,6 +1205,13 @@
   overflow: hidden;
   pointer-events: none;
 }
+/* Overlay: over the content like real light. Shadow multiplies (dims
+   background and images; black text stays black), light screens (lifts
+   text and images). Above the page, below back-to-top (90), the toast
+   (100) and the photo viewer (200). Clicks pass through. */
+.dapple--shade.is-over { z-index: 80; mix-blend-mode: multiply; }
+.dapple--glow          { z-index: 80; mix-blend-mode: screen; }
+.dapple[hidden] { display: none; }
 .dapple canvas {
   position: absolute;
   top: 0;
