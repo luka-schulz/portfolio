@@ -10,6 +10,13 @@ const QUIPS = [
   "Pick one mother f*cker",
 ];
 
+// Idle screen: after this long with no mouse, keys, scrolling or touch, the
+// page dims and blurs (like the photo viewer) and shows the time.
+var IDLE = {
+  on: true,
+  afterMs: 5000
+};
+
 // Back-to-top arrow: turns with the page as you scroll.
 // Turns over a full scroll = turns × (page length ÷ referenceScreens) ^ lengthScale,
 // rounded to whole turns (wholeTurns) so it points north at the top and the bottom.
@@ -692,4 +699,57 @@ document.addEventListener("click", async (event) => {
   window.addEventListener("pagehide", function () {
     try { sessionStorage.setItem(key, String(Math.round(window.pageYOffset))); } catch (e) {}
   });
+})();
+
+
+/* Idle screen (styles: .idle in components.css; settings: IDLE at the top).
+   After IDLE.afterMs without input, dim and blur the page and show the
+   visitor's local time; the colon blinks with the seconds. Any input wakes
+   it; a click that wakes it doesn't reach the page underneath. */
+(function () {
+  if (!IDLE.on) return;
+  var el = document.createElement("div");
+  el.className = "idle";
+  el.setAttribute("aria-hidden", "true");
+  el.innerHTML = '<p class="idle__time"></p>';
+  document.body.append(el);
+  var timeEl = el.firstChild, timer = 0, tick = 0, on = false, wokeAt = 0, shown = "";
+  var fmt = new Intl.DateTimeFormat(undefined, { hour: "numeric", minute: "2-digit" });
+
+  function render() {
+    var html = fmt.formatToParts(new Date()).map(function (p) {
+      if (p.type === "literal" && p.value.trim() === ":") return '<span class="idle__colon">:</span>';
+      if (p.type === "dayPeriod") return '<span class="idle__period">' + p.value + "</span>";
+      return p.value.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+    }).join("");
+    if (html !== shown) { timeEl.innerHTML = html; shown = html; }   // only when the minute changes
+    // keep the colon's blink on the real second: on for its first half, off for the second
+    var colon = timeEl.querySelector(".idle__colon");
+    if (colon) colon.style.animationDelay = -(Date.now() % 1000) + "ms";
+  }
+  function show() {
+    if (document.hidden) return schedule();
+    render();
+    on = true;
+    el.classList.add("is-on");
+    tick = setInterval(render, 1000);
+  }
+  function hide() {
+    on = false;
+    wokeAt = Date.now();
+    el.classList.remove("is-on");
+    clearInterval(tick);
+  }
+  function schedule() { clearTimeout(timer); timer = setTimeout(show, IDLE.afterMs); }
+  function activity() { if (on) hide(); schedule(); }
+
+  ["mousemove", "pointerdown", "keydown", "wheel", "scroll", "touchstart"].forEach(function (type) {
+    addEventListener(type, activity, { passive: true, capture: true });
+  });
+  // the click that woke the screen shouldn't also follow a link underneath
+  addEventListener("click", function (e) {
+    if (Date.now() - wokeAt < 400) { e.preventDefault(); e.stopPropagation(); }
+  }, true);
+  document.addEventListener("visibilitychange", function () { if (!document.hidden) activity(); });
+  schedule();
 })();

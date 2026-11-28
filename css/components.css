@@ -1074,6 +1074,62 @@
   }
 }
 
+/* ---- Idle screen (main.js, IDLE): same dim and blur as the photo viewer,
+   with the time in the middle. The colon blinks with the seconds. */
+.idle {
+  position: fixed;
+  z-index: 300;                           /* over everything, the photo viewer too */
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--color-bg) 0%, transparent);
+  pointer-events: none;
+  visibility: hidden;
+  transition: background-color 400ms var(--ease-fade), visibility 0s linear 400ms;
+}
+.idle.is-on {
+  background: color-mix(in srgb, var(--color-bg) 88%, transparent);
+  pointer-events: auto;
+  visibility: visible;
+  transition: background-color 700ms var(--ease-fade), visibility 0s;
+}
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .idle {
+    -webkit-backdrop-filter: blur(0);
+            backdrop-filter: blur(0);
+    transition: background-color 400ms var(--ease-fade), -webkit-backdrop-filter 400ms var(--ease-fade),
+                backdrop-filter 400ms var(--ease-fade), visibility 0s linear 400ms;
+  }
+  .idle.is-on {
+    background: color-mix(in srgb, var(--color-bg) var(--lightbox-dim, 72%), transparent);
+    -webkit-backdrop-filter: blur(var(--lightbox-blur, 10px));
+            backdrop-filter: blur(var(--lightbox-blur, 10px));
+    transition: background-color 700ms var(--ease-fade), -webkit-backdrop-filter 700ms var(--ease-fade),
+                backdrop-filter 700ms var(--ease-fade), visibility 0s;
+  }
+}
+.idle__time {
+  font-size: clamp(4.5rem, 2rem + 12vw, 13rem);
+  line-height: 1;
+  letter-spacing: var(--tracking-display);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text);
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 300ms var(--ease-fade), transform 300ms var(--ease-fade);
+}
+.idle.is-on .idle__time {
+  opacity: 1;
+  transform: none;
+  transition: opacity 700ms var(--ease-fade) 150ms, transform 900ms var(--ease-settle) 150ms;
+}
+.idle__colon { display: inline-block; margin-inline: 0.02em; animation: idle-blink 1s steps(1, end) infinite; }
+.idle__period { font-size: 0.3em; letter-spacing: 0; margin-inline-start: 0.25em; color: var(--color-muted); }
+@keyframes idle-blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .idle__colon { animation: none; } }
+@media print { .idle { display: none; } }
+
 /* Everything inside: leaving / arriving */
 .lightbox > * {
   opacity: 0;
