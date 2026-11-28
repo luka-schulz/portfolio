@@ -866,7 +866,7 @@
    <div data-reveal>                 the element itself
    <ul data-reveal-children>         each direct child, staggered
    <div data-reveal-line>            no fade; its hairline draws as its own
-                                     step in the sequence (blog list, details rows)
+                                     step in the sequence (the blog list's top rule)
    Only active when the head script adds .reveal-on (needs
    IntersectionObserver, no reduced-motion). Otherwise everything is
    simply visible. main.js adds .is-revealed to things that fade in and
@@ -890,9 +890,9 @@
    themes. It goes when the element (or something it sits in) comes in, a
    beat after the fade (data-reveal-line: on its own beat). To give another bordered element this, add it to the
    three lists below (top border → first two, bottom border → first and third). */
-.reveal-on :is(.cs-details > div, .cs-next, .w-list, .wb-index > div + div, .article__meta, .article__steps,
+.reveal-on :is(.cs-next, .w-list, .wb-index > div + div, .article__meta, .article__steps,
                .footnotes, .article__folio, .w-row, .article__steps li) { position: relative; }
-.reveal-on :is(.cs-details > div, .cs-next, .w-list, .wb-index > div + div, .article__meta, .article__steps,
+.reveal-on :is(.cs-next, .w-list, .wb-index > div + div, .article__meta, .article__steps,
                .footnotes, .article__folio, .w-row, .article__steps li)::after {
   content: "";
   position: absolute;
@@ -903,16 +903,16 @@
   transition: opacity 900ms var(--ease-reveal) calc(var(--reveal-delay, 0ms) + 120ms);
   pointer-events: none;
 }
-.reveal-on :is(.cs-details > div, .cs-next, .w-list, .wb-index > div + div, .article__meta, .article__steps,
+.reveal-on :is(.cs-next, .w-list, .wb-index > div + div, .article__meta, .article__steps,
                .footnotes, .article__folio)::after { top: -1px; }
 .reveal-on :is(.w-row, .article__steps li)::after { bottom: -1px; }
-.reveal-on :is(.is-in, .is-revealed, .is-revealed :not([data-reveal-line])):is(.cs-details > div, .cs-next, .w-list, .wb-index > div + div,
+.reveal-on :is(.is-in, .is-revealed, .is-revealed :not([data-reveal-line])):is(.cs-next, .w-list, .wb-index > div + div,
                .article__meta, .article__steps, .footnotes, .article__folio, .w-row, .article__steps li)::after { opacity: 0; }
 
 @media print {
   .reveal-on [data-reveal],
   .reveal-on [data-reveal-children] > * { opacity: 1; transform: none; }
-  .reveal-on :is(.cs-details > div, .cs-next, .w-list, .wb-index > div + div, .article__meta, .article__steps,
+  .reveal-on :is(.cs-next, .w-list, .wb-index > div + div, .article__meta, .article__steps,
                  .footnotes, .article__folio, .w-row, .article__steps li)::after { display: none; }   /* no hairline covers */
 }
 
