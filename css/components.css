@@ -275,7 +275,7 @@
   font-size: var(--step--2);
   font-variant-numeric: tabular-nums;   /* the film's length */
 }
-.video-poster__play svg { inline-size: 6.25rem; block-size: auto; }   /* 100px */
+.video-poster__play svg { inline-size: 3.575rem; block-size: auto; }   /* 57px */
 
 /* ---- Project card: image + caption; whole card clickable if linked ------ */
 
