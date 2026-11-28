@@ -10,13 +10,6 @@ const QUIPS = [
   "Pick one mother f*cker",
 ];
 
-// Dappled light on the page background (js/dapple.js): soft bands of light and
-// shadow. on: false turns it off. Tune it on _drafts/dapple.html, then paste
-// its "Copy settings" over this block. Anything left out uses dapple.js's default.
-var DAPPLE = {
-  on: true
-};
-
 // Back-to-top arrow: turns with the page as you scroll.
 // Turns over a full scroll = turns × (page length ÷ referenceScreens) ^ lengthScale,
 // rounded to whole turns (wholeTurns) so it points north at the top and the bottom.
@@ -699,15 +692,4 @@ document.addEventListener("click", async (event) => {
   window.addEventListener("pagehide", function () {
     try { sessionStorage.setItem(key, String(Math.round(window.pageYOffset))); } catch (e) {}
   });
-})();
-
-
-/* Dappled light: load js/dapple.js next to this file (settings: DAPPLE above) */
-(function () {
-  var me = document.currentScript;
-  if (!DAPPLE.on || !me || !window.requestAnimationFrame) return;
-  var s = document.createElement("script");
-  s.src = new URL("dapple.js", me.src).href;
-  s.defer = true;
-  document.head.append(s);
 })();
