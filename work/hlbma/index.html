@@ -63,6 +63,10 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
            cs-single   one image, full width
            cs-duo      two small images, centred in white space
            cs-quad     four images, 2 × 2, all 21:9
+           cs-free     free spread: each item sets its columns, rows and shape
+                       (see cs-free in components.css). Holds images,
+                       cs-note (small text) and cs-numeral (big number + image)
+           cs-statement one big line, grey continuation in <span class="type-muted">
            cs-float    one image off-grid. --right: image right, caption below
                        · --left: image left, large statement (pull quote) right
            cs-compose  two small images bottom-left · large image right, caption below
@@ -98,30 +102,84 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
         </div>
       </header>
 
+      <!-- TODO: every image below is a placeholder; swap in the real frames -->
+      <section class="cs-float cs-float--left" aria-label="The wall">
+        <figure><div class="media"><img src="../../photography/photo-05.jpg" alt="" loading="lazy" decoding="async"></div></figure>
+        <blockquote class="cs-quote"><p>Nature, rendered at scale&#8288;— <span class="type-muted">four textures across eighteen meters of wall.</span></p></blockquote>
+      </section>
+
       <section class="cs-text" aria-labelledby="visual-direction">
         <div>
-          <h2 id="visual-direction" class="cs-label">Visual direction</h2>
+          <p class="cs-label">Visual direction</p>
+          <h2 id="visual-direction" class="cs-heading">An organic visual language</h2>
         </div>
         <div class="cs-body">
           <p>We built an organic visual language around four natural textures: water, stone, grass and wood. Each one is an artful, abstract take on material from the natural world, and each comes in two or three color variations. That gives the client 11 backgrounds in total. The imagery stays calm and tactile so it sits behind messaging without competing with it.</p>
         </div>
       </section>
 
-      <!-- TODO: placeholder images; swap in the backgrounds -->
-      <section class="cs-quad" aria-label="Backgrounds">
-        <figure><div class="media"><img src="../../photography/photo-01.jpg" alt="" loading="lazy" decoding="async"></div></figure>
-        <figure><div class="media"><img src="../../photography/photo-02.jpg" alt="" loading="lazy" decoding="async"></div></figure>
-        <figure><div class="media"><img src="../../photography/photo-03.jpg" alt="" loading="lazy" decoding="async"></div></figure>
-        <figure><div class="media"><img src="../../photography/photo-04.jpg" alt="" loading="lazy" decoding="async"></div></figure>
+      <!-- Spread: tops line up per row; sizes vary. Captions: name, then colorway -->
+      <section class="cs-free" aria-label="The four textures">
+        <figure style="--at: 1 / span 6"><div class="media"><img src="../../photography/photo-01.jpg" alt="" loading="lazy" decoding="async"></div><figcaption class="cs-caption"><span class="cs-caption__title">Water</span>Colorway 01</figcaption></figure>
+        <figure style="--at: 7 / span 3; --at-sm: span 1"><div class="media"><img src="../../photography/photo-04.jpg" alt="" loading="lazy" decoding="async"></div><figcaption class="cs-caption"><span class="cs-caption__title">Stone</span>Colorway 01</figcaption></figure>
+        <figure style="--at: 11 / span 2; --at-sm: span 1; --ratio: var(--ratio-portrait)"><div class="media"><img src="../../photography/photo-03.jpg" alt="" loading="lazy" decoding="async"></div><figcaption class="cs-caption"><span class="cs-caption__title">Grass</span>Colorway 01</figcaption></figure>
+        <figure style="--at: 1 / span 3; --at-sm: span 1; --ratio: var(--ratio-portrait)"><div class="media"><img src="../../photography/photo-06.jpg" alt="" loading="lazy" decoding="async"></div><figcaption class="cs-caption"><span class="cs-caption__title">Wood</span>Colorway 01</figcaption></figure>
+        <figure style="--at: 6 / span 2; --at-sm: span 1; --ratio: var(--ratio-square)"><div class="media"><img src="../../photography/photo-09.jpg" alt="" loading="lazy" decoding="async"></div><figcaption class="cs-caption"><span class="cs-caption__title">Water</span>Colorway 02</figcaption></figure>
+        <figure style="--at: 8 / span 5; --ratio: var(--ratio-square)"><div class="media"><img src="../../photography/photo-07.jpg" alt="" loading="lazy" decoding="async"></div><figcaption class="cs-caption"><span class="cs-caption__title">Stone</span>Colorway 02</figcaption></figure>
+      </section>
+
+      <!-- Number spread: note and small image top-left, the big number with an
+           image over its foot, a tall image right, two small ones bottom-right -->
+      <section class="cs-free" aria-label="Eleven backgrounds">
+        <div class="cs-note" style="--at: 1 / span 3; --row: 1">
+          <p class="cs-label">The palette</p>
+          <p>Four textures, each in two or three colorways: eleven backgrounds, all made to sit quietly behind the messaging.</p>
+        </div>
+        <figure style="--at: 5 / span 3; --row: 1; --at-sm: span 1"><div class="media"><img src="../../photography/photo-10.jpg" alt="" loading="lazy" decoding="async"></div><figcaption class="cs-caption"><span class="cs-caption__title">Grass</span>Colorway 02</figcaption></figure>
+        <figure style="--at: 9 / span 4; --row: 1 / span 2; --at-sm: span 1; --ratio: var(--ratio-portrait)"><div class="media"><img src="../../photography/photo-11.jpg" alt="" loading="lazy" decoding="async"></div><figcaption class="cs-caption"><span class="cs-caption__title">Wood</span>Colorway 02</figcaption></figure>
+        <div class="cs-numeral" style="--at: 1 / span 8; --row: 2 / span 2">
+          <p class="cs-numeral__num" aria-hidden="true">11</p>
+          <figure><div class="media" style="--ratio: var(--ratio-wide)"><img src="../../photography/photo-12.jpg" alt="" loading="lazy" decoding="async"></div></figure>
+        </div>
+        <figure style="--at: 9 / span 2; --row: 3; --align: end; --at-sm: span 1; --ratio: var(--ratio-square)"><div class="media"><img src="../../photography/photo-13.jpg" alt="" loading="lazy" decoding="async"></div></figure>
+        <figure style="--at: 11 / span 2; --row: 3; --align: end; --at-sm: span 1; --ratio: var(--ratio-square)"><div class="media"><img src="../../photography/photo-14.jpg" alt="" loading="lazy" decoding="async"></div></figure>
+      </section>
+
+      <section class="cs-quad" aria-label="Backgrounds on the wall">
+        <figure><div class="media"><img src="../../photography/photo-15.jpg" alt="" loading="lazy" decoding="async"></div></figure>
+        <figure><div class="media"><img src="../../photography/photo-16.jpg" alt="" loading="lazy" decoding="async"></div></figure>
+        <figure><div class="media"><img src="../../photography/photo-17.jpg" alt="" loading="lazy" decoding="async"></div></figure>
+        <figure><div class="media"><img src="../../photography/photo-18.jpg" alt="" loading="lazy" decoding="async"></div></figure>
       </section>
 
       <section class="cs-text" aria-labelledby="system">
         <div>
-          <h2 id="system" class="cs-label">System / CMS</h2>
+          <p class="cs-label">System / CMS</p>
+          <h2 id="system" class="cs-heading">Designed for change</h2>
         </div>
         <div class="cs-body">
           <p>The wall runs on a custom digital signage CMS, so staff can publish new content on their own without going back to an agency. There are three templates: a main layout that combines messaging, video and a background; an image template that pairs two photos with centered copy; and a full-screen message template for announcements. Lobby staff can pick a template, fill in the fields and publish in a few steps.</p>
         </div>
+      </section>
+
+      <!-- Templates: small spec note, then the three templates at the wall's shape -->
+      <section class="cs-free" aria-label="The canvas and its templates">
+        <div class="cs-note" style="--at: 1 / span 3">
+          <p class="cs-label">The canvas</p>
+          <dl>
+            <div><dt>Size</dt><dd>18.6 × 3.7 m</dd></div>
+            <div><dt>Resolution</dt><dd>11,904 × 2,376 px</dd></div>
+            <div><dt>Backgrounds</dt><dd>11</dd></div>
+            <div><dt>Templates</dt><dd>3</dd></div>
+          </dl>
+        </div>
+        <figure style="--at: 1 / span 4; --ratio: var(--ratio-cinema)"><div class="media"><img src="../../photography/photo-02.jpg" alt="" loading="lazy" decoding="async"></div><figcaption class="cs-caption"><span class="cs-caption__title">Main</span>Messaging, video and a background</figcaption></figure>
+        <figure style="--at: 5 / span 4; --ratio: var(--ratio-cinema)"><div class="media"><img src="../../photography/photo-08.jpg" alt="" loading="lazy" decoding="async"></div><figcaption class="cs-caption"><span class="cs-caption__title">Image</span>Two photos with centered copy</figcaption></figure>
+        <figure style="--at: 9 / span 4; --ratio: var(--ratio-cinema)"><div class="media"><img src="../../photography/photo-01.jpg" alt="" loading="lazy" decoding="async"></div><figcaption class="cs-caption"><span class="cs-caption__title">Message</span>Full-screen announcements</figcaption></figure>
+      </section>
+
+      <section class="cs-statement" aria-label="Closing">
+        <p>Built to keep evolving&#8288;— <span class="type-muted">one wall, endless stories.</span></p>
       </section>
 
     </article>

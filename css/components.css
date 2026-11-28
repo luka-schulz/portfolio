@@ -425,6 +425,7 @@
    style="--focus: 30% 50%" on its .media (x% y%). Shapes:
      head film, single ........ wide (16:9)
      quad ...................... cinema (21:9)
+     free ...................... landscape (3:2), or set --ratio per item
      float ..................... landscape (3:2)
      compose: large ............ square (1:1) · small ...... portrait (4:5)
      duo ....................... portrait (4:5) */
@@ -476,6 +477,59 @@
 /* cs-quad — four images, 2 × 2 (stacked on phones), gaps match the columns */
 .cs-quad { display: grid; gap: var(--column-gap); }
 @media (min-width: 64em) { .cs-quad { grid-template-columns: 1fr 1fr; } }
+
+/* cs-free — free layout on the 12-column grid, for editorial spreads.
+   Each child says where it sits, with custom properties in its style="":
+     --at: 1 / span 6          desktop columns (default: full width)
+     --row: 2 / span 2         desktop rows (optional; default: flows)
+     --at-sm: span 1           phone: half width (default: full width)
+     --ratio: var(--ratio-square)   image shape (default 3:2, any --ratio-*)
+     --align: end              sit on the row's bottom edge (default: top)
+   Children: <figure> (image, optional caption), .cs-note (small text),
+   .cs-numeral (big number, image over its foot). */
+.cs-free {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-l) var(--column-gap);
+}
+.cs-free > * {
+  --ratio: var(--ratio-landscape);
+  grid-column: var(--at-sm, 1 / -1);
+  align-self: var(--align, start);
+}
+@media (min-width: 64em) {
+  .cs-free { grid-template-columns: repeat(12, minmax(0, 1fr)); row-gap: var(--space-xl); }
+  .cs-free > * { grid-column: var(--at, 1 / -1); grid-row: var(--row, auto); }
+}
+.cs-caption__title { display: block; color: var(--color-text); }   /* first line of a caption, in text colour */
+
+/* cs-note — a small block of text: label, then a few short lines */
+.cs-note { font-size: var(--step--1); line-height: var(--leading-snug); max-inline-size: 22rem; }
+.cs-note > * + * { margin-block-start: var(--space-xs); }
+.cs-note dl > div { display: flex; justify-content: space-between; gap: var(--space-s); padding-block: var(--space-3xs); border-block-start: 1px solid var(--color-line); }
+.cs-note dt { color: var(--color-muted); }
+
+/* cs-numeral — a huge number; the image after it covers its foot */
+.cs-numeral { --numeral: clamp(8rem, 3rem + 17vw, 17rem); }
+.cs-numeral__num {
+  font-size: var(--numeral);
+  line-height: 0.8;
+  letter-spacing: var(--tracking-display);
+  margin-inline-start: -0.06em;          /* optical: the digit's side bearing */
+}
+.cs-numeral > figure {
+  position: relative;                    /* sits over the number */
+  margin-block-start: calc(var(--numeral) * -0.24);
+}
+
+/* cs-statement — one big line; continue it in grey with <span class="type-muted"> */
+.cs-statement p {
+  font-size: var(--step-4);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  max-inline-size: 15em;
+  text-wrap: balance;
+}
 
 /* cs-float — one image off-grid with a short note */
 @media (min-width: 64em) {
