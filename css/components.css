@@ -402,7 +402,7 @@
   font-size: var(--step-0);
   line-height: var(--leading-body);
 }
-.case > * + * { margin-block-start: var(--module-space); }
+.case > * + * { margin-block-start: calc(var(--module-space) * var(--space-above, 1)); }   /* more room before a section: style="--space-above: 1.5" */
 .case figure { margin: 0; }
 
 .cs-label   { font-size: var(--step--1); color: var(--color-muted); line-height: var(--leading-snug); }
