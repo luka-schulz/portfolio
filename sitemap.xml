@@ -2,6 +2,7 @@
 <!-- Every public page. Add a <url> here when you add a page. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://lukaschulz.com/</loc></url>
+  <url><loc>https://lukaschulz.com/work/hlbma/</loc></url>
   <url><loc>https://lukaschulz.com/work/torre-glories/</loc></url>
   <url><loc>https://lukaschulz.com/writing/</loc></url>
   <url><loc>https://lukaschulz.com/writing/thinking-is-work/</loc></url>
