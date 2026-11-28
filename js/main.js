@@ -10,17 +10,11 @@ const QUIPS = [
   "Pick one mother f*cker",
 ];
 
-// Dappled light on the page background (js/dapple.js). on: false turns it off.
-// Opacities are how strong it shows: shadows in light mode, light in dark mode.
+// Dappled light on the page background (js/dapple.js): soft bands of light and
+// shadow. on: false turns it off. Tune it on _drafts/dapple.html, then paste
+// its "Copy settings" over this block. Anything left out uses dapple.js's default.
 var DAPPLE = {
-  on: true,
-  lightOpacity: 0.05,      // light mode: leaf shadows
-  darkOpacity: 0.06,       // dark mode: light through the leaves
-  speed: 0.12,             // how fast it moves (0 = still)
-  sway: 0.025,             // how far the clusters drift
-  flutter: 0.008,          // how far single leaves flutter
-  clusters: 9,             // leaf clusters
-  size: 0.07               // leaf size (share of the screen width)
+  on: true
 };
 
 // Back-to-top arrow: turns with the page as you scroll.
