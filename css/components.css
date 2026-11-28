@@ -65,7 +65,11 @@
   gap: var(--space-2xs) var(--column-gap);
   align-items: center;                  /* centre text on the taller switch */
 }
-.site-header__name { grid-area: name; text-decoration: none; }
+.site-header__name { grid-area: name; text-decoration: none; display: inline-flex; align-items: center; gap: 0.3em; justify-self: start; }
+/* The smile from v4 (it was drawn on a canvas there), same geometry */
+.smile { inline-size: 1.5em; block-size: 1.5em; flex: none; margin-block: -0.25em; }
+.smile circle { fill: currentColor; }
+.smile path { fill: none; stroke: currentColor; stroke-width: 7; stroke-linecap: round; }
 .site-header__end  { grid-area: end; justify-self: end; position: relative; }
 .site-header .site-nav { grid-area: nav; }
 
