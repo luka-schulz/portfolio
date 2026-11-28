@@ -209,6 +209,8 @@
 /* ---- Toast: "E-mail Copied!" -------------------------------------------
    Glass pill that attaches to the lower right of the cursor (main.js). */
 
+a[href^="mailto:"] { cursor: copy; }   /* a click copies the address (main.js) */
+
 .toast {
   position: fixed;
   z-index: 100;
