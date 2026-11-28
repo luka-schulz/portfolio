@@ -120,7 +120,8 @@ function pop(el, show, P) {
       var e = entries[i];
       if (e.isIntersecting) {
         io.unobserve(e.target);
-        if (e.target.hasAttribute("data-reveal-children") || e.target.hasAttribute("data-reveal-line")) show(e.target, 0);
+        // containers mark "in" at once; lines take their own step in the stagger
+        if (e.target.hasAttribute("data-reveal-children") && !e.target.hasAttribute("data-reveal-line")) show(e.target, 0);
         else queue.push(e.target);
       }
       else if (e.boundingClientRect.bottom < 0) { io.unobserve(e.target); show(e.target, 0); }

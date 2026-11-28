@@ -865,7 +865,8 @@
    --------------------------------------------------------------------------
    <div data-reveal>                 the element itself
    <ul data-reveal-children>         each direct child, staggered
-   <div data-reveal-line>            no fade; only its hairline fades on
+   <div data-reveal-line>            no fade; its hairline draws as its own
+                                     step in the sequence (blog list, details rows)
    Only active when the head script adds .reveal-on (needs
    IntersectionObserver, no reduced-motion). Otherwise everything is
    simply visible. main.js adds .is-revealed to things that fade in and
@@ -887,12 +888,12 @@
 /* Hairlines fade on. The real border stays put; a 1px strip in the page
    colour covers it and fades away, so the line keeps its own colour in both
    themes. It goes when the element (or something it sits in) comes in, a
-   beat after the fade. To give another bordered element this, add it to the
+   beat after the fade (data-reveal-line: on its own beat). To give another bordered element this, add it to the
    three lists below (top border → first two, bottom border → first and third). */
 .reveal-on :is(.cs-details > div, .cs-next, .w-list, .wb-index > div + div, .article__meta, .article__steps,
-               .footnotes, .article__folio, .site-footer__grid, .w-row, .article__steps li) { position: relative; }
+               .footnotes, .article__folio, .w-row, .article__steps li) { position: relative; }
 .reveal-on :is(.cs-details > div, .cs-next, .w-list, .wb-index > div + div, .article__meta, .article__steps,
-               .footnotes, .article__folio, .site-footer__grid, .w-row, .article__steps li)::after {
+               .footnotes, .article__folio, .w-row, .article__steps li)::after {
   content: "";
   position: absolute;
   left: 0;
@@ -903,16 +904,16 @@
   pointer-events: none;
 }
 .reveal-on :is(.cs-details > div, .cs-next, .w-list, .wb-index > div + div, .article__meta, .article__steps,
-               .footnotes, .article__folio, .site-footer__grid)::after { top: -1px; }
+               .footnotes, .article__folio)::after { top: -1px; }
 .reveal-on :is(.w-row, .article__steps li)::after { bottom: -1px; }
-.reveal-on :is(.is-in, .is-revealed, .is-revealed *):is(.cs-details > div, .cs-next, .w-list, .wb-index > div + div,
-               .article__meta, .article__steps, .footnotes, .article__folio, .site-footer__grid, .w-row, .article__steps li)::after { opacity: 0; }
+.reveal-on :is(.is-in, .is-revealed, .is-revealed :not([data-reveal-line])):is(.cs-details > div, .cs-next, .w-list, .wb-index > div + div,
+               .article__meta, .article__steps, .footnotes, .article__folio, .w-row, .article__steps li)::after { opacity: 0; }
 
 @media print {
   .reveal-on [data-reveal],
   .reveal-on [data-reveal-children] > * { opacity: 1; transform: none; }
   .reveal-on :is(.cs-details > div, .cs-next, .w-list, .wb-index > div + div, .article__meta, .article__steps,
-                 .footnotes, .article__folio, .site-footer__grid, .w-row, .article__steps li)::after { display: none; }   /* no hairline covers */
+                 .footnotes, .article__folio, .w-row, .article__steps li)::after { display: none; }   /* no hairline covers */
 }
 
 
