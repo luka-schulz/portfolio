@@ -148,6 +148,10 @@ And in the page and around it:
 - [ ] Search, hidden until called up
 - [ ] Vim keybindings (maybe)
 - [ ] Pigeons that fly in and land on images
+- [ ] A slight chromatic aberration on blurs (colour channels shifted a touch)
+- [ ] Something fun when you click the smile next to the name
+- [ ] ⌘/Ctrl-click the light/dark switch to cycle through coloured backgrounds
+- [ ] Secret keyboard codes, like the Konami code (↑ ↑ ↓ ↓ ← → ← → B A Start)
 - [ ] Dappled light: the effect is parked on `_drafts/dapple.html` (with its tuning panel) if it comes back
 
 ## The archive
