@@ -259,6 +259,7 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
   <div class="dt glass" id="dt">
     <h2>Dapple <span>H hides · B boosts</span></h2>
     <div id="dt-fields"></div>
+    <div class="row" id="dt-presets"><span style="align-self:center;color:var(--color-muted)">Presets</span></div>
     <div class="row">
       <button type="button" id="dt-boost" aria-pressed="false">Boost ×6</button>
       <button type="button" id="dt-theme">Light / dark</button>
@@ -309,6 +310,11 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
       ["Arrangement"],
       ["seed", "Layout", 1, 200, 1]
     ];
+    var PRESETS = {
+      "Luka’s pass": {"angle": -28, "shadowShare": 0.6, "lightShadow": "#949494", "lightShadowStrength": 0.29, "lightLight": "#e8e1d4", "lightLightStrength": 0.6, "darkShadow": "#000000", "darkShadowStrength": 0.35, "darkLight": "#ffecd2", "darkLightStrength": 0.07, "speed": 0.64, "drift": 0.22, "wobble": 0.047, "twist": 5.5, "stretch": 0.6, "fade": 1, "fps": 41, "sharpCount": 30, "sharpLength": 0.41, "sharpWidth": 0.14, "sharpSoftness": 4, "sharpHardness": 0, "sharpStrength": 0.55, "softCount": 9, "softLength": 0.92, "softWidth": 0.12, "softSoftness": 14, "softHardness": 0.1, "softStrength": 0.5, "seed": 7},
+      "Claude’s pass": {"angle": -24, "shadowShare": 0.55, "lightShadow": "#8f8a84", "lightShadowStrength": 0.2, "lightLight": "#ece4d6", "lightLightStrength": 0.55, "darkShadow": "#000000", "darkShadowStrength": 0.45, "darkLight": "#ffe6c4", "darkLightStrength": 0.13, "speed": 0.32, "drift": 0.2, "wobble": 0.018, "twist": 3, "stretch": 0.35, "fade": 0.85, "fps": 30, "sharpCount": 14, "sharpLength": 0.6, "sharpWidth": 0.045, "sharpSoftness": 4, "sharpHardness": 0.35, "sharpStrength": 0.6, "softCount": 8, "softLength": 1.1, "softWidth": 0.2, "softSoftness": 16, "softHardness": 0.05, "softStrength": 0.55, "seed": 7},
+      "Defaults": {}
+    };
     var KEY = "dapple-tune-2", boost = false, vals = {};
     function ready(fn) { window.__dapple ? fn() : setTimeout(function () { ready(fn); }, 50); }
     function hex(rgb) { return "#" + rgb.split(",").map(function (n) { return (+n).toString(16).padStart(2, "0"); }).join(""); }
@@ -347,6 +353,18 @@ try{if("scrollRestoration" in history){history.scrollRestoration="manual";var n=
       }
       function sync() { box.querySelectorAll("label[data-name]").forEach(function (l) { var n = l.dataset.name, r = l.querySelector("input"); r.value = vals[n]; l.querySelector("output").textContent = fmt(vals[n], +r.step); }); }
 
+      function setAll(o) {
+        vals = Object.assign({}, D.defaults, o);
+        sync();
+        box.querySelectorAll("label[data-color]").forEach(function (l) { l.querySelector("input").value = vals[l.dataset.color]; l.querySelector("output").textContent = vals[l.dataset.color]; });
+        apply();
+      }
+      var pre = document.getElementById("dt-presets");
+      Object.keys(PRESETS).forEach(function (name) {
+        var btn = document.createElement("button"); btn.type = "button"; btn.textContent = name;
+        btn.onclick = function () { setAll(PRESETS[name]); };
+        pre.append(btn);
+      });
       var boostBtn = document.getElementById("dt-boost");
       function toggleBoost() { boost = !boost; boostBtn.setAttribute("aria-pressed", boost); apply(); }
       boostBtn.onclick = toggleBoost;
