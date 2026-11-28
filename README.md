@@ -142,6 +142,14 @@ And in the page and around it:
 - Project pages for the tiles that point to `404.html`
 - E-mail address (`hello@example.com` placeholder)
 
+### Ideas to add
+
+- [ ] Whiteboard: draw anywhere on the page
+- [ ] Search, hidden until called up
+- [ ] Vim keybindings (maybe)
+- [ ] Pigeons that fly in and land on images
+- [ ] Dappled light: the effect is parked on `_drafts/dapple.html` (with its tuning panel) if it comes back
+
 ## The archive
 
 Every version of my portfolio in one place. Each version lives in its own
