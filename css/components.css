@@ -1191,3 +1191,17 @@
   .lightbox__img, .lightbox.is-open .lightbox__img { transform: none; }
 }
 @media print { .lightbox { display: none; } }
+
+
+/* Dappled light (js/dapple.js): a tiny canvas stretched over the screen,
+   behind everything. Its strength is set in main.js (DAPPLE). */
+.dapple {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  inline-size: 100%;
+  block-size: 100%;
+  pointer-events: none;
+  transition: opacity 400ms var(--ease);
+}
+@media print { .dapple { display: none; } }
