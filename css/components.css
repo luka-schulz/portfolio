@@ -260,7 +260,7 @@
   inset: 0;
   z-index: 1;
   background: rgb(0 0 0 / 0.4);          /* solid black, dims the poster */
-  transition: background var(--duration) var(--ease);
+  transition: background 600ms var(--ease);   /* same timing as the push-in */
 }
 .video-poster:hover { opacity: 1; }                 /* image link: no text fade… */
 .video-poster:hover::before { background: rgb(0 0 0 / 0.25); }   /* …the scrim lightens instead */
