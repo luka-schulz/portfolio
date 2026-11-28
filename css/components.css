@@ -287,8 +287,10 @@
 }
 .project-card__link { text-decoration: none; }
 .project-card__link::after { content: ""; position: absolute; inset: 0; }   /* stretch the link */
-.project-card .media img { transition: transform 600ms var(--ease); }
-.project-card:has(.project-card__link):hover .media img { transform: scale(1.02); }
+.project-card .media img,
+.video-poster .media img { transition: transform 600ms var(--ease); }
+.project-card:has(.project-card__link):hover .media img,
+.video-poster:hover .media img { transform: scale(1.02); }   /* push-in, same on film posters */
 .project-card:has(.project-card__link):hover .project-card__link { text-decoration: underline; }
 
 /* ---- Tag: small solid badge with an icon (NDA, WIP) --------------------- */
